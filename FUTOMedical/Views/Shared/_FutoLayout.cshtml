@@ -1,0 +1,173 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FUTO Medical || @ViewBag.Title</title>
+    @Scripts.Render("~/bundles/modernizr")
+    <!-- Core CSS - Include with every page -->
+    <link href="~/Content/FUTOMedical/assets/plugins/bootstrap/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/FUTOMedical/assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
+    <link href="~/Content/FUTOMedical/assets/plugins/pace/pace-theme-big-counter.css" rel="stylesheet" />
+    <link href="~/Content/FUTOMedical/assets/css/style.css" rel="stylesheet" />
+    <link href="~/Content/FUTOMedical/assets/css/main-style.css" rel="stylesheet" />
+    <!-- Page-Level CSS -->
+    <link href="~/Content/FUTOMedical/assets/plugins/morris/morris-0.4.3.min.css" rel="stylesheet" />
+   
+
+    @RenderSection("Style", required: false)
+</head>
+<body>
+    <!--  wrapper -->
+    <div id="wrapper">
+        <!-- navbar top -->
+        <nav class="navbar navbar-default navbar-fixed-top" role="navigation" id="navbar">
+            <!-- navbar-header -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="index.html">
+                    <img src="~/Content/FUTOMedical/assets/img/logo.png" alt="" />
+                </a>
+            </div>
+            <!-- end navbar-header -->
+            <!-- navbar-top-links -->
+
+            @if (User.IsInRole("Admin") || User.IsInRole("SuperAdmin"))
+            {
+                @Html.Partial("/Areas/Admin/Views/PartialView/AdminProfileLayout.cshtml")
+            }
+
+            else if (User.IsInRole("Doctor"))
+            {
+                @Html.Partial("/Areas/Admin/Views/PartialView/DoctorProfileLayout.cshtml")
+            }
+
+            else if (User.IsInRole("Nurse"))
+            {
+                @Html.Partial("/Areas/Admin/Views/PartialView/NurseProfileLayout.cshtml")
+            }
+
+            else if (User.IsInRole("Pharmacist"))
+            {
+                @Html.Partial("/Areas/Admin/Views/PartialView/PharmacistProfileLayout.cshtml")
+            }
+
+            else if (User.IsInRole("Patient"))
+            {
+                @Html.Partial("/Areas/Admin/Views/PartialView/PatientProfileLayout.cshtml")
+            }
+
+            else
+            {
+
+            }
+
+            <!-- end navbar-top-links -->
+
+        </nav>
+        <!-- end navbar top -->
+        <!-- navbar side -->
+        <nav class="navbar-default navbar-static-side" role="navigation">
+            <!-- sidebar-collapse -->
+            <div class="sidebar-collapse">
+                <!-- side-menu -->
+                <ul class="nav" id="side-menu">
+
+                    <li>
+                        <!-- user image section-->
+                        @if (User.IsInRole("Admin") || User.IsInRole("SuperAdmin"))
+                        {
+                            @Html.Partial("/Areas/Admin/Views/PartialView/AdminProfileInfo.cshtml")
+                        }
+                        else if (User.IsInRole("Doctor"))
+                        {
+                            @Html.Partial("/Areas/Admin/Views/PartialView/DoctorProfileInfo.cshtml")
+                        }
+                        else if (User.IsInRole("Nurse"))
+                        {
+                            @Html.Partial("/Areas/Admin/Views/PartialView/NurseProfileInfo.cshtml")
+                        }
+                        else if (User.IsInRole("Pharmacist"))
+                        {
+                            @Html.Partial("/Areas/Admin/Views/PartialView/PharmacistProfileInfo.cshtml")
+                        }
+                        else if (User.IsInRole("Patient"))
+                        {
+                            @Html.Partial("/Areas/Admin/Views/PartialView/PatientProfileInfo.cshtml")
+                        }
+                        else
+                        {
+
+                        }
+
+                        <!--end user image section-->
+                    </li>
+
+
+                    @if (User.IsInRole("Admin") || User.IsInRole("SuperAdmin"))
+                    {
+
+                        @Html.Partial("~/Areas/Admin/Views/Shared/_AdminMenu.cshtml")
+                    }
+                    else if (User.IsInRole("HOD"))
+                    {
+                        @Html.Partial("~/Areas/Admin/Views/Shared/_HODMenu.cshtml")
+                    }
+                    else if (User.IsInRole("Lecturer"))
+                    {
+                        @Html.Partial("~/Areas/Admin/Views/Shared/_LecturerMenu.cshtml")
+                    }
+
+                    else if (User.IsInRole("Student"))
+                    {
+                        @Html.Partial("~/Areas/Admin/Views/Shared/_StudentMenu.cshtml")
+                    }
+                    else
+                    {
+
+                    }
+
+
+                </ul>
+                <!-- end side-menu -->
+            </div>
+            <!-- end sidebar-collapse -->
+        </nav>
+        <!-- end navbar side -->
+        <!--  page-wrapper -->
+        <div id="page-wrapper">
+
+
+            @RenderBody()
+
+
+        </div>
+        <!-- end page-wrapper -->
+
+    </div>
+    <!-- end wrapper -->
+    <!-- Core Scripts - Include with every page -->
+    <script src="~/Content/FUTOMedical/assets/plugins/jquery-1.10.2.js"></script>
+    <script src="~/Content/FUTOMedical/assets/plugins/bootstrap/bootstrap.min.js"></script>
+    <script src="~/Content/FUTOMedical/assets/plugins/metisMenu/jquery.metisMenu.js"></script>
+    <script src="~/Content/FUTOMedical/assets/plugins/pace/pace.js"></script>
+    <script src="~/Content/FUTOMedical/assets/scripts/siminta.js"></script>
+    <!-- Page-Level Plugin Scripts-->
+    <script src="~/Content/FUTOMedical/assets/plugins/morris/raphael-2.1.0.min.js"></script>
+    <script src="~/Content/FUTOMedical/assets/plugins/morris/morris.js"></script>
+    <script src="~/Content/FUTOMedical/assets/scripts/dashboard-demo.js"></script>
+
+
+
+    @RenderSection("Scripts", required: false)
+
+    @RenderSection("Scripts2", required: false)
+
+</body>
+
+</html>

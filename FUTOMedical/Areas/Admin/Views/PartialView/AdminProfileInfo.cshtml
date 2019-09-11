@@ -1,0 +1,53 @@
+﻿@using FUTOMedical.Areas.Service
+@{
+
+
+    string img = "";
+    if (GeneralService.DoctorInfo() != null)
+    {
+        img = GeneralService.DoctorInfo().Picture;
+
+    }
+}
+
+<div class="user-section">
+    <div class="user-section-inner">
+        @if (!string.IsNullOrEmpty(img))
+        {
+            <img src="@Url.Content(img)" alt="User Image">
+        }
+        else
+        {
+            if (GeneralService.DoctorInfo().Sex == "Male")
+            {
+
+                <img src="~/Content/FUTOMedical/assets/img/avatar5.png" alt="User Image" />
+            }
+            else if (GeneralService.DoctorInfo().Sex == "Female")
+            {
+                <img src="~/Content/FUTOMedical/assets/img/avatar2.png" alt="User Image" />
+
+            }
+            else
+            {
+                <img src="~/Content/FUTOMedical/assets/img/user.jpg" />
+
+            }
+        }
+    </div>
+    <div class="user-info">
+
+        @if (GeneralService.DoctorInfo() != null)
+        {
+            <div><strong> @GeneralService.DoctorInfo().Fullname</strong></div>
+        }
+        else
+        {
+
+        }
+
+            <div class="user-text-online">
+                <span class="user-circle-online btn btn-success btn-circle "></span>&nbsp;Online
+            </div>
+        </div>
+</div>
