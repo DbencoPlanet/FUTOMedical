@@ -27,6 +27,7 @@ namespace FUTOMedical.Models
 
         [Display(Name = "Other Names")]
         public string Othernames { get; set; }
+
     }
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>

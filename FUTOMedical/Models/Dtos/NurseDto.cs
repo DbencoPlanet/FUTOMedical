@@ -35,20 +35,20 @@ namespace FUTOMedical.Models.Dtos
 
         [Display(Name = "Surname")]
         [Required]
-        public string SurName { get; set; }
+        public string Surname { get; set; }
 
         [Display(Name = "First Name")]
         [Required]
-        public string FirstName { get; set; }
+        public string Firstname { get; set; }
 
         [Display(Name = "Other Name")]
-        public string OtherName { get; set; }
+        public string Othernames { get; set; }
 
         public string Fullname
         {
             get
             {
-                return SurName + " " + FirstName + " " + OtherName;
+                return Surname + " " + Firstname + " " + Othernames;
             }
         }
 
@@ -64,11 +64,20 @@ namespace FUTOMedical.Models.Dtos
         public string Sex { get; set; }
 
         [Display(Name = "Picture")]
-        public string ProfilePicture { get; set; }
+        public string Picture { get; set; }
 
         [Display(Name = "Address")]
         [Required]
         public string Address { get; set; }
+
+        public string BloodGroup { get; set; }
+
+        public string Education { get; set; }
+
+        public string StateOfOrigin { get; set; }
+
+        [Display(Name = "Local Government of Origin")]
+        public string LocalGov { get; set; }
 
     }
 }

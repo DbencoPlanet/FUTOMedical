@@ -31,10 +31,10 @@ namespace FUTOMedical.Models.Entities
 
         [Display(Name = "First Name")]
         [Required(ErrorMessage = "First Name field is required")]
-        public string FirstName { get; set; }
+        public string Firstname { get; set; }
 
         [Display(Name = "Other Names")]
-        public string OtherNames { get; set; }
+        public string Othernames { get; set; }
 
         [Display(Name = "Sex")]
         [Required(ErrorMessage = "Sex field is required")]
@@ -44,12 +44,16 @@ namespace FUTOMedical.Models.Entities
         {
             get
             {
-                return Surname + " " + FirstName + " " + OtherNames;
+                return Surname + " " + Firstname + " " + Othernames;
             }
         }
 
         [Display(Name = "Phone No")]
         public string PhoneNo { get; set; }
+
+        [Display(Name = " Email Address")]
+        [Required]
+        public string EmailAddress { get; set; }
 
         [Display(Name = "Date Of Birth")]
         public DateTime? DOB { get; set; }
@@ -116,6 +120,7 @@ namespace FUTOMedical.Models.Entities
         public string CardNumber { get; set; }
         public string FolderNumber { get; set; }
 
+        public string BloodGroup { get; set; }
 
 
     }

@@ -77,7 +77,11 @@ namespace FUTOMedical.Models.Entities
         [Display(Name = "Address")]
         public string Address { get; set; }
 
+        [Display(Name = "State of Origin")]
         public string StateOfOrigin { get; set; }
+
+        [Display(Name = "Local Government of Origin")]
+        public string LocalGov { get; set; }
 
 
 

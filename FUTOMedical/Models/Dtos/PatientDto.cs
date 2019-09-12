@@ -48,20 +48,17 @@ namespace FUTOMedical.Models.Dtos
 
         [Display(Name = "First Name")]
         [Required(ErrorMessage = "First Name field is required")]
-        public string FirstName { get; set; }
+        public string Firstname { get; set; }
 
         [Display(Name = "Other Name")]
-        public string OtherNames { get; set; }
+        public string Othernames { get; set; }
 
-        [Display(Name = "Title")]
-        [Required(ErrorMessage = "Title Name field is required")]
-        public string Title { get; set; }
 
         public string Fullname
         {
             get
             {
-                return Title + " " + Surname + " " + FirstName + " " + OtherNames;
+                return  Surname + " " + Firstname + " " + Othernames;
             }
         }
 
@@ -131,7 +128,15 @@ namespace FUTOMedical.Models.Dtos
         public string Religion { get; set; }
 
         public string CardNumber { get; set; }
+
         public string FolderNumber { get; set; }
+
+        public string BloodGroup { get; set; }
+
+
+        [Display(Name = "Sex")]
+        [Required(ErrorMessage = "Sex field is required")]
+        public string Sex { get; set; }
 
 
 

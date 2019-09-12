@@ -55,5 +55,15 @@ namespace FUTOMedical.Models.Entities
         [Required]
         public string Address { get; set; }
 
+        public string BloodGroup { get; set; }
+
+        public string Education { get; set; }
+
+        [Display(Name = "State of Origin")]
+        public string StateOfOrigin { get; set; }
+
+        [Display(Name = "Local Government of Origin")]
+        public string LocalGov { get; set; }
+
     }
 }

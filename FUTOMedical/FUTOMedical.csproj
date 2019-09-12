@@ -180,9 +180,13 @@
     <Compile Include="Areas\Data\Services\PatientService.cs" />
     <Compile Include="Areas\Data\Services\PharmacistService.cs" />
     <Compile Include="Areas\Data\Services\UserManagerService.cs" />
+    <Compile Include="Areas\Doctors\Controllers\UserManagerController.cs" />
     <Compile Include="Areas\Doctors\DoctorsAreaRegistration.cs" />
+    <Compile Include="Areas\Nurses\Controllers\UserManagerController.cs" />
     <Compile Include="Areas\Nurses\NursesAreaRegistration.cs" />
+    <Compile Include="Areas\Patients\Controllers\UserManagerController.cs" />
     <Compile Include="Areas\Patients\PatientsAreaRegistration.cs" />
+    <Compile Include="Areas\Pharmacists\Controllers\UserManagerController.cs" />
     <Compile Include="Areas\Pharmacists\PharmacistsAreaRegistration.cs" />
     <Compile Include="Areas\Service\GeneralService.cs" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -373,18 +377,18 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Models\" />
-    <Folder Include="Areas\Doctors\Controllers\" />
     <Folder Include="Areas\Doctors\Models\" />
     <Folder Include="Areas\Doctors\Views\Shared\" />
-    <Folder Include="Areas\Nurses\Controllers\" />
+    <Folder Include="Areas\Doctors\Views\UserManager\" />
     <Folder Include="Areas\Nurses\Models\" />
     <Folder Include="Areas\Nurses\Views\Shared\" />
-    <Folder Include="Areas\Patients\Controllers\" />
+    <Folder Include="Areas\Nurses\Views\UserManager\" />
     <Folder Include="Areas\Patients\Models\" />
     <Folder Include="Areas\Patients\Views\Shared\" />
-    <Folder Include="Areas\Pharmacists\Controllers\" />
+    <Folder Include="Areas\Patients\Views\UserManager\" />
     <Folder Include="Areas\Pharmacists\Models\" />
     <Folder Include="Areas\Pharmacists\Views\Shared\" />
+    <Folder Include="Areas\Pharmacists\Views\UserManager\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
