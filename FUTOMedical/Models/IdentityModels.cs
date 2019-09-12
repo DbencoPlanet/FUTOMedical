@@ -39,7 +39,7 @@ namespace FUTOMedical.Models
         public DbSet<Admission> Admissions { get; set; }
         public DbSet<Department> Departments { get; set; }
         public DbSet<Doctor> Doctors { get; set; }
-        public DbSet<LGA> LGA { get; set; }
+        public DbSet<LocalGovs> LocalGovs { get; set; }
         public DbSet<Nurse> Nurses { get; set; }
         public DbSet<OPD> OPD { get; set;}
         public DbSet<Patient> Patients { get; set; }
@@ -47,7 +47,7 @@ namespace FUTOMedical.Models
         public DbSet<Report> Reports { get; set; }
         public DbSet<School> Schools { get; set; }
         public DbSet<Section> Sections { get; set; }
-        public DbSet<State> State { get; set; }
+        public DbSet<States> States { get; set; }
         public DbSet<StudentDept> StudentDepts { get; set; }
 
         public static ApplicationDbContext Create()

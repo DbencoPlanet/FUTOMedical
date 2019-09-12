@@ -170,7 +170,15 @@
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\RolesController.cs" />
     <Compile Include="Areas\Admin\Controllers\UserManagerController.cs" />
+    <Compile Include="Areas\Data\IServices\IDoctorService.cs" />
+    <Compile Include="Areas\Data\IServices\INurseService.cs" />
+    <Compile Include="Areas\Data\IServices\IPatientService.cs" />
+    <Compile Include="Areas\Data\IServices\IPharmacistService.cs" />
     <Compile Include="Areas\Data\IServices\IUserManagerService.cs" />
+    <Compile Include="Areas\Data\Services\DoctorService.cs" />
+    <Compile Include="Areas\Data\Services\NurseService.cs" />
+    <Compile Include="Areas\Data\Services\PatientService.cs" />
+    <Compile Include="Areas\Data\Services\PharmacistService.cs" />
     <Compile Include="Areas\Data\Services\UserManagerService.cs" />
     <Compile Include="Areas\Doctors\DoctorsAreaRegistration.cs" />
     <Compile Include="Areas\Nurses\NursesAreaRegistration.cs" />
@@ -218,7 +226,7 @@
     <Compile Include="Models\Entities\Department.cs" />
     <Compile Include="Models\Entities\Doctor.cs" />
     <Compile Include="Models\Entities\Enum.cs" />
-    <Compile Include="Models\Entities\LGA.cs" />
+    <Compile Include="Models\Entities\LocalGovs.cs" />
     <Compile Include="Models\Entities\Nurse.cs" />
     <Compile Include="Models\Entities\OPD.cs" />
     <Compile Include="Models\Entities\Patient.cs" />
@@ -226,7 +234,7 @@
     <Compile Include="Models\Entities\Report.cs" />
     <Compile Include="Models\Entities\School.cs" />
     <Compile Include="Models\Entities\Section.cs" />
-    <Compile Include="Models\Entities\State.cs" />
+    <Compile Include="Models\Entities\States.cs" />
     <Compile Include="Models\Entities\StudentDept.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />

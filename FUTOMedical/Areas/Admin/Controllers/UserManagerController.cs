@@ -99,8 +99,62 @@ namespace FUTOMedical.Areas.Admin.Controllers
         }
 
 
+
+        public ActionResult AddDoctor(int? userid)
+        {
+            ViewBag.id = userid;
+            ViewBag.StateName = new SelectList(db.States.OrderBy(x => x.StateName), "StateName", "StateName");
+            return View();
+        }
+
+        // POST: Staff/Portal/Edit/5
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> AddDoctor(Doctor profile, HttpPostedFileBase picture, int? userid)
+        {
+
+            ViewBag.id = userid;
+            profile.UserId = ViewBag.id;
+
+
+            if (ModelState.IsValid)
+            {
+                //    //picture
+                if (picture != null && picture.ContentLength > 0)
+
+                {
+                    System.Random randomInteger = new System.Random();
+                    int genNumber = randomInteger.Next(1000);
+
+                    if (picture.ContentLength > 0 && picture.ContentType.ToUpper().Contains("JPEG") || picture.ContentType.ToUpper().Contains("PNG") || picture.ContentType.ToUpper().Contains("JPG"))
+                    {
+
+                        string fileName = Path.GetFileName(profile.Surname + "_" + profile.Firstname + "_" + genNumber + "_" + picture.FileName);
+                        profile.Picture = "~/Uploads/Profile/" + fileName;
+                        fileName = Path.Combine(Server.MapPath("~/Uploads/Profile/"), fileName);
+                        picture.SaveAs(fileName);
+
+
+                    }
+                }
+
+
+
+
+                db.Doctors.Add(profile);
+                await db.SaveChangesAsync();
+                return RedirectToAction("welcome", new { userid = profile.Id });
+            }
+            ViewBag.StateOfOrigin = new SelectList(db.States.OrderBy(x => x.StateName), "StateName", "StateName", profile.StateOfOrigin);
+            return View(profile);
+        }
+
+
+
         // GET: Admin/UserManagers
-     
+
         public async Task<ActionResult> Doctors()
         {
             ViewBag.Roles = RoleManager.Roles.Where(x => x.Name != "SuperAdmin").ToList();
@@ -283,12 +337,12 @@ namespace FUTOMedical.Areas.Admin.Controllers
 
         public JsonResult LgaList(string Id)
         {
-            var stateId = db.State.FirstOrDefault(x => x.Name == Id).Id;
-            var local = from s in db.LGA
+            var stateId = db.States.FirstOrDefault(x => x.StateName == Id).Id;
+            var local = from s in db.LocalGovs
                         where s.StatesId == stateId
                         select s;
 
-            return Json(new SelectList(local.ToArray(), "Name", "Name"), JsonRequestBehavior.AllowGet);
+            return Json(new SelectList(local.ToArray(), "StateName", "StateName"), JsonRequestBehavior.AllowGet);
         }
 
 

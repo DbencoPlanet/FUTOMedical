@@ -75,9 +75,11 @@ namespace FUTOMedical.Models.Entities
         public string Specialist { get; set; }
 
         [Display(Name = "Address")]
-        [Required]
         public string Address { get; set; }
 
-      
+        public string StateOfOrigin { get; set; }
+
+
+
     }
 }
