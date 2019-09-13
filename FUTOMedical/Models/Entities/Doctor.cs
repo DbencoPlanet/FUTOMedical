@@ -45,7 +45,7 @@ namespace FUTOMedical.Models.Entities
         public string Designation { get; set; }
 
         [Display(Name = " Department")]
-        public int? DeptId { get; set; }
+        public int? DeparmentId { get; set; }
         public Department Department { get; set; }
 
         [Display(Name = "Phone No")]

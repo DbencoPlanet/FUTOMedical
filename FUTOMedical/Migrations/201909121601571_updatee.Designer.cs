@@ -7,13 +7,13 @@ namespace FUTOMedical.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class userpadeted : IMigrationMetadata
+    public sealed partial class updatee : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(userpadeted));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(updatee));
         
         string IMigrationMetadata.Id
         {
-            get { return "201909111626546_userpadeted"; }
+            get { return "201909121601571_updatee"; }
         }
         
         string IMigrationMetadata.Source

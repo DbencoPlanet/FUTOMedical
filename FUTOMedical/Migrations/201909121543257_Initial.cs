@@ -50,14 +50,18 @@ namespace FUTOMedical.Migrations
                         Id = c.Int(nullable: false, identity: true),
                         UserId = c.String(maxLength: 128),
                         NurseId = c.String(),
-                        SurName = c.String(nullable: false),
-                        FirstName = c.String(nullable: false),
-                        OtherName = c.String(),
+                        Surname = c.String(nullable: false),
+                        Firstname = c.String(nullable: false),
+                        Othernames = c.String(),
                         EmailAddress = c.String(nullable: false),
                         PhoneNo = c.String(),
                         Sex = c.String(),
                         Picture = c.String(),
                         Address = c.String(nullable: false),
+                        BloodGroup = c.String(),
+                        Education = c.String(),
+                        StateOfOrigin = c.String(),
+                        LocalGov = c.String(),
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.AspNetUsers", t => t.UserId)
@@ -68,6 +72,9 @@ namespace FUTOMedical.Migrations
                 c => new
                     {
                         Id = c.String(nullable: false, maxLength: 128),
+                        Surname = c.String(),
+                        Firstname = c.String(),
+                        Othernames = c.String(),
                         Email = c.String(maxLength: 256),
                         EmailConfirmed = c.Boolean(nullable: false),
                         PasswordHash = c.String(),
@@ -132,10 +139,11 @@ namespace FUTOMedical.Migrations
                         StateOfOrigin = c.String(),
                         LocalGov = c.String(),
                         Surname = c.String(nullable: false),
-                        FirstName = c.String(nullable: false),
-                        OtherNames = c.String(),
-                        Title = c.String(nullable: false),
+                        Firstname = c.String(nullable: false),
+                        Othernames = c.String(),
+                        Sex = c.String(nullable: false),
                         PhoneNo = c.String(),
+                        EmailAddress = c.String(nullable: false),
                         DOB = c.DateTime(),
                         JambReg = c.String(),
                         MatricNo = c.String(),
@@ -156,6 +164,7 @@ namespace FUTOMedical.Migrations
                         Religion = c.String(),
                         CardNumber = c.String(),
                         FolderNumber = c.String(),
+                        BloodGroup = c.String(),
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.Schools", t => t.SchoolId)
@@ -206,9 +215,9 @@ namespace FUTOMedical.Migrations
                         Id = c.Int(nullable: false, identity: true),
                         UserId = c.String(maxLength: 128),
                         DoctorId = c.String(),
-                        SurName = c.String(nullable: false),
-                        FirstName = c.String(nullable: false),
-                        OtherName = c.String(),
+                        Surname = c.String(nullable: false),
+                        Firstname = c.String(nullable: false),
+                        Othernames = c.String(),
                         EmailAddress = c.String(nullable: false),
                         Designation = c.String(),
                         DeptId = c.Int(),
@@ -220,7 +229,9 @@ namespace FUTOMedical.Migrations
                         Education = c.String(),
                         Picture = c.String(),
                         Specialist = c.String(),
-                        Address = c.String(nullable: false),
+                        Address = c.String(),
+                        StateOfOrigin = c.String(),
+                        LocalGov = c.String(),
                         Department_Id = c.Int(),
                     })
                 .PrimaryKey(t => t.Id)
@@ -230,12 +241,23 @@ namespace FUTOMedical.Migrations
                 .Index(t => t.Department_Id);
             
             CreateTable(
-                "dbo.LGAs",
+                "dbo.LocalGovs",
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        Name = c.String(),
-                        StatesId = c.Int(nullable: false),
+                        LGAName = c.String(),
+                        StatesId = c.Int(),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.States", t => t.StatesId)
+                .Index(t => t.StatesId);
+            
+            CreateTable(
+                "dbo.States",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        StateName = c.String(),
                     })
                 .PrimaryKey(t => t.Id);
             
@@ -246,14 +268,18 @@ namespace FUTOMedical.Migrations
                         Id = c.Int(nullable: false, identity: true),
                         UserId = c.String(maxLength: 128),
                         PharmacistId = c.String(),
-                        SurName = c.String(nullable: false),
-                        FirstName = c.String(nullable: false),
-                        OtherName = c.String(),
+                        Surname = c.String(nullable: false),
+                        Firstname = c.String(nullable: false),
+                        Othernames = c.String(),
                         EmailAddress = c.String(nullable: false),
                         PhoneNo = c.String(),
                         Sex = c.String(),
                         Picture = c.String(),
                         Address = c.String(nullable: false),
+                        StateOfOrigin = c.String(),
+                        LocalGov = c.String(),
+                        BloodGroup = c.String(),
+                        Education = c.String(),
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.AspNetUsers", t => t.UserId)
@@ -307,15 +333,6 @@ namespace FUTOMedical.Migrations
                 .ForeignKey("dbo.Patients", t => t.PatientId, cascadeDelete: true)
                 .Index(t => t.PatientId);
             
-            CreateTable(
-                "dbo.States",
-                c => new
-                    {
-                        Id = c.Int(nullable: false, identity: true),
-                        Name = c.String(),
-                    })
-                .PrimaryKey(t => t.Id);
-            
         }
         
         public override void Down()
@@ -327,6 +344,7 @@ namespace FUTOMedical.Migrations
             DropForeignKey("dbo.Reports", "NurseId", "dbo.Nurses");
             DropForeignKey("dbo.Reports", "DoctorId", "dbo.Doctors");
             DropForeignKey("dbo.Pharmacists", "UserId", "dbo.AspNetUsers");
+            DropForeignKey("dbo.LocalGovs", "StatesId", "dbo.States");
             DropForeignKey("dbo.Doctors", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.Doctors", "Department_Id", "dbo.Departments");
             DropForeignKey("dbo.Admissions", "PatientId", "dbo.Patients");
@@ -348,6 +366,7 @@ namespace FUTOMedical.Migrations
             DropIndex("dbo.Reports", new[] { "OPDId" });
             DropIndex("dbo.Reports", new[] { "DoctorId" });
             DropIndex("dbo.Pharmacists", new[] { "UserId" });
+            DropIndex("dbo.LocalGovs", new[] { "StatesId" });
             DropIndex("dbo.Doctors", new[] { "Department_Id" });
             DropIndex("dbo.Doctors", new[] { "UserId" });
             DropIndex("dbo.StudentDepts", new[] { "SchoolId" });
@@ -364,12 +383,12 @@ namespace FUTOMedical.Migrations
             DropIndex("dbo.OPDs", new[] { "PatientId" });
             DropIndex("dbo.Admissions", new[] { "OPDId" });
             DropIndex("dbo.Admissions", new[] { "PatientId" });
-            DropTable("dbo.States");
             DropTable("dbo.Sections");
             DropTable("dbo.AspNetRoles");
             DropTable("dbo.Reports");
             DropTable("dbo.Pharmacists");
-            DropTable("dbo.LGAs");
+            DropTable("dbo.States");
+            DropTable("dbo.LocalGovs");
             DropTable("dbo.Doctors");
             DropTable("dbo.Departments");
             DropTable("dbo.StudentDepts");

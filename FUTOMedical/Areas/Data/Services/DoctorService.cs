@@ -73,7 +73,7 @@ namespace FUTOMedical.Areas.Data.Services
                 doctor.Surname = model.Surname;
                 doctor.Firstname = model.Firstname;
                 doctor.Othernames = model.Othernames;
-                doctor.DeptId = model.DeptId;
+                doctor.DeparmentId = model.DeptId;
                 doctor.PhoneNo = model.PhoneNo;
                 doctor.MobileNo = model.MobileNo;
                 doctor.Biography = model.Biography;

@@ -223,7 +223,7 @@ namespace FUTOMedical.Areas.Doctors.Controllers
             }
             TempData["error"] = "Unable to Edit Profile.";
             ViewBag.StateOfOrigin = new SelectList(db.States.OrderBy(x => x.StateName), "StateName", "StateName", profile.StateOfOrigin);
-            ViewBag.DeptId = new SelectList(db.Departments.OrderBy(x => x.DeptName), "Id", "DeptName", profile.DeptId);
+            ViewBag.DeptId = new SelectList(db.Departments.OrderBy(x => x.DeptName), "Id", "DeptName", profile.DeparmentId);
             return View(profile);
         }
 

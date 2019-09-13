@@ -195,29 +195,13 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201909091714403_Initial.cs" />
-    <Compile Include="Migrations\201909091714403_Initial.Designer.cs">
-      <DependentUpon>201909091714403_Initial.cs</DependentUpon>
+    <Compile Include="Migrations\201909121543257_Initial.cs" />
+    <Compile Include="Migrations\201909121543257_Initial.Designer.cs">
+      <DependentUpon>201909121543257_Initial.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201909111232279_updateee.cs" />
-    <Compile Include="Migrations\201909111232279_updateee.Designer.cs">
-      <DependentUpon>201909111232279_updateee.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201909111447088_updateeeeee.cs" />
-    <Compile Include="Migrations\201909111447088_updateeeeee.Designer.cs">
-      <DependentUpon>201909111447088_updateeeeee.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201909111520014_userupdate.cs" />
-    <Compile Include="Migrations\201909111520014_userupdate.Designer.cs">
-      <DependentUpon>201909111520014_userupdate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201909111521493_userupdattteeeee.cs" />
-    <Compile Include="Migrations\201909111521493_userupdattteeeee.Designer.cs">
-      <DependentUpon>201909111521493_userupdattteeeee.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201909111626546_userpadeted.cs" />
-    <Compile Include="Migrations\201909111626546_userpadeted.Designer.cs">
-      <DependentUpon>201909111626546_userpadeted.cs</DependentUpon>
+    <Compile Include="Migrations\201909121601571_updatee.cs" />
+    <Compile Include="Migrations\201909121601571_updatee.Designer.cs">
+      <DependentUpon>201909121601571_updatee.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -263,6 +247,8 @@
     <Content Include="Content\FUTOMedical\assets\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\FUTOMedical\assets\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="Content\FUTOMedical\assets\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Content\FUTOMedical\assets\img\aaa.jpg" />
+    <Content Include="Content\FUTOMedical\assets\img\aaaa.jpg" />
     <Content Include="Content\FUTOMedical\assets\img\avatar.png" />
     <Content Include="Content\FUTOMedical\assets\img\avatar04.png" />
     <Content Include="Content\FUTOMedical\assets\img\avatar2.png" />
@@ -373,6 +359,7 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Shared\_LoginLayout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -404,23 +391,11 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201909091714403_Initial.resx">
-      <DependentUpon>201909091714403_Initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201909121543257_Initial.resx">
+      <DependentUpon>201909121543257_Initial.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201909111232279_updateee.resx">
-      <DependentUpon>201909111232279_updateee.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201909111447088_updateeeeee.resx">
-      <DependentUpon>201909111447088_updateeeeee.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201909111520014_userupdate.resx">
-      <DependentUpon>201909111520014_userupdate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201909111521493_userupdattteeeee.resx">
-      <DependentUpon>201909111521493_userupdattteeeee.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201909111626546_userpadeted.resx">
-      <DependentUpon>201909111626546_userpadeted.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201909121601571_updatee.resx">
+      <DependentUpon>201909121601571_updatee.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

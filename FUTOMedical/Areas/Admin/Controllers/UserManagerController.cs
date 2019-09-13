@@ -241,6 +241,7 @@ namespace FUTOMedical.Areas.Admin.Controllers
                 profile.Surname = model.Surname;
                 profile.Firstname = model.Firstname;
                 profile.Othernames = model.Othernames;
+                profile.MobileNo = "000000";
 
                 db.Doctors.Add(profile);
                 await db.SaveChangesAsync();
@@ -304,6 +305,7 @@ namespace FUTOMedical.Areas.Admin.Controllers
                 profile.Surname = model.Surname;
                 profile.Firstname = model.Firstname;
                 profile.Othernames = model.Othernames;
+                profile.MobileNo = "000000";
 
                 db.Doctors.Add(profile);
                 await db.SaveChangesAsync();
