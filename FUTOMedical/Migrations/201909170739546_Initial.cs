@@ -220,7 +220,7 @@ namespace FUTOMedical.Migrations
                         Othernames = c.String(),
                         EmailAddress = c.String(nullable: false),
                         Designation = c.String(),
-                        DeptId = c.Int(),
+                        DeparmentId = c.Int(),
                         PhoneNo = c.String(),
                         MobileNo = c.String(nullable: false),
                         Biography = c.String(),

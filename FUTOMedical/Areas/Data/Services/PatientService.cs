@@ -66,7 +66,7 @@ namespace FUTOMedical.Areas.Data.Services
             var result = await UserManager.CreateAsync(user, model.Password);
             if (result.Succeeded)
             {
-                await UserManager.AddToRoleAsync(user.Id, "patient");
+                await UserManager.AddToRoleAsync(user.Id, "Patient");
                 Patient patient = new Patient();
                 patient.UserId = user.Id;
                 patient.EmailAddress = model.Email;
@@ -79,21 +79,21 @@ namespace FUTOMedical.Areas.Data.Services
                 patient.Address = model.Address;
                 patient.StateOfOrigin = model.StateOfOrigin;
                 patient.LocalGov = model.LocalGov;
-                patient.ModeOfEntry = model.ModeOfEntry;
-                patient.ModeOfStudy = model.ModeOfStudy;
+                //patient.ModeOfEntry = model.ModeOfEntry;
+                //patient.ModeOfStudy = model.ModeOfStudy;
                 patient.Nationality = model.Nationality;
                 patient.DOB = model.DOB;
-                patient.JambReg = model.JambReg;
-                patient.MatricNo = model.MatricNo;
-                patient.SchoolId = model.SchoolId;
-                patient.StudentDeptId = model.StudentDeptId;
+                //patient.JambReg = model.JambReg;
+                //patient.MatricNo = model.MatricNo;
+                //patient.SchoolId = model.SchoolId;
+                //patient.StudentDeptId = model.StudentDeptId;
                 patient.ParentGuardianName = model.ParentGuardianName;
                 patient.ParentGuardianPhone = model.ParentGuardianPhone;
                 patient.PermanentAddress = model.PermanentAddress;
                 patient.NextOfKin = model.NextOfKin;
                 patient.NextOfKinAddress = model.NextOfKinAddress;
                 patient.NextOfKinPhone = model.NextOfKinPhone;
-                patient.DateOfEntry = model.DateOfEntry;
+                //patient.DateOfEntry = model.DateOfEntry;
                 patient.PlaceOfBirth = model.PlaceOfBirth;
                 patient.Religion = model.Religion;
                 patient.ResidentAddress = model.ResidentAddress;
@@ -109,6 +109,13 @@ namespace FUTOMedical.Areas.Data.Services
                 patReg.FolderNumber = DateTime.UtcNow.Year + numberid;
 
                 db.Entry(patReg).State = EntityState.Modified;
+                await db.SaveChangesAsync();
+
+                Section section = new Section();
+                section.OpenDate = DateTime.UtcNow.AddHours(1);
+                section.PatientId = patReg.Id;
+                section.SectionOpen = true;
+                db.Sections.Add(section);
                 await db.SaveChangesAsync();
 
                 //email verifiation

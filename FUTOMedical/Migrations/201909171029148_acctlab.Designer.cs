@@ -7,13 +7,13 @@ namespace FUTOMedical.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class Initial : IMigrationMetadata
+    public sealed partial class acctlab : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(Initial));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(acctlab));
         
         string IMigrationMetadata.Id
         {
-            get { return "201909121543257_Initial"; }
+            get { return "201909171029148_acctlab"; }
         }
         
         string IMigrationMetadata.Source

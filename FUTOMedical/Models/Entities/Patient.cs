@@ -58,23 +58,26 @@ namespace FUTOMedical.Models.Entities
         [Display(Name = "Date Of Birth")]
         public DateTime? DOB { get; set; }
 
-        [Display(Name = "JAMB Reg No")]
-        public string JambReg { get; set; }
+        //[Display(Name = "JAMB Reg No")]
+        //public string JambReg { get; set; }
 
-        [Display(Name = "Matirc No")]
-        public string MatricNo { get; set; }
+        //[Display(Name = "Matirc No")]
+        //public string MatricNo { get; set; }
 
-        [Display(Name = "School")]
-        public int? SchoolId { get; set; }
+        //[Display(Name = "School")]
+        //public int? SchoolId { get; set; }
 
-        [Display(Name = "School")]
-        public School School { get; set; }
+        //[Display(Name = "School")]
+        //public School School { get; set; }
+
+        //[Display(Name = "Department")]
+        //public int? StudentDeptId { get; set; }
+
+        //[Display(Name = "Department")]
+        //public StudentDept StudentDept { get; set; }
 
         [Display(Name = "Department")]
-        public int? StudentDeptId { get; set; }
-
-        [Display(Name = "Department")]
-        public StudentDept StudentDept { get; set; }
+        public string Department { get; set; }
 
         [Display(Name = "Permanent Address")]
         public string PermanentAddress { get; set; }
@@ -94,16 +97,16 @@ namespace FUTOMedical.Models.Entities
         [Display(Name = "Next Of Kin Phone")]
         public string NextOfKinPhone { get; set; }
 
-        [Display(Name = "Date Of Entry")]
-        public DateTime DateOfEntry { get; set; }
+        //[Display(Name = "Date Of Entry")]
+        //public DateTime DateOfEntry { get; set; }
 
-        [UIHint("Enum")]
-        [Display(Name = "Mode Of Entry")]
-        public ModeOfEntry ModeOfEntry { get; set; }
+        //[UIHint("Enum")]
+        //[Display(Name = "Mode Of Entry")]
+        //public ModeOfEntry ModeOfEntry { get; set; }
 
-        [UIHint("Enum")]
-        [Display(Name = "Mode Of Study")]
-        public ModeOfStudy ModeOfStudy { get; set; }
+        //[UIHint("Enum")]
+        //[Display(Name = "Mode Of Study")]
+        //public ModeOfStudy ModeOfStudy { get; set; }
 
         [Display(Name = "Resident Address")]
         public string Address { get; set; }

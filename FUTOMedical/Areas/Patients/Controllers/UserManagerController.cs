@@ -78,7 +78,7 @@ namespace FUTOMedical.Areas.Patients.Controllers
         public async Task<ActionResult> NewPatient()
         {
             ViewBag.StateOfOrigin = new SelectList(db.States.OrderBy(x => x.StateName), "StateName", "StateName");
-            ViewBag.SchoolId = new SelectList(db.Schools.OrderBy(x => x.Name), "Id", "Name");
+            //ViewBag.SchoolId = new SelectList(db.Schools.OrderBy(x => x.Name), "Id", "Name");
             return View();
         }
 
@@ -149,7 +149,7 @@ namespace FUTOMedical.Areas.Patients.Controllers
             var allErrors = ModelState.Values.SelectMany(v => v.Errors);
             TempData["error"] = "Creation of new Patient not successful" + ee;
             ViewBag.StateOfOrigin = new SelectList(db.States.OrderBy(x => x.StateName), "StateName", "StateName", model.StateOfOrigin);
-            ViewBag.SchoolId = new SelectList(db.Schools.OrderBy(x => x.Name), "Id", "Name",model.SchoolId);
+            //ViewBag.SchoolId = new SelectList(db.Schools.OrderBy(x => x.Name), "Id", "Name",model.SchoolId);
             return View(model);
         }
 
@@ -162,9 +162,9 @@ namespace FUTOMedical.Areas.Patients.Controllers
             }
 
             ViewBag.StateName = new SelectList(db.States.OrderBy(x => x.StateName), "StateName", "StateName");
-            ViewBag.SchoolId = new SelectList(db.Schools.OrderBy(x => x.Name), "Id", "Name");
+            //ViewBag.SchoolId = new SelectList(db.Schools.OrderBy(x => x.Name), "Id", "Name");
 
-            var profile = await db.Patients.Include(x => x.User).Include(x => x.School).Include(x => x.StudentDept).FirstOrDefaultAsync(x => x.Id == id);
+            var profile = await db.Patients.Include(x => x.User).FirstOrDefaultAsync(x => x.Id == id);
           
             Patient data = await db.Patients.FindAsync(id);
 
@@ -222,7 +222,7 @@ namespace FUTOMedical.Areas.Patients.Controllers
             }
             TempData["error"] = "Unable to Edit Profile.";
             ViewBag.StateOfOrigin = new SelectList(db.States.OrderBy(x => x.StateName), "StateName", "StateName", profile.StateOfOrigin);
-            ViewBag.SchoolId = new SelectList(db.Schools.OrderBy(x => x.Name), "Id", "Name", profile.SchoolId);
+            //ViewBag.SchoolId = new SelectList(db.Schools.OrderBy(x => x.Name), "Id", "Name", profile.SchoolId);
             return View(profile);
         }
 
@@ -230,7 +230,7 @@ namespace FUTOMedical.Areas.Patients.Controllers
         public async Task<ActionResult> MyProfile()
         {
             var userinfo = User.Identity.GetUserId();
-            var profile = await db.Patients.Include(x => x.User).Include(x=>x.StudentDept).Include(x=>x.School).FirstOrDefaultAsync(x => x.UserId == userinfo);
+            var profile = await db.Patients.Include(x => x.User).FirstOrDefaultAsync(x => x.UserId == userinfo);
             ViewBag.profile = profile;
             return View();
         }
@@ -238,7 +238,7 @@ namespace FUTOMedical.Areas.Patients.Controllers
 
         public async Task<ActionResult> Profile(int? id)
         {
-            var profile = await db.Patients.Include(x => x.User).Include(x => x.StudentDept).Include(x => x.School).FirstOrDefaultAsync(x => x.Id == id);
+            var profile = await db.Patients.Include(x => x.User).FirstOrDefaultAsync(x => x.Id == id);
             ViewBag.profile = profile;
             return View();
         }

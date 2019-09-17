@@ -173,11 +173,15 @@
     <Compile Include="Areas\Data\IServices\IDoctorService.cs" />
     <Compile Include="Areas\Data\IServices\INurseService.cs" />
     <Compile Include="Areas\Data\IServices\IPatientService.cs" />
+    <Compile Include="Areas\Data\IServices\IAccountantService.cs" />
+    <Compile Include="Areas\Data\IServices\ILaboratoristService.cs" />
     <Compile Include="Areas\Data\IServices\IPharmacistService.cs" />
     <Compile Include="Areas\Data\IServices\IUserManagerService.cs" />
     <Compile Include="Areas\Data\Services\DoctorService.cs" />
     <Compile Include="Areas\Data\Services\NurseService.cs" />
     <Compile Include="Areas\Data\Services\PatientService.cs" />
+    <Compile Include="Areas\Data\Services\AccountantService.cs" />
+    <Compile Include="Areas\Data\Services\LaboratoristService.cs" />
     <Compile Include="Areas\Data\Services\PharmacistService.cs" />
     <Compile Include="Areas\Data\Services\UserManagerService.cs" />
     <Compile Include="Areas\Doctors\Controllers\UserManagerController.cs" />
@@ -195,35 +199,41 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201909121543257_Initial.cs" />
-    <Compile Include="Migrations\201909121543257_Initial.Designer.cs">
-      <DependentUpon>201909121543257_Initial.cs</DependentUpon>
+    <Compile Include="Migrations\201909170739546_Initial.cs" />
+    <Compile Include="Migrations\201909170739546_Initial.Designer.cs">
+      <DependentUpon>201909170739546_Initial.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201909121601571_updatee.cs" />
-    <Compile Include="Migrations\201909121601571_updatee.Designer.cs">
-      <DependentUpon>201909121601571_updatee.cs</DependentUpon>
+    <Compile Include="Migrations\201909171029148_acctlab.cs" />
+    <Compile Include="Migrations\201909171029148_acctlab.Designer.cs">
+      <DependentUpon>201909171029148_acctlab.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Dtos\DoctorDto.cs" />
     <Compile Include="Models\Dtos\NurseDto.cs" />
     <Compile Include="Models\Dtos\PatientDto.cs" />
+    <Compile Include="Models\Dtos\AccountantDto.cs" />
+    <Compile Include="Models\Dtos\LaboratoristDto.cs" />
     <Compile Include="Models\Dtos\PharmacistDto.cs" />
     <Compile Include="Models\Entities\AdminViewModel.cs" />
     <Compile Include="Models\Entities\Admission.cs" />
+    <Compile Include="Models\Entities\BloodBank.cs" />
     <Compile Include="Models\Entities\Department.cs" />
     <Compile Include="Models\Entities\Doctor.cs" />
     <Compile Include="Models\Entities\Enum.cs" />
+    <Compile Include="Models\Entities\Invoice.cs" />
+    <Compile Include="Models\Entities\InvoiceLine.cs" />
     <Compile Include="Models\Entities\LocalGovs.cs" />
     <Compile Include="Models\Entities\Nurse.cs" />
     <Compile Include="Models\Entities\OPD.cs" />
     <Compile Include="Models\Entities\Patient.cs" />
+    <Compile Include="Models\Entities\Accountant.cs" />
+    <Compile Include="Models\Entities\Laboratorist.cs" />
     <Compile Include="Models\Entities\Pharmacist.cs" />
     <Compile Include="Models\Entities\Report.cs" />
-    <Compile Include="Models\Entities\School.cs" />
     <Compile Include="Models\Entities\Section.cs" />
+    <Compile Include="Models\Entities\Setting.cs" />
     <Compile Include="Models\Entities\States.cs" />
-    <Compile Include="Models\Entities\StudentDept.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -391,11 +401,11 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201909121543257_Initial.resx">
-      <DependentUpon>201909121543257_Initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201909170739546_Initial.resx">
+      <DependentUpon>201909170739546_Initial.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201909121601571_updatee.resx">
-      <DependentUpon>201909121601571_updatee.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201909171029148_acctlab.resx">
+      <DependentUpon>201909171029148_acctlab.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

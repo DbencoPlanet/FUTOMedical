@@ -46,10 +46,15 @@ namespace FUTOMedical.Models
         public DbSet<Patient> Patients { get; set; }
         public DbSet<Pharmacist> Pharmacist { get; set; }
         public DbSet<Report> Reports { get; set; }
-        public DbSet<School> Schools { get; set; }
+        //public DbSet<School> Schools { get; set; }
         public DbSet<Section> Sections { get; set; }
         public DbSet<States> States { get; set; }
-        public DbSet<StudentDept> StudentDepts { get; set; }
+        //public DbSet<StudentDept> StudentDepts { get; set; }
+        public DbSet<Accountant> Accountants { get; set; }
+        public DbSet<Laboratorist> Laboratorists { get; set; }
+        public DbSet<BloodBank> BloodBank { get; set; }
+        public DbSet<Invoice> Invoices { get; set; }
+        public DbSet<InvoiceLine> InvoiceLines { get; set; }
 
         public static ApplicationDbContext Create()
         {
