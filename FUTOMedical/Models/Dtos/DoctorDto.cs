@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 using FUTOMedical.Models.Entities;
+using CompareAttribute = System.ComponentModel.DataAnnotations.CompareAttribute;
 
 namespace FUTOMedical.Models.Dtos
 {
@@ -68,6 +70,7 @@ namespace FUTOMedical.Models.Dtos
         public string MobileNo { get; set; }
 
         [Display(Name = "Biography")]
+        [AllowHtml]
         public string Biography { get; set; }
 
         [Display(Name = "Sex")]
@@ -94,6 +97,9 @@ namespace FUTOMedical.Models.Dtos
 
         [Display(Name = "Local Government of Origin")]
         public string LocalGov { get; set; }
+
+        [Display(Name = "Nationality")]
+        public string Nationality { get; set; }
 
 
 

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace FUTOMedical.Models.Entities
 {
@@ -56,6 +57,7 @@ namespace FUTOMedical.Models.Entities
         public string MobileNo { get; set; }
 
         [Display(Name = "Biography")]
+        [AllowHtml]
         public string Biography { get; set; }
 
         [Display(Name = "Sex")]
@@ -82,6 +84,9 @@ namespace FUTOMedical.Models.Entities
 
         [Display(Name = "Local Government of Origin")]
         public string LocalGov { get; set; }
+
+        [Display(Name = "Nationality")]
+        public string Nationality { get; set; }
 
 
 

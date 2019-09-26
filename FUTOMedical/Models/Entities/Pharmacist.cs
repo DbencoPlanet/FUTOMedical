@@ -65,6 +65,8 @@ namespace FUTOMedical.Models.Entities
 
         public string Education { get; set; }
 
+        public string Nationality { get; set; }
+
 
     }
 }

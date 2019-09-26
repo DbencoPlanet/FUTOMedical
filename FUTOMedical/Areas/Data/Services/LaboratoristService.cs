@@ -67,23 +67,25 @@ namespace FUTOMedical.Areas.Data.Services
             if (result.Succeeded)
             {
                 await UserManager.AddToRoleAsync(user.Id, "Laboratorist");
-                Pharmacist pharmacist = new Pharmacist();
-                pharmacist.UserId = user.Id;
-                pharmacist.EmailAddress = model.Email;
-                pharmacist.Surname = model.Surname;
-                pharmacist.Firstname = model.Firstname;
-                pharmacist.Othernames = model.Othernames;
-                pharmacist.PhoneNo = model.PhoneNo;
-                pharmacist.Sex = model.Sex;
-                pharmacist.BloodGroup = model.BloodGroup;
-                pharmacist.Education = model.Education;
-                pharmacist.Address = model.Address;
-                pharmacist.StateOfOrigin = model.StateOfOrigin;
-                pharmacist.LocalGov = model.LocalGov;
+                Laboratorists laboratorist = new Laboratorists();
+                laboratorist.UserId = user.Id;
+                laboratorist.EmailAddress = model.Email;
+                laboratorist.Surname = model.Surname;
+                laboratorist.Firstname = model.Firstname;
+                laboratorist.Othernames = model.Othernames;
+                laboratorist.PhoneNo = model.PhoneNo;
+                laboratorist.Sex = model.Sex;
+                laboratorist.BloodGroup = model.BloodGroup;
+                laboratorist.Education = model.Education;
+                laboratorist.Address = model.Address;
+                laboratorist.StateOfOrigin = model.StateOfOrigin;
+                laboratorist.LocalGov = model.LocalGov;
+                laboratorist.Picture = model.Picture;
+                laboratorist.Nationality = model.Nationality;
 
 
 
-                db.Pharmacist.Add(pharmacist);
+                db.Laboratorists.Add(laboratorist);
                 await db.SaveChangesAsync();
 
                 var nurReg = await db.Laboratorists.FirstOrDefaultAsync(x => x.UserId == user.Id);

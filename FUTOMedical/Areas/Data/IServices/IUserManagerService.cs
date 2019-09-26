@@ -22,7 +22,7 @@ namespace FUTOMedical.Areas.Data.IServices
         Task<List<Nurse>> Nurses();
         Task<List<Pharmacist>> Pharmacists();
         Task<List<Patient>> Patients();
-        Task<List<Accountant>> Accountants();
-        Task<List<Laboratorist>> Laboratorists();
+        Task<List<Accountants>> Accountants();
+        Task<List<Laboratorists>> Laboratorists();
     }
 }

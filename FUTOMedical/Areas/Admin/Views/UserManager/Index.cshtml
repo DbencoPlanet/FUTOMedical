@@ -1,0 +1,171 @@
+﻿@model IEnumerable<FUTOMedical.Models.ApplicationUser>
+@using FUTOMedical.Areas.Service
+
+    @{
+        ViewBag.Title = "Index";
+        Layout = "~/Views/Shared/_FutoLayout.cshtml";
+    }
+
+    <div class="row">
+        <!--  page header -->
+        <div class="col-lg-12">
+            <h1 class="page-header">Users</h1>
+        </div>
+        <!-- end  page header -->
+    </div>
+    <div class="row">
+        @*<div class="col-lg-1"></div>*@
+        <div class="col-lg-12">
+            <!-- Advanced Tables -->
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <i class="fa fa-fw fa-file-text-o"></i>
+                    User Management (@Model.Count() / @ViewBag.countall)
+                </div>
+                <div class="panel-body">
+                    <div class="btn-group pull-right">
+
+                        <a class="btn btn-danger" href="@Url.Action("ResetUserPassword", "Account", null)"> <i class='fa fa-edit fa-fw'></i> Reset User Password</a>
+                    </div>
+
+                    <div class="btn-group pull-right">
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                                Filter <span class="caret"></span>
+                                <span class="sr-only">Toggle Dropdown</span>
+                            </button>
+                            <ul class="dropdown-menu" role="menu">
+                                <li>
+                                    @Html.ActionLink("Accountant", "Accountants", null, new { @class = "" })
+                                </li>
+                                <li>
+                                    @Html.ActionLink("Doctor", "Doctors", null, new { @class = "" })
+                                </li>
+                                <li>
+                                    @Html.ActionLink("Laboratorist", "Laboratorists", null, new { @class = "" })
+                                </li>
+                                <li>
+                                    @Html.ActionLink("Nurse", "Nurses", null, new { @class = "" })
+                                </li>
+                                <li>
+                                    @Html.ActionLink("Patient", "Patients", null, new { @class = "" })
+                                </li>
+                                <li>
+                                    @Html.ActionLink("Pharmacist", "Pharmacists", null, new { @class = "" })
+                                </li>
+
+                            </ul>
+                        </div>
+
+                    </div>
+                    </div>
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                            <table class="table table-striped table-bordered table-hover" id="example1">
+                                <thead>
+                                    <tr>
+                                        <th>S/No</th>
+                                        <th>
+                                            FULLNAME
+                                        </th>
+                                        <th>
+                                            EMAIL
+                                        </th>
+
+                                        @foreach (var item in ViewBag.Roles)
+                                        {
+                                            <th>@item.Name.ToUpper()</th>
+                                        }
+
+                                        @*<th>
+                                            ACTION
+                                        </th>*@
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @{
+                                        int sno = 0;
+                                    }
+
+                                    @foreach (var item in Model)
+                                    {
+                                    <tr>
+                                        <td>
+                                            @{ sno++; }
+                                            @sno
+                                        </td>
+
+                                        <td>
+                                            @item.Surname  @item.Firstname  @item.Othernames
+                                        </td>
+                                        <td>@item.Email</td>
+
+                                        @foreach (var role in ViewBag.Roles)
+                                        {
+                                            <td>
+                                                @using (Html.BeginForm("UserToRole", "UserManager"))
+                                                {
+                                                    <input type="hidden" value="@item.Id" name="userId" />
+                                                    <input type="hidden" value="@role.Name" name="rolename" />
+                                                    <input type="checkbox" class="icheckbox_minimal-blue" name="ischecked" onclick="this.form.submit();" value="true" checked="@GeneralService.IsUserInRole(item.Id, role.Name)" />
+
+                                                }
+                                            </td>
+                                        }
+
+                                        @*<td>
+
+
+                                            <div class="btn-group">
+                                                <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown">
+                                                    Action <span class="caret"></span>
+                                                    <span class="sr-only">Toggle Dropdown</span>
+                                                </button>
+                                                <ul class="dropdown-menu" role="menu">
+                                                    <li>
+                                                        @Html.ActionLink("View User Profile", "UserProfile", new { id = item.Id }, new { @class = "" })
+                                                    </li>
+                                                    <li>
+                                                        @Html.ActionLink("Edit User Profile", "EditUserProfile", new { id = item.Id }, new { @class = "" })
+                                                    </li>
+
+                                                </ul>
+                                            </div>
+                                        </td>*@
+
+                                    </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+            <!--End Advanced Tables -->
+        </div>
+        @*<div class="col-lg-1"></div>*@
+    </div>
+
+
+    @section Style {
+
+        <link href="~/Content/FUTOMedical/assets/plugins/dataTables/dataTables.bootstrap.css" rel="stylesheet" />
+    }
+
+    @section Scripts {
+        <!-- DataTables -->
+        <script src="~/Content/FUTOMedical/assets/plugins/dataTables/jquery.dataTables.js"></script>
+        <script src="~/Content/FUTOMedical/assets/plugins/dataTables/dataTables.bootstrap.js"></script>
+
+    }
+
+    @section Scripts2 {
+        <script>
+            $(document).ready(function () {
+                $('#example1').dataTable();
+            });
+        </script>
+
+    }
+

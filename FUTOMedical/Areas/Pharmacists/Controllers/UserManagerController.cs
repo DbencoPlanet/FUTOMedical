@@ -125,12 +125,13 @@ namespace FUTOMedical.Areas.Pharmacists.Controllers
 
                         //profile pic upload
                         var img = await db.Pharmacist.FirstOrDefaultAsync(x => x.UserId == user.Id);
+                        img.Picture = model.Picture;
 
                         db.Entry(img).State = EntityState.Modified;
                         await db.SaveChangesAsync();
 
                         TempData["success"] = "Pharmacist with username <i> " + model.Fullname + "</i> Added Successfully";
-                        return RedirectToAction("NewNurse");
+                        return RedirectToAction("NewPharmacist");
                     }
                     else
                     {
@@ -236,6 +237,25 @@ namespace FUTOMedical.Areas.Pharmacists.Controllers
             var profile = await db.Pharmacist.Include(x => x.User).FirstOrDefaultAsync(x => x.Id == id);
             ViewBag.profile = profile;
             return View();
+        }
+
+        public JsonResult LgaList(string Id)
+        {
+            var stateId = db.States.FirstOrDefault(x => x.StateName == Id).Id;
+            var local = from s in db.LocalGovs
+                        where s.StatesId == stateId
+                        select s;
+
+            return Json(new SelectList(local.ToArray(), "LGAName", "LGAName"), JsonRequestBehavior.AllowGet);
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                db.Dispose();
+            }
+            base.Dispose(disposing);
         }
 
     }

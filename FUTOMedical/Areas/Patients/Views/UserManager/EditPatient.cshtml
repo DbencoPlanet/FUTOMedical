@@ -1,0 +1,310 @@
+﻿@model FUTOMedical.Models.Entities.Patient
+
+@{
+    ViewBag.Title = "Edit Patient";
+    Layout = "~/Views/Shared/_FutoLayout.cshtml";
+}
+
+
+<div class="row">
+    <!-- page header -->
+    <div class="col-lg-12">
+        <h1 class="page-header">Edit Patient</h1>
+    </div>
+    <!--end page header -->
+</div>
+<div class="row">
+    @*<div class="col-lg-2"></div>*@
+    <div class="col-lg-12">
+        <!-- Form Elements -->
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3> Edit Patient Account </h3>
+                @if (TempData["error"] != null)
+                {
+                    <div class="alert alert-danger alert-dismissible">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        <h4><i class="icon fa fa-ban"></i> Alert!</h4>
+                        @TempData["error"]
+                    </div>
+                }
+
+                @if (TempData["success"] != null)
+                {
+                    <div class="alert alert-danger alert-dismissible">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        <h4><i class="icon fa fa-ban"></i> Alert!</h4>
+                        @TempData["success"]
+                    </div>
+                }
+            </div>
+            @using (Html.BeginForm("EditPatient", "UserManager", FormMethod.Post, new { @class = "", enctype = "multipart/form-data", area = "Patient" }))
+            {
+                @Html.AntiForgeryToken()
+        <div class="panel-body">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.Id)
+            @Html.HiddenFor(model => model.Photo)
+            @Html.HiddenFor(model => model.EmailAddress)
+
+
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Photo, htmlAttributes: new { @class = "" })
+                        <div class="">
+                            <input type="file" name="picture" class="form-control" />
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Surname, htmlAttributes: new { @class = "control-label" })
+                        <div class="">
+                            @Html.EditorFor(model => model.Surname, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter Surname" } })
+                            @Html.ValidationMessageFor(model => model.Surname, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Firstname, htmlAttributes: new { @class = "control-label" })
+                        <div class="">
+                            @Html.EditorFor(model => model.Firstname, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter Firstname" } })
+                            @Html.ValidationMessageFor(model => model.Firstname, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Othernames, htmlAttributes: new { @class = "control-label" })
+                        <div class="">
+                            @Html.EditorFor(model => model.Othernames, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter Other Names" } })
+                            @Html.ValidationMessageFor(model => model.Othernames, "", new { @class = "text-danger" })
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.StateOfOrigin, htmlAttributes: new { @class = "control-label" })
+                        <div class="">
+
+                            @Html.DropDownList("StateOfOrigin", ViewBag.StateName as SelectList, "Select a State", new { id = "StateOfOrigin", @class = "form-control" })
+
+                            @Html.ValidationMessageFor(model => model.StateOfOrigin, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.LocalGov, htmlAttributes: new { @class = "control-label" })
+                        <div class="">
+                            <select id="LGA" name="LocalGov" class="form-control"></select>
+                            @Html.ValidationMessageFor(model => model.LocalGov, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Nationality, htmlAttributes: new { @class = "control-label" })
+                        <div class="">
+                            @Html.EditorFor(model => model.Nationality, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter Nationality" } })
+                            @Html.ValidationMessageFor(model => model.Nationality, "", new { @class = "text-danger" })
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Sex, htmlAttributes: new { @class = "control-label" })
+                        <div class="">
+                            @Html.EditorFor(model => model.Sex, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter Sex" } })
+                            @Html.ValidationMessageFor(model => model.Sex, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.DOB, htmlAttributes: new { @class = "control-label" })
+                        <div class="">
+                            @Html.EditorFor(model => model.DOB, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter Your Date of Birth" } })
+                            @Html.ValidationMessageFor(model => model.DOB, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.PlaceOfBirth, htmlAttributes: new { @class = "control-label" })
+                        <div class="">
+                            @Html.EditorFor(model => model.PlaceOfBirth, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter Place Of Birth" } })
+                            @Html.ValidationMessageFor(model => model.PlaceOfBirth, "", new { @class = "text-danger" })
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.BloodGroup, htmlAttributes: new { @class = "control-label" })
+                        <div class="">
+                            @Html.EditorFor(model => model.BloodGroup, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter Blood Group" } })
+                            @Html.ValidationMessageFor(model => model.BloodGroup, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.PhoneNo, htmlAttributes: new { @class = "control-label" })
+                        <div class="">
+                            @Html.EditorFor(model => model.PhoneNo, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter Phone Number" } })
+                            @Html.ValidationMessageFor(model => model.PhoneNo, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Department, htmlAttributes: new { @class = "control-label" })
+                        <div class="">
+                            @Html.EditorFor(model => model.Department, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter Department" } })
+                            @Html.ValidationMessageFor(model => model.Department, "", new { @class = "text-danger" })
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.ParentGuardianName, htmlAttributes: new { @class = "control-label" })
+                        <div class="">
+                            @Html.EditorFor(model => model.ParentGuardianName, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter Parent/Guardian Name" } })
+                            @Html.ValidationMessageFor(model => model.ParentGuardianName, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.PermanentAddress, htmlAttributes: new { @class = "control-label" })
+                        <div class="">
+                            @Html.EditorFor(model => model.PermanentAddress, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter Permanent Address" } })
+                            @Html.ValidationMessageFor(model => model.PermanentAddress, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.ParentGuardianPhone, htmlAttributes: new { @class = "control-label" })
+                        <div class="">
+                            @Html.EditorFor(model => model.ParentGuardianPhone, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter Parent/Guardian Phone" } })
+                            @Html.ValidationMessageFor(model => model.ParentGuardianPhone, "", new { @class = "text-danger" })
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.NextOfKin, htmlAttributes: new { @class = "control-label" })
+                        <div class="">
+                            @Html.EditorFor(model => model.NextOfKin, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter Next of Kin" } })
+                            @Html.ValidationMessageFor(model => model.NextOfKin, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.NextOfKinAddress, htmlAttributes: new { @class = "control-label" })
+                        <div class="">
+                            @Html.EditorFor(model => model.NextOfKinAddress, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter Next of Kin Address" } })
+                            @Html.ValidationMessageFor(model => model.NextOfKinAddress, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.NextOfKinPhone, htmlAttributes: new { @class = "control-label" })
+                        <div class="">
+                            @Html.EditorFor(model => model.NextOfKinPhone, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter Next of Kin Phone" } })
+                            @Html.ValidationMessageFor(model => model.NextOfKinPhone, "", new { @class = "text-danger" })
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Address, htmlAttributes: new { @class = "control-label" })
+                        <div class="">
+                            @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter Address" } })
+                            @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.ResidentAddress, htmlAttributes: new { @class = "control-label" })
+                        <div class="">
+                            @Html.EditorFor(model => model.ResidentAddress, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter Resident Address" } })
+                            @Html.ValidationMessageFor(model => model.ResidentAddress, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Religion, htmlAttributes: new { @class = "control-label" })
+                        <div class="">
+                            @Html.EditorFor(model => model.Religion, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter Religion" } })
+                            @Html.ValidationMessageFor(model => model.Religion, "", new { @class = "text-danger" })
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Save</button>
+            <button type="reset" class="btn btn-success">Reset</button>
+
+        </div>
+            }
+        </div>
+        <!-- End Form Elements -->
+    </div>
+    @*<div class="col-lg-2"></div>*@
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script type="text/jscript">
+        $(function () {
+            $('#StateOfOrigin').change(function () {
+                $.getJSON('/Patient/UserManager/LgaList/' + $('#StateOfOrigin').val(), function (data) {
+                    var items = '<option>Select a Local Government</option>';
+                    $.each(data, function (i, local) {
+                        items += "<option value='" + local.Value + "'>" + local.Text + "</option>";
+                    });
+                    $('#LGA').html(items);
+                });
+            });
+        });
+    </script>
+}

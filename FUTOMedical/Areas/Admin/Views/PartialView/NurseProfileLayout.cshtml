@@ -1,4 +1,16 @@
-﻿<ul class="nav navbar-top-links navbar-right">
+﻿@using FUTOMedical.Areas.Service
+@{
+    string img = "";
+    if (GeneralService.NurseInfo() != null)
+    {
+        img = GeneralService.NurseInfo().Picture;
+        int? proId = GeneralService.NurseInfo().Id;
+    }
+
+
+}
+
+<ul class="nav navbar-top-links navbar-right">
     <!-- main dropdown -->
     <li class="dropdown">
         <a class="dropdown-toggle" data-toggle="dropdown" href="#">
@@ -7,10 +19,12 @@
         <!-- dropdown user-->
         <ul class="dropdown-menu dropdown-user">
             <li>
-                <a href="#"><i class="fa fa-user fa-fw"></i>User Profile</a>
+                <a href="@Url.Action("MyProfile", "UserManager", new { area = "Nurses" })"><i class="fa fa-user fa-fw"></i> Profile</a>
+                @*<a href="#"><i class="fa fa-user fa-fw"></i>User Profile</a>*@
             </li>
             <li>
-                <a href="#"><i class="fa fa-gear fa-fw"></i>Settings</a>
+                <a href="@Url.Action("EditNurse", "UserManager", new { area = "Nurses", id = GeneralService.NurseInfo().Id })"> <i class="fa fa-gear fa-fw"></i>Settings</a>
+                @*<a href="#"><i class="fa fa-gear fa-fw"></i>Settings</a>*@
             </li>
             <li class="divider"></li>
             <li>

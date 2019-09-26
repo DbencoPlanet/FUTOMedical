@@ -1,6 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -157,9 +156,6 @@
     <Reference Include="Microsoft.Owin.Security.OAuth">
       <HintPath>..\packages\Microsoft.Owin.Security.OAuth.4.0.0\lib\net451\Microsoft.Owin.Security.OAuth.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
-      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
@@ -167,7 +163,11 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Areas\Accountant\AccountantAreaRegistration.cs" />
+    <Compile Include="Areas\Accountant\Controllers\UserManagerController.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\BloodBanksController.cs" />
+    <Compile Include="Areas\Admin\Controllers\DepartmentsController.cs" />
     <Compile Include="Areas\Admin\Controllers\RolesController.cs" />
     <Compile Include="Areas\Admin\Controllers\UserManagerController.cs" />
     <Compile Include="Areas\Data\IServices\IDoctorService.cs" />
@@ -186,8 +186,16 @@
     <Compile Include="Areas\Data\Services\UserManagerService.cs" />
     <Compile Include="Areas\Doctors\Controllers\UserManagerController.cs" />
     <Compile Include="Areas\Doctors\DoctorsAreaRegistration.cs" />
+    <Compile Include="Areas\Laboratorist\Controllers\UserManagerController.cs" />
+    <Compile Include="Areas\Laboratorist\LaboratoristAreaRegistration.cs" />
     <Compile Include="Areas\Nurses\Controllers\UserManagerController.cs" />
     <Compile Include="Areas\Nurses\NursesAreaRegistration.cs" />
+    <Compile Include="Areas\Panel\Controllers\AdmissionsController.cs" />
+    <Compile Include="Areas\Panel\Controllers\DiagnosisController.cs" />
+    <Compile Include="Areas\Panel\Controllers\OPDsController.cs" />
+    <Compile Include="Areas\Panel\Controllers\ReportsController.cs" />
+    <Compile Include="Areas\Panel\Controllers\SectionsController.cs" />
+    <Compile Include="Areas\Panel\PanelAreaRegistration.cs" />
     <Compile Include="Areas\Patients\Controllers\UserManagerController.cs" />
     <Compile Include="Areas\Patients\PatientsAreaRegistration.cs" />
     <Compile Include="Areas\Pharmacists\Controllers\UserManagerController.cs" />
@@ -199,6 +207,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\HelperFile.cs" />
     <Compile Include="Migrations\201909170739546_Initial.cs" />
     <Compile Include="Migrations\201909170739546_Initial.Designer.cs">
       <DependentUpon>201909170739546_Initial.cs</DependentUpon>
@@ -206,6 +215,26 @@
     <Compile Include="Migrations\201909171029148_acctlab.cs" />
     <Compile Include="Migrations\201909171029148_acctlab.Designer.cs">
       <DependentUpon>201909171029148_acctlab.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909171454158_updatee.cs" />
+    <Compile Include="Migrations\201909171454158_updatee.Designer.cs">
+      <DependentUpon>201909171454158_updatee.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909201007308_patientupdate.cs" />
+    <Compile Include="Migrations\201909201007308_patientupdate.Designer.cs">
+      <DependentUpon>201909201007308_patientupdate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909241015298_doctorupdate.cs" />
+    <Compile Include="Migrations\201909241015298_doctorupdate.Designer.cs">
+      <DependentUpon>201909241015298_doctorupdate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909241033053_stateandcapital.cs" />
+    <Compile Include="Migrations\201909241033053_stateandcapital.Designer.cs">
+      <DependentUpon>201909241033053_stateandcapital.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909242141417_nurseupdate.cs" />
+    <Compile Include="Migrations\201909242141417_nurseupdate.Designer.cs">
+      <DependentUpon>201909242141417_nurseupdate.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -227,13 +256,14 @@
     <Compile Include="Models\Entities\Nurse.cs" />
     <Compile Include="Models\Entities\OPD.cs" />
     <Compile Include="Models\Entities\Patient.cs" />
-    <Compile Include="Models\Entities\Accountant.cs" />
-    <Compile Include="Models\Entities\Laboratorist.cs" />
+    <Compile Include="Models\Entities\Accountants.cs" />
+    <Compile Include="Models\Entities\Laboratorists.cs" />
     <Compile Include="Models\Entities\Pharmacist.cs" />
     <Compile Include="Models\Entities\Report.cs" />
     <Compile Include="Models\Entities\Section.cs" />
     <Compile Include="Models\Entities\Setting.cs" />
     <Compile Include="Models\Entities\States.cs" />
+    <Compile Include="Models\Entities\TestReport.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -290,6 +320,85 @@
     <Content Include="Content\FUTOMedical\assets\scripts\flot-demo.js" />
     <Content Include="Content\FUTOMedical\assets\scripts\morris-demo.js" />
     <Content Include="Content\FUTOMedical\assets\scripts\siminta.js" />
+    <Content Include="Content\tinymce\jquery.tinymce.min.js" />
+    <Content Include="Content\tinymce\license.txt" />
+    <Content Include="Content\tinymce\plugins\advlist\plugin.min.js" />
+    <Content Include="Content\tinymce\plugins\anchor\plugin.min.js" />
+    <Content Include="Content\tinymce\plugins\autolink\plugin.min.js" />
+    <Content Include="Content\tinymce\plugins\autoresize\plugin.min.js" />
+    <Content Include="Content\tinymce\plugins\autosave\plugin.min.js" />
+    <Content Include="Content\tinymce\plugins\bbcode\plugin.min.js" />
+    <Content Include="Content\tinymce\plugins\charmap\plugin.min.js" />
+    <Content Include="Content\tinymce\plugins\codesample\css\prism.css" />
+    <Content Include="Content\tinymce\plugins\codesample\plugin.min.js" />
+    <Content Include="Content\tinymce\plugins\code\plugin.min.js" />
+    <Content Include="Content\tinymce\plugins\colorpicker\plugin.min.js" />
+    <Content Include="Content\tinymce\plugins\contextmenu\plugin.min.js" />
+    <Content Include="Content\tinymce\plugins\directionality\plugin.min.js" />
+    <Content Include="Content\tinymce\plugins\emoticons\img\smiley-cool.gif" />
+    <Content Include="Content\tinymce\plugins\emoticons\img\smiley-cry.gif" />
+    <Content Include="Content\tinymce\plugins\emoticons\img\smiley-embarassed.gif" />
+    <Content Include="Content\tinymce\plugins\emoticons\img\smiley-foot-in-mouth.gif" />
+    <Content Include="Content\tinymce\plugins\emoticons\img\smiley-frown.gif" />
+    <Content Include="Content\tinymce\plugins\emoticons\img\smiley-innocent.gif" />
+    <Content Include="Content\tinymce\plugins\emoticons\img\smiley-kiss.gif" />
+    <Content Include="Content\tinymce\plugins\emoticons\img\smiley-laughing.gif" />
+    <Content Include="Content\tinymce\plugins\emoticons\img\smiley-money-mouth.gif" />
+    <Content Include="Content\tinymce\plugins\emoticons\img\smiley-sealed.gif" />
+    <Content Include="Content\tinymce\plugins\emoticons\img\smiley-smile.gif" />
+    <Content Include="Content\tinymce\plugins\emoticons\img\smiley-surprised.gif" />
+    <Content Include="Content\tinymce\plugins\emoticons\img\smiley-tongue-out.gif" />
+    <Content Include="Content\tinymce\plugins\emoticons\img\smiley-undecided.gif" />
+    <Content Include="Content\tinymce\plugins\emoticons\img\smiley-wink.gif" />
+    <Content Include="Content\tinymce\plugins\emoticons\img\smiley-yell.gif" />
+    <Content Include="Content\tinymce\plugins\emoticons\plugin.min.js" />
+    <Content Include="Content\tinymce\plugins\example\dialog.html" />
+    <Content Include="Content\tinymce\plugins\example\plugin.min.js" />
+    <Content Include="Content\tinymce\plugins\example_dependency\plugin.min.js" />
+    <Content Include="Content\tinymce\plugins\fullpage\plugin.min.js" />
+    <Content Include="Content\tinymce\plugins\fullscreen\plugin.min.js" />
+    <Content Include="Content\tinymce\plugins\hr\plugin.min.js" />
+    <Content Include="Content\tinymce\plugins\imagetools\plugin.min.js" />
+    <Content Include="Content\tinymce\plugins\image\plugin.min.js" />
+    <Content Include="Content\tinymce\plugins\importcss\plugin.min.js" />
+    <Content Include="Content\tinymce\plugins\insertdatetime\plugin.min.js" />
+    <Content Include="Content\tinymce\plugins\layer\plugin.min.js" />
+    <Content Include="Content\tinymce\plugins\legacyoutput\plugin.min.js" />
+    <Content Include="Content\tinymce\plugins\link\plugin.min.js" />
+    <Content Include="Content\tinymce\plugins\lists\plugin.min.js" />
+    <Content Include="Content\tinymce\plugins\media\moxieplayer.swf" />
+    <Content Include="Content\tinymce\plugins\media\plugin.min.js" />
+    <Content Include="Content\tinymce\plugins\nonbreaking\plugin.min.js" />
+    <Content Include="Content\tinymce\plugins\noneditable\plugin.min.js" />
+    <Content Include="Content\tinymce\plugins\pagebreak\plugin.min.js" />
+    <Content Include="Content\tinymce\plugins\paste\plugin.min.js" />
+    <Content Include="Content\tinymce\plugins\preview\plugin.min.js" />
+    <Content Include="Content\tinymce\plugins\print\plugin.min.js" />
+    <Content Include="Content\tinymce\plugins\save\plugin.min.js" />
+    <Content Include="Content\tinymce\plugins\searchreplace\plugin.min.js" />
+    <Content Include="Content\tinymce\plugins\spellchecker\plugin.min.js" />
+    <Content Include="Content\tinymce\plugins\tabfocus\plugin.min.js" />
+    <Content Include="Content\tinymce\plugins\table\plugin.min.js" />
+    <Content Include="Content\tinymce\plugins\template\plugin.min.js" />
+    <Content Include="Content\tinymce\plugins\textcolor\plugin.min.js" />
+    <Content Include="Content\tinymce\plugins\textpattern\plugin.min.js" />
+    <Content Include="Content\tinymce\plugins\visualblocks\css\visualblocks.css" />
+    <Content Include="Content\tinymce\plugins\visualblocks\plugin.min.js" />
+    <Content Include="Content\tinymce\plugins\visualchars\plugin.min.js" />
+    <Content Include="Content\tinymce\plugins\wordcount\plugin.min.js" />
+    <Content Include="Content\tinymce\skins\lightgray\content.inline.min.css" />
+    <Content Include="Content\tinymce\skins\lightgray\content.min.css" />
+    <Content Include="Content\tinymce\skins\lightgray\fonts\tinymce-small.svg" />
+    <Content Include="Content\tinymce\skins\lightgray\fonts\tinymce.svg" />
+    <Content Include="Content\tinymce\skins\lightgray\img\anchor.gif" />
+    <Content Include="Content\tinymce\skins\lightgray\img\loader.gif" />
+    <Content Include="Content\tinymce\skins\lightgray\img\object.gif" />
+    <Content Include="Content\tinymce\skins\lightgray\img\trans.gif" />
+    <Content Include="Content\tinymce\skins\lightgray\skin.ie7.min.css" />
+    <Content Include="Content\tinymce\skins\lightgray\skin.min.css" />
+    <Content Include="Content\tinymce\themes\inlite\theme.min.js" />
+    <Content Include="Content\tinymce\themes\modern\theme.min.js" />
+    <Content Include="Content\tinymce\tinymce.min.js" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -323,6 +432,80 @@
     <Content Include="Areas\Admin\Views\Roles\DeleteRole.cshtml" />
     <Content Include="Areas\Admin\Views\Roles\EditRole.cshtml" />
     <Content Include="Areas\Admin\Views\UserManager\CreateAccount.cshtml" />
+    <Content Include="Areas\Accountant\Views\web.config" />
+    <Content Include="Areas\Laboratorist\Views\web.config" />
+    <Content Include="Areas\Panel\Views\web.config" />
+    <Content Include="Areas\Patients\Views\UserManager\Index.cshtml" />
+    <Content Include="Areas\Patients\Views\UserManager\Patient.cshtml" />
+    <Content Include="Areas\Patients\Views\UserManager\SearchPatient.cshtml" />
+    <Content Include="Areas\Patients\Views\UserManager\SearchPatientResult.cshtml" />
+    <Content Include="Areas\Patients\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Patients\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Patients\Views\UserManager\NewPatient2.cshtml" />
+    <Content Include="Areas\Patients\Views\UserManager\NewPatient.cshtml" />
+    <Content Include="Content\tinymce\langs\readme.md" />
+    <Content Include="Content\tinymce\skins\lightgray\fonts\tinymce-small.eot" />
+    <Content Include="Content\tinymce\skins\lightgray\fonts\tinymce-small.ttf" />
+    <Content Include="Content\tinymce\skins\lightgray\fonts\tinymce-small.woff" />
+    <Content Include="Content\tinymce\skins\lightgray\fonts\tinymce.eot" />
+    <Content Include="Content\tinymce\skins\lightgray\fonts\tinymce.ttf" />
+    <Content Include="Content\tinymce\skins\lightgray\fonts\tinymce.woff" />
+    <Content Include="Areas\Doctors\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Doctors\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Doctors\Views\UserManager\NewDoctor.cshtml" />
+    <Content Include="Areas\Doctors\Views\UserManager\EditDoctor.cshtml" />
+    <Content Include="Areas\Patients\Views\UserManager\EditPatient.cshtml" />
+    <Content Include="Areas\Admin\Views\Departments\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Departments\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Departments\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Departments\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Departments\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\BloodBanks\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\BloodBanks\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\BloodBanks\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\BloodBanks\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\BloodBanks\Index.cshtml" />
+    <Content Include="Areas\Accountant\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Accountant\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Accountant\Views\UserManager\NewAccountant.cshtml" />
+    <Content Include="Areas\Accountant\Views\UserManager\EditAccountant.cshtml" />
+    <Content Include="Areas\Laboratorist\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Laboratorist\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Laboratorist\Views\UserManager\NewLaboratorist.cshtml" />
+    <Content Include="Areas\Laboratorist\Views\UserManager\EditLaboratorist.cshtml" />
+    <Content Include="Areas\Nurses\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Nurses\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Nurses\Views\UserManager\NewNurse.cshtml" />
+    <Content Include="Areas\Nurses\Views\UserManager\EditNurse.cshtml" />
+    <Content Include="Areas\Pharmacists\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Pharmacists\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Pharmacists\Views\UserManager\NewPharmacist.cshtml" />
+    <Content Include="Areas\Pharmacists\Views\UserManager\EditPharmacist.cshtml" />
+    <Content Include="Areas\Admin\Views\UserManager\Index.cshtml" />
+    <Content Include="Areas\Nurses\Views\UserManager\MyProfile.cshtml" />
+    <Content Include="Areas\Accountant\Views\UserManager\MyProfile.cshtml" />
+    <Content Include="Areas\Laboratorist\Views\UserManager\MyProfile.cshtml" />
+    <Content Include="Areas\Pharmacists\Views\UserManager\MyProfile.cshtml" />
+    <Content Include="Areas\Doctors\Views\UserManager\MyProfile.cshtml" />
+    <Content Include="Areas\Patients\Views\UserManager\MyProfile.cshtml" />
+    <Content Include="Areas\Admin\Views\PartialView\AccountantProfileInfo .cshtml" />
+    <Content Include="Areas\Admin\Views\PartialView\AccountantProfileLayout.cshtml" />
+    <Content Include="Areas\Admin\Views\PartialView\LaboratoristProfileInfo.cshtml" />
+    <Content Include="Areas\Admin\Views\PartialView\LaboratoristProfileLayout.cshtml" />
+    <Content Include="Areas\Accountant\Views\UserManager\Profile.cshtml" />
+    <Content Include="Areas\Doctors\Views\UserManager\Profile.cshtml" />
+    <Content Include="Areas\Laboratorist\Views\UserManager\Profile.cshtml" />
+    <Content Include="Areas\Nurses\Views\UserManager\Profile.cshtml" />
+    <Content Include="Areas\Patients\Views\UserManager\Profile.cshtml" />
+    <Content Include="Areas\Pharmacists\Views\UserManager\Profile.cshtml" />
+    <Content Include="Areas\Admin\Views\UserManager\Doctors.cshtml" />
+    <Content Include="Areas\Admin\Views\UserManager\Nurses.cshtml" />
+    <Content Include="Areas\Admin\Views\UserManager\Pharmacists.cshtml" />
+    <Content Include="Areas\Admin\Views\UserManager\Patients.cshtml" />
+    <Content Include="Areas\Admin\Views\UserManager\Accountants.cshtml" />
+    <Content Include="Areas\Admin\Views\UserManager\Laboratorists.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_LaboratoristMenu.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_AccountantMenu.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -373,19 +556,17 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\Accountant\Models\" />
     <Folder Include="Areas\Admin\Models\" />
     <Folder Include="Areas\Doctors\Models\" />
-    <Folder Include="Areas\Doctors\Views\Shared\" />
-    <Folder Include="Areas\Doctors\Views\UserManager\" />
+    <Folder Include="Areas\Laboratorist\Models\" />
     <Folder Include="Areas\Nurses\Models\" />
-    <Folder Include="Areas\Nurses\Views\Shared\" />
-    <Folder Include="Areas\Nurses\Views\UserManager\" />
+    <Folder Include="Areas\Panel\Models\" />
+    <Folder Include="Areas\Panel\Views\Diagnosis\" />
+    <Folder Include="Areas\Panel\Views\Shared\" />
     <Folder Include="Areas\Patients\Models\" />
-    <Folder Include="Areas\Patients\Views\Shared\" />
-    <Folder Include="Areas\Patients\Views\UserManager\" />
     <Folder Include="Areas\Pharmacists\Models\" />
-    <Folder Include="Areas\Pharmacists\Views\Shared\" />
-    <Folder Include="Areas\Pharmacists\Views\UserManager\" />
+    <Folder Include="Uploads\Profile\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -406,6 +587,21 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201909171029148_acctlab.resx">
       <DependentUpon>201909171029148_acctlab.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909171454158_updatee.resx">
+      <DependentUpon>201909171454158_updatee.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909201007308_patientupdate.resx">
+      <DependentUpon>201909201007308_patientupdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909241015298_doctorupdate.resx">
+      <DependentUpon>201909241015298_doctorupdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909241033053_stateandcapital.resx">
+      <DependentUpon>201909241033053_stateandcapital.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909242141417_nurseupdate.resx">
+      <DependentUpon>201909242141417_nurseupdate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
@@ -436,12 +632,6 @@
       </FlavorProperties>
     </VisualStudio>
   </ProjectExtensions>
-  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
-    <PropertyGroup>
-      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
-    </PropertyGroup>
-    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
-  </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

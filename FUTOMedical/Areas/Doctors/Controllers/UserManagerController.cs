@@ -126,11 +126,12 @@ namespace FUTOMedical.Areas.Doctors.Controllers
 
                         //profile pic upload
                         var img = await db.Doctors.FirstOrDefaultAsync(x=>x.UserId == user.Id);
+                        img.Picture = model.Picture;
 
                         db.Entry(img).State = EntityState.Modified;
                         await db.SaveChangesAsync();
                      
-                        TempData["success"] = "Doctor with username <i> " + model.Fullname + "</i> Added Successfully";
+                        TempData["success"] = "Doctor with username '<i>'  " + model.Fullname + " '</i>' Added Successfully";
                         return RedirectToAction("NewDoctor");
                     }
                     else
@@ -163,7 +164,7 @@ namespace FUTOMedical.Areas.Doctors.Controllers
             }
 
             ViewBag.StateName = new SelectList(db.States.OrderBy(x => x.StateName), "StateName", "StateName");
-            ViewBag.DeptId = new SelectList(db.Departments.OrderBy(x => x.DeptName), "Id", "DeptName");
+            ViewBag.DeptId = new SelectList(db.Departments.OrderBy(x => x.Name), "Id", "Name");
 
             var profile = await db.Doctors.Include(x => x.User).Include(x => x.Department).FirstOrDefaultAsync(x => x.Id == id);
 
@@ -223,7 +224,7 @@ namespace FUTOMedical.Areas.Doctors.Controllers
             }
             TempData["error"] = "Unable to Edit Profile.";
             ViewBag.StateOfOrigin = new SelectList(db.States.OrderBy(x => x.StateName), "StateName", "StateName", profile.StateOfOrigin);
-            ViewBag.DeptId = new SelectList(db.Departments.OrderBy(x => x.DeptName), "Id", "DeptName", profile.DeparmentId);
+            ViewBag.DeptId = new SelectList(db.Departments.OrderBy(x => x.Name), "Id", "Name", profile.DeparmentId);
             return View(profile);
         }
 
@@ -242,6 +243,26 @@ namespace FUTOMedical.Areas.Doctors.Controllers
             var profile = await db.Doctors.Include(x => x.User).Include(x => x.Department).FirstOrDefaultAsync(x => x.Id == id);
             ViewBag.profile = profile;
             return View();
+        }
+
+
+        public JsonResult LgaList(string Id)
+        {
+            var stateId = db.States.FirstOrDefault(x => x.StateName == Id).Id;
+            var local = from s in db.LocalGovs
+                        where s.StatesId == stateId
+                        select s;
+
+            return Json(new SelectList(local.ToArray(), "LGAName", "LGAName"), JsonRequestBehavior.AllowGet);
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                db.Dispose();
+            }
+            base.Dispose(disposing);
         }
 
     }

@@ -1,0 +1,37 @@
+﻿@using FUTOMedical.Areas.Service
+@{
+    string img = "";
+    if (GeneralService.AccountantInfo() != null)
+    {
+        img = GeneralService.AccountantInfo().Picture;
+        int? proId = GeneralService.AccountantInfo().Id;
+    }
+
+
+}
+
+<ul class="nav navbar-top-links navbar-right">
+    <!-- main dropdown -->
+    <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+            <i class="fa fa-user fa-3x"></i>
+        </a>
+        <!-- dropdown user-->
+        <ul class="dropdown-menu dropdown-user">
+            <li>
+                <a href="@Url.Action("MyProfile", "UserManager", new { area = "Accountant" })"><i class="fa fa-user fa-fw"></i> Profile</a>
+                @*<a href="#"><i class="fa fa-user fa-fw"></i>User Profile</a>*@
+            </li>
+            <li>
+                <a href="@Url.Action("EditAccountant", "UserManager", new { area = "Accountant", id = GeneralService.AccountantInfo().Id })"> <i class="fa fa-gear fa-fw"></i>Settings</a>
+                @*<a href="#"><i class="fa fa-gear fa-fw"></i>Settings</a>*@
+            </li>
+            <li class="divider"></li>
+            <li>
+                <a href="@Url.Action("Login","Account",new{area = ""})"><i class="fa fa-sign-out fa-fw"></i>Logout</a>
+            </li>
+        </ul>
+        <!-- end dropdown-user -->
+    </li>
+    <!-- end main dropdown -->
+</ul>

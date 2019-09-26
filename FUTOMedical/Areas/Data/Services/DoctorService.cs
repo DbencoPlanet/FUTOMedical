@@ -83,7 +83,10 @@ namespace FUTOMedical.Areas.Data.Services
                 doctor.Address = model.Address;
                 doctor.StateOfOrigin = model.StateOfOrigin;
                 doctor.LocalGov = model.LocalGov;
-
+                doctor.Nationality = model.Nationality;
+                doctor.Sex = model.Sex;
+                doctor.Designation = model.Designation;
+                doctor.Picture = model.Picture;
 
                 
                 db.Doctors.Add(doctor);

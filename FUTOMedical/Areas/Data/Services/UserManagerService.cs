@@ -96,6 +96,21 @@ namespace FUTOMedical.Areas.Data.Services
         }
 
 
+        public async Task<List<Accountants>> Accountants()
+        {
+            var users = db.Accountants.Include(x => x.User).Where(x => x.User.UserName != "super@admin.com");
+
+            return await users.OrderBy(x => x.Surname).ToListAsync();
+        }
+
+        public async Task<List<Laboratorists>> Laboratorists()
+        {
+            var users = db.Laboratorists.Include(x => x.User).Where(x => x.User.UserName != "super@admin.com");
+
+            return await users.OrderBy(x => x.Surname).ToListAsync();
+        }
+
+
 
 
         public async Task<bool> IsUsersinRole(string userid, string role)
@@ -139,6 +154,6 @@ namespace FUTOMedical.Areas.Data.Services
             await UserManager.RemoveFromRoleAsync(userId, rolename);
         }
 
-       
+      
     }
 }

@@ -66,7 +66,7 @@ namespace FUTOMedical.Areas.Data.Services
             var result = await UserManager.CreateAsync(user, model.Password);
             if (result.Succeeded)
             {
-                await UserManager.AddToRoleAsync(user.Id, "pharmacist");
+                await UserManager.AddToRoleAsync(user.Id, "Pharmacist");
                 Pharmacist pharmacist = new Pharmacist();
                 pharmacist.UserId = user.Id;
                 pharmacist.EmailAddress = model.Email;
@@ -80,6 +80,8 @@ namespace FUTOMedical.Areas.Data.Services
                 pharmacist.Address = model.Address;
                 pharmacist.StateOfOrigin = model.StateOfOrigin;
                 pharmacist.LocalGov = model.LocalGov;
+                pharmacist.Picture = model.Picture;
+                pharmacist.Nationality = model.Nationality;
 
 
 

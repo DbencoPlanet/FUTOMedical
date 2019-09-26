@@ -80,6 +80,8 @@ namespace FUTOMedical.Areas.Data.Services
                 nurse.Address = model.Address;
                 nurse.StateOfOrigin = model.StateOfOrigin;
                 nurse.LocalGov = model.LocalGov;
+                nurse.Picture = model.Picture;
+                nurse.Nationality = model.Nationality;
 
 
 

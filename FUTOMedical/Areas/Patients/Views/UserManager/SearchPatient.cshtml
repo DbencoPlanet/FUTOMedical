@@ -1,0 +1,23 @@
+﻿
+@{
+    ViewBag.Title = "SearchPatient";
+    Layout = "~/Views/Shared/_FutoLayout.cshtml";
+}
+<div class="container">
+    <div class="row" style="background-color:#ffffff;">
+        <div class="col-md-12">
+            <h2 class="text-center">Search Patient</h2>
+            <hr />
+            <div>
+
+                @using (Html.BeginForm("SearchPatientResult", "Patients", null, FormMethod.Get, new { @class = "" }))
+                {
+                    <fieldset style="padding:10px;">
+                        <input type="text" value="" name="searchString" id="q" placeholder="Enter Folder Number">
+                        <button type="submit" class="btn btn-info">Search</button>
+                    </fieldset>
+                }
+            </div>
+        </div>
+    </div>
+</div>

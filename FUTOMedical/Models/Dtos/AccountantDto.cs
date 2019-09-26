@@ -75,5 +75,7 @@ namespace FUTOMedical.Models.Dtos
         public string BloodGroup { get; set; }
 
         public string Education { get; set; }
+
+        public string Nationality { get; set; }
     }
 }

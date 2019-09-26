@@ -73,6 +73,16 @@
                 @Html.Partial("/Areas/Admin/Views/PartialView/PatientProfileLayout.cshtml")
             }
 
+            else if (User.IsInRole("Accountant"))
+            {
+                @Html.Partial("/Areas/Admin/Views/PartialView/AccountantProfileLayout.cshtml")
+            }
+
+            else if (User.IsInRole("Laboratorist"))
+            {
+                @Html.Partial("/Areas/Admin/Views/PartialView/LaboratoristProfileLayout.cshtml")
+            }
+
             else
             {
 
@@ -111,6 +121,14 @@
                         {
                             @Html.Partial("/Areas/Admin/Views/PartialView/PatientProfileInfo.cshtml")
                         }
+                        else if (User.IsInRole("Accountant"))
+                        {
+                            @Html.Partial("/Areas/Admin/Views/PartialView/AccountantProfileInfo.cshtml")
+                        }
+                        else if (User.IsInRole("Laboratorist"))
+                        {
+                            @Html.Partial("/Areas/Admin/Views/PartialView/LaboratoristProfileInfo.cshtml")
+                        }
                         else
                         {
 
@@ -125,18 +143,26 @@
 
                         @Html.Partial("~/Areas/Admin/Views/Shared/_AdminMenu.cshtml")
                     }
-                    else if (User.IsInRole("HOD"))
+                    else if (User.IsInRole("Doctor"))
                     {
-                        @Html.Partial("~/Areas/Admin/Views/Shared/_HODMenu.cshtml")
+                        @Html.Partial("~/Areas/Admin/Views/Shared/_DoctorMenu.cshtml")
                     }
-                    else if (User.IsInRole("Lecturer"))
+                    else if (User.IsInRole("Nurse"))
                     {
-                        @Html.Partial("~/Areas/Admin/Views/Shared/_LecturerMenu.cshtml")
+                        @Html.Partial("~/Areas/Admin/Views/Shared/_NurseMenu.cshtml")
                     }
 
-                    else if (User.IsInRole("Student"))
+                    else if (User.IsInRole("Patient"))
                     {
-                        @Html.Partial("~/Areas/Admin/Views/Shared/_StudentMenu.cshtml")
+                        @Html.Partial("~/Areas/Admin/Views/Shared/_PatientMenu.cshtml")
+                    }
+                    else if (User.IsInRole("Accountant"))
+                    {
+                        @Html.Partial("~/Areas/Admin/Views/Shared/_AccountantMenu.cshtml")
+                    }
+                    else if (User.IsInRole("Laboratorist"))
+                    {
+                        @Html.Partial("~/Areas/Admin/Views/Shared/_LaboratoristMenu.cshtml")
                     }
                     else
                     {
@@ -169,6 +195,37 @@
     <script src="~/Content/FUTOMedical/assets/plugins/pace/pace.js"></script>
     <script src="~/Content/FUTOMedical/assets/scripts/siminta.js"></script>
     @RenderSection("Scripts", required: false)
+
+    <script src="~/Content/tinymce/tinymce.min.js"></script>
+    <script>
+        //tinymce.init({
+        //    selector: '#mytextarea'
+        //});
+
+
+        tinymce.init({
+            selector: 'textarea',
+            height: 400,
+            theme: 'modern',
+            plugins: [
+                'advlist autolink lists link image charmap print preview hr anchor pagebreak',
+                'searchreplace wordcount visualblocks visualchars code fullscreen',
+                'insertdatetime media nonbreaking save table contextmenu directionality',
+                'emoticons template paste textcolor colorpicker textpattern imagetools codesample'
+            ],
+            toolbar1: 'insertfile undo redo | styleselect | bold italic underline | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
+            toolbar2: 'print preview media | forecolor backcolor emoticons | codesample',
+            image_advtab: true,
+            templates: [
+                { title: 'Test template 1', content: 'Test 1' },
+                { title: 'Test template 2', content: 'Test 2' }
+            ],
+            content_css: [
+                'css?family=Lato:300,300i,400,400i',
+                'css/codepen.min.css'
+            ]
+        });
+    </script>
 
     @RenderSection("Scripts2", required: false)
     <!-- Page-Level Plugin Scripts-->

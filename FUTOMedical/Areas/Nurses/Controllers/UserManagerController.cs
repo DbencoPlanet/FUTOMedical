@@ -125,12 +125,13 @@ namespace FUTOMedical.Areas.Nurses.Controllers
 
                         //profile pic upload
                         var img = await db.Nurses.FirstOrDefaultAsync(x => x.UserId == user.Id);
+                        img.Picture = model.Picture;
 
                         db.Entry(img).State = EntityState.Modified;
                         await db.SaveChangesAsync();
 
                         TempData["success"] = "Nurse with username <i> " + model.Fullname + "</i> Added Successfully";
-                        return RedirectToAction("NewNurse");
+                        return RedirectToAction("NewNurse", "UserManager");
                     }
                     else
                     {
@@ -238,6 +239,25 @@ namespace FUTOMedical.Areas.Nurses.Controllers
             var profile = await db.Nurses.Include(x => x.User).FirstOrDefaultAsync(x => x.Id == id);
             ViewBag.profile = profile;
             return View();
+        }
+
+        public JsonResult LgaList(string Id)
+        {
+            var stateId = db.States.FirstOrDefault(x => x.StateName == Id).Id;
+            var local = from s in db.LocalGovs
+                        where s.StatesId == stateId
+                        select s;
+
+            return Json(new SelectList(local.ToArray(), "LGAName", "LGAName"), JsonRequestBehavior.AllowGet);
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                db.Dispose();
+            }
+            base.Dispose(disposing);
         }
 
     }

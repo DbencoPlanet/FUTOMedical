@@ -6,15 +6,15 @@ using System.Web;
 
 namespace FUTOMedical.Models.Entities
 {
-    public class Laboratorist
+    public class Accountants
     {
         public int Id { get; set; }
 
         public string UserId { get; set; }
         public ApplicationUser User { get; set; }
 
-        [Display(Name = "Pharmacist ID")]
-        public string LaboratoristId { get; set; }
+        [Display(Name = "Accountant ID")]
+        public string AccountantId { get; set; }
 
         [Display(Name = "Surname")]
         [Required]
@@ -64,6 +64,11 @@ namespace FUTOMedical.Models.Entities
         public string BloodGroup { get; set; }
 
         public string Education { get; set; }
+
+        public string Nationality { get; set; }
+
+       
+
 
 
     }

@@ -169,6 +169,20 @@ namespace FUTOMedical.Areas.Admin.Controllers
         }
 
 
+        public async Task<ActionResult> Nurses()
+        {
+            ViewBag.Roles = RoleManager.Roles.Where(x => x.Name != "SuperAdmin").ToList();
+
+            var items = await _userService.Nurses();
+            var item2 = await _userService.AllUsers();
+            ViewBag.male = items.Count();
+            ViewBag.countall = item2.Count();
+
+            return View(items);
+
+        }
+
+
         public async Task<ActionResult> Pharmacists()
         {
             ViewBag.Roles = RoleManager.Roles.Where(x => x.Name != "SuperAdmin").ToList();
@@ -197,7 +211,35 @@ namespace FUTOMedical.Areas.Admin.Controllers
         }
 
 
-      
+        public async Task<ActionResult> Accountants()
+        {
+            ViewBag.Roles = RoleManager.Roles.Where(x => x.Name != "SuperAdmin").ToList();
+
+            var items = await _userService.Accountants();
+            var item2 = await _userService.AllUsers();
+            ViewBag.male = items.Count();
+            ViewBag.countall = item2.Count();
+
+            return View(items);
+
+        }
+
+
+        public async Task<ActionResult> Laboratorists()
+        {
+            ViewBag.Roles = RoleManager.Roles.Where(x => x.Name != "SuperAdmin").ToList();
+
+            var items = await _userService.Laboratorists();
+            var item2 = await _userService.AllUsers();
+            ViewBag.male = items.Count();
+            ViewBag.countall = item2.Count();
+
+            return View(items);
+
+        }
+
+
+
         public async Task<ActionResult> MyProfile()
         {
             var userinfo = User.Identity.GetUserId();

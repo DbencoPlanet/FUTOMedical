@@ -76,6 +76,57 @@ namespace FUTOMedical.Areas.Service
 
         }
 
+        public static Accountants AccountantInfo()
+        {
+            Accountants user;
+            using (var db = new ApplicationDbContext())
+            {
+                var userid = HttpContext.Current.User.Identity.GetUserId();
+                user = db.Accountants.Include(x => x.User).FirstOrDefault(x => x.UserId == userid);
+
+            }
+            return user;
+
+        }
+
+        public static Accountants AccountantInfo2()
+        {
+            Accountants user;
+            using (var db = new ApplicationDbContext())
+            {
+                user = db.Accountants.Include(x => x.User).FirstOrDefault();
+
+            }
+            return user;
+
+        }
+
+
+        public static Laboratorists LaboratoristInfo()
+        {
+            Laboratorists user;
+            using (var db = new ApplicationDbContext())
+            {
+                var userid = HttpContext.Current.User.Identity.GetUserId();
+                user = db.Laboratorists.Include(x => x.User).FirstOrDefault(x => x.UserId == userid);
+
+            }
+            return user;
+
+        }
+
+        public static Laboratorists LaboratoristInfo2()
+        {
+            Laboratorists user;
+            using (var db = new ApplicationDbContext())
+            {
+                user = db.Laboratorists.Include(x => x.User).FirstOrDefault();
+
+            }
+            return user;
+
+        }
+
         public static Pharmacist PharmacistInfo()
         {
             Pharmacist user;

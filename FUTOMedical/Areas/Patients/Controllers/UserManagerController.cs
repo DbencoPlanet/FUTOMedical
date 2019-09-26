@@ -74,6 +74,53 @@ namespace FUTOMedical.Areas.Patients.Controllers
                 _roleManager = value;
             }
         }
+
+        // GET: Patients
+        public async Task<ActionResult> Index()
+        {
+            return View(await db.Patients.ToListAsync());
+        }
+        public ActionResult Patient()
+        {
+            return View();
+        }
+        public ActionResult SearchPatient()
+        {
+            return View();
+        }
+        public ActionResult SearchPatientResult(string currentFilter, string searchString)
+        {
+            ViewBag.search = searchString;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
+            ViewBag.CurrentFilter = currentFilter;
+            var patient = db.Patients.FirstOrDefault(x => x.FolderNumber.ToUpper().Contains(searchString.ToUpper()));
+
+            if (String.IsNullOrEmpty(searchString))
+            {
+                ViewBag.SearchString = "Empty";
+            }
+            else if (!String.IsNullOrEmpty(searchString))
+            {
+                //  patient = patient.FirstOrDefault(x => x.FolderNumber.ToUpper().Contains(searchString.ToUpper()));
+            }
+            else if (patient == null)
+            {
+                TempData["error"] = "Folder not found.";
+            }
+            return View(patient);
+        }
+
+      
+
         // GET: Patients/UserManager
         public async Task<ActionResult> NewPatient()
         {
@@ -126,12 +173,13 @@ namespace FUTOMedical.Areas.Patients.Controllers
 
                         //profile pic upload
                         var img = await db.Patients.FirstOrDefaultAsync(x => x.UserId == user.Id);
+                        img.Photo = model.Photo;
 
                         db.Entry(img).State = EntityState.Modified;
                         await db.SaveChangesAsync();
 
                         TempData["success"] = "Patient with username <i> " + model.Fullname + "</i> Added Successfully";
-                        return RedirectToAction("NewNurse");
+                        return RedirectToAction("NewPatient");
                     }
                     else
                     {
@@ -241,6 +289,53 @@ namespace FUTOMedical.Areas.Patients.Controllers
             var profile = await db.Patients.Include(x => x.User).FirstOrDefaultAsync(x => x.Id == id);
             ViewBag.profile = profile;
             return View();
+        }
+
+
+        // GET: Patients/Delete/5
+        public async Task<ActionResult> Delete(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Patient patient = await db.Patients.FindAsync(id);
+            if (patient == null)
+            {
+                return HttpNotFound();
+            }
+            return View(patient);
+        }
+
+        // POST: Patients/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> DeleteConfirmed(int id)
+        {
+            Patient patient = await db.Patients.FindAsync(id);
+            db.Patients.Remove(patient);
+            await db.SaveChangesAsync();
+            return RedirectToAction("Index");
+        }
+
+
+        public JsonResult LgaList(string Id)
+        {
+            var stateId = db.States.FirstOrDefault(x => x.StateName == Id).Id;
+            var local = from s in db.LocalGovs
+                        where s.StatesId == stateId
+                        select s;
+
+            return Json(new SelectList(local.ToArray(), "LGAName", "LGAName"), JsonRequestBehavior.AllowGet);
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                db.Dispose();
+            }
+            base.Dispose(disposing);
         }
 
 

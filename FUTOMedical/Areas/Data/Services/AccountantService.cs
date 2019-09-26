@@ -66,24 +66,26 @@ namespace FUTOMedical.Areas.Data.Services
             var result = await UserManager.CreateAsync(user, model.Password);
             if (result.Succeeded)
             {
-                await UserManager.AddToRoleAsync(user.Id, "pharmacist");
-                Pharmacist pharmacist = new Pharmacist();
-                pharmacist.UserId = user.Id;
-                pharmacist.EmailAddress = model.Email;
-                pharmacist.Surname = model.Surname;
-                pharmacist.Firstname = model.Firstname;
-                pharmacist.Othernames = model.Othernames;
-                pharmacist.PhoneNo = model.PhoneNo;
-                pharmacist.Sex = model.Sex;
-                pharmacist.BloodGroup = model.BloodGroup;
-                pharmacist.Education = model.Education;
-                pharmacist.Address = model.Address;
-                pharmacist.StateOfOrigin = model.StateOfOrigin;
-                pharmacist.LocalGov = model.LocalGov;
+                await UserManager.AddToRoleAsync(user.Id, "Accountant");
+                Accountants accountant = new Accountants();
+                accountant.UserId = user.Id;
+                accountant.EmailAddress = model.Email;
+                accountant.Surname = model.Surname;
+                accountant.Firstname = model.Firstname;
+                accountant.Othernames = model.Othernames;
+                accountant.PhoneNo = model.PhoneNo;
+                accountant.Sex = model.Sex;
+                accountant.BloodGroup = model.BloodGroup;
+                accountant.Education = model.Education;
+                accountant.Address = model.Address;
+                accountant.StateOfOrigin = model.StateOfOrigin;
+                accountant.LocalGov = model.LocalGov;
+                accountant.Picture = model.Picture;
+                accountant.Nationality = model.Nationality;
 
 
 
-                db.Pharmacist.Add(pharmacist);
+                db.Accountants.Add(accountant);
                 await db.SaveChangesAsync();
 
                 var nurReg = await db.Accountants.FirstOrDefaultAsync(x => x.UserId == user.Id);
@@ -92,7 +94,7 @@ namespace FUTOMedical.Areas.Data.Services
                 db.Entry(nurReg).State = EntityState.Modified;
                 await db.SaveChangesAsync();
 
-              
+
 
                 return "true";
             }

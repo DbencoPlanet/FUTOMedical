@@ -65,5 +65,7 @@ namespace FUTOMedical.Models.Entities
         [Display(Name = "Local Government of Origin")]
         public string LocalGov { get; set; }
 
+        public string Nationality { get; set; }
+
     }
 }
