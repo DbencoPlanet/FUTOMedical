@@ -1,0 +1,113 @@
+﻿@model IEnumerable<FUTOMedical.Models.Entities.Report>
+@using FUTOMedical.Helpers
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_FutoLayout.cshtml";
+}
+
+
+
+<div class="row">
+    <!--  page header -->
+    <div class="col-lg-12">
+        <h1 class="page-header">Patient Reoprt</h1>
+    </div>
+    <!-- end  page header -->
+</div>
+<div class="row">
+    @*<div class="col-lg-1"></div>*@
+    <div class="col-lg-12">
+        <!-- Advanced Tables -->
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <i class="fa fa-fw fa-file-text-o"></i>
+                Patient Report Management
+            </div>
+
+            <div class="panel-body">
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered table-hover" id="example1">
+                        <thead>
+                            <tr>
+                                <th>S/No</th>
+                                <th>
+                                    Patient Name
+                                </th>
+
+                                <th>
+                                    @Html.DisplayNameFor(model => model.FolderNumber)
+                                </th>
+
+                                <th>
+                                    Action
+                                </th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @{
+                                int sno = 0;
+                            }
+
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @{ sno++; }
+                                        @sno
+                                    </td>
+
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Patient.Fullname)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.FolderNumber)
+                                    </td>
+
+                                    <td>
+                                        <div class="btn-group">
+                                            @if (User.IsInRole("Admin") || User.IsInRole("Doctor") || User.IsInRole("Nurse") || User.IsInRole("Laboratorist"))
+                                            {
+                                                <a class="btn btn-primary" href="@Url.Action("Create", "Diagnosis", new { id = item.PatientId, area = "Panel"  })"> <i class='fa fa-edit fa-fw'></i>Diagnose A Patient</a>
+
+
+                                            }
+
+                                        </div>
+                                    </td>
+
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+        <!--End Advanced Tables -->
+    </div>
+    @*<div class="col-lg-1"></div>*@
+</div>
+
+
+@section Style {
+
+    <link href="~/Content/FUTOMedical/assets/plugins/dataTables/dataTables.bootstrap.css" rel="stylesheet" />
+}
+
+@section Scripts {
+    <!-- DataTables -->
+    <script src="~/Content/FUTOMedical/assets/plugins/dataTables/jquery.dataTables.js"></script>
+    <script src="~/Content/FUTOMedical/assets/plugins/dataTables/dataTables.bootstrap.js"></script>
+
+}
+
+@section Scripts2 {
+    <script>
+        $(document).ready(function () {
+            $('#example1').dataTable();
+        });
+    </script>
+
+}
+

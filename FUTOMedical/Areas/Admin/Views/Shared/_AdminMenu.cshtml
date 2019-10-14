@@ -1,86 +1,110 @@
 ﻿<li class="selected">
-    <a href="index.html"><i class="fa fa-dashboard fa-fw"></i>Dashboard</a>
+    <a href="@Url.Action("Index","DashBoard",new { area = "Admin"})"><i class="fa fa-dashboard fa-fw"></i>Dashboard</a>
 </li>
+
 <li>
-    <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Charts<span class="fa arrow"></span></a>
+    <a href="#"><i class="fa fa-users fa-fw"></i> Doctor Department Management<span class="fa arrow"></span></a>
     <ul class="nav nav-second-level">
         <li>
-            <a href="flot.html">Flot Charts</a>
+            <a href="@Url.Action("Create","Departments",new { area = "Admin"})"><i class="fa fa-hospital-o fa-fw"></i>Add a Department</a>
         </li>
         <li>
-            <a href="morris.html">Morris Charts</a>
+            <a href="@Url.Action("Index","Departments",new { area = "Admin"})"><i class="fa fa-hospital-o fa-fw"></i>Department List</a>
+        </li>
+    </ul>
+    <!-- second-level-items -->
+</li>
+
+<li>
+    <a href="#"><i class="fa fa-users fa-fw"></i> Doctor Management<span class="fa arrow"></span></a>
+    <ul class="nav nav-second-level">
+        <li>
+            <a href="@Url.Action("NewDoctor","UserManager",new { area = "Doctors"})"><i class="fa fa-user fa-fw"></i>Add a Doctor</a>
+        </li>
+        <li>
+            <a href="@Url.Action("Doctors","UserManager",new { area = "Admin"})"><i class="fa fa-user fa-fw"></i>Doctors List</a>
+        </li>
+    </ul>
+    <!-- second-level-items -->
+</li>
+
+<li>
+    <a href="#"><i class="fa fa-users fa-fw"></i> Nurse Management<span class="fa arrow"></span></a>
+    <ul class="nav nav-second-level">
+        <li>
+            <a href="@Url.Action("NewNurse","UserManager",new { area = "Nurses"})"><i class="fa fa-user fa-fw"></i>Add a Nurse</a>
+        </li>
+        <li>
+            <a href="@Url.Action("Nurses","UserManager",new { area = "Admin"})"><i class="fa fa-user fa-fw"></i>Nurses List</a>
+        </li>
+    </ul>
+    <!-- second-level-items -->
+</li>
+
+<li>
+    <a href="#"><i class="fa fa-users fa-fw"></i> Patient Management<span class="fa arrow"></span></a>
+    <ul class="nav nav-second-level">
+        <li>
+            <a href="@Url.Action("NewPatient","UserManager",new { area = "Patients"})"><i class="fa fa-user fa-fw"></i>Add a Patient</a>
+        </li>
+        <li>
+            <a href="@Url.Action("Patients","UserManager",new { area = "Admin"})"><i class="fa fa-user fa-fw"></i>Patients List</a>
         </li>
     </ul>
     <!-- second-level-items -->
 </li>
 <li>
-    <a href="timeline.html"><i class="fa fa-flask fa-fw"></i>Timeline</a>
-</li>
-<li>
-    <a href="tables.html"><i class="fa fa-table fa-fw"></i>Tables</a>
-</li>
-<li>
-    <a href="forms.html"><i class="fa fa-edit fa-fw"></i>Forms</a>
-</li>
-<li>
-    <a href="#"><i class="fa fa-wrench fa-fw"></i>UI Elements<span class="fa arrow"></span></a>
+    <a href="#"><i class="fa fa-users fa-fw"></i> Pharmacist Management<span class="fa arrow"></span></a>
     <ul class="nav nav-second-level">
         <li>
-            <a href="panels-wells.html">Panels and Wells</a>
+            <a href="@Url.Action("NewPharmacist","UserManager",new { area = "Pharmacists"})"><i class="fa fa-user fa-fw"></i>Add a Pharmacist</a>
         </li>
         <li>
-            <a href="buttons.html">Buttons</a>
-        </li>
-        <li>
-            <a href="notifications.html">Notifications</a>
-        </li>
-        <li>
-            <a href="typography.html">Typography</a>
-        </li>
-        <li>
-            <a href="grid.html">Grid</a>
+            <a href="@Url.Action("Pharmacists","UserManager",new { area = "Admin"})"><i class="fa fa-user fa-fw"></i>Pharmacist List</a>
         </li>
     </ul>
     <!-- second-level-items -->
 </li>
 <li>
-    <a href="#"><i class="fa fa-sitemap fa-fw"></i>Multi-Level Dropdown<span class="fa arrow"></span></a>
+    <a href="#"><i class="fa fa-users fa-fw"></i> Pharmacist Management<span class="fa arrow"></span></a>
     <ul class="nav nav-second-level">
         <li>
-            <a href="#">Second Level Item</a>
+            <a href="@Url.Action("NewLaboratorist","UserManager",new { area = "Laboratorist"})"><i class="fa fa-user fa-fw"></i>Add a Laboratorist</a>
         </li>
         <li>
-            <a href="#">Second Level Item</a>
-        </li>
-        <li>
-            <a href="#">Third Level <span class="fa arrow"></span></a>
-            <ul class="nav nav-third-level">
-                <li>
-                    <a href="#">Third Level Item</a>
-                </li>
-                <li>
-                    <a href="#">Third Level Item</a>
-                </li>
-                <li>
-                    <a href="#">Third Level Item</a>
-                </li>
-                <li>
-                    <a href="#">Third Level Item</a>
-                </li>
-            </ul>
-            <!-- third-level-items -->
+            <a href="@Url.Action("Laboratorists","UserManager",new { area = "Admin"})"><i class="fa fa-user fa-fw"></i>Laboratorist List</a>
         </li>
     </ul>
     <!-- second-level-items -->
 </li>
+
 <li>
-    <a href="#"><i class="fa fa-files-o fa-fw"></i>Sample Pages<span class="fa arrow"></span></a>
+    <a href="#"><i class="fa fa-users fa-fw"></i> Accountant Management<span class="fa arrow"></span></a>
     <ul class="nav nav-second-level">
         <li>
-            <a href="blank.html">Blank Page</a>
+            <a href="@Url.Action("NewAccountant","UserManager",new { area = "Accountant"})"><i class="fa fa-user fa-fw"></i>Add an Accountant</a>
         </li>
         <li>
-            <a href="login.html">Login Page</a>
+            <a href="@Url.Action("Accountants","UserManager",new { area = "Admin"})"><i class="fa fa-user fa-fw"></i>Accountant List</a>
+        </li>
+    </ul>
+    <!-- second-level-items -->
+</li>
+
+<li>
+    <a href="#"><i class="fa fa-users fa-fw"></i> Admission Management<span class="fa arrow"></span></a>
+    <ul class="nav nav-second-level">
+        <li>
+            <a href="@Url.Action("Admit","Admissions",new { area = "Panel"})"><i class="fa fa-hospital-o fa-fw"></i>Patient Admissions</a>
+        </li>
+
+
+        <li>
+            <a href="@Url.Action("Index","Admissions",new { area = "Panel"})"><i class="fa fa-hospital-o fa-fw"></i>Admitted Patients</a>
+        </li>
+
+        <li>
+            <a href="@Url.Action("Discharged","Sections",new { area = "Panel"})"><i class="fa fa-hospital-o fa-fw"></i>Discharged  Patients</a>
         </li>
     </ul>
     <!-- second-level-items -->

@@ -108,8 +108,8 @@ namespace FUTOMedical.Areas.Data.Services
 
                 var patReg = await db.Patients.FirstOrDefaultAsync(x => x.UserId == user.Id);
                 string numberid = patReg.Id.ToString("D3");
-                patReg.CardNumber = DateTime.UtcNow.Year + "/" + numberid;
-                patReg.FolderNumber = DateTime.UtcNow.Year + "/" + numberid;
+                patReg.CardNumber = DateTime.UtcNow.Year +"/"+numberid;
+                patReg.FolderNumber = DateTime.UtcNow.Year +"/"+ numberid;
 
                 db.Entry(patReg).State = EntityState.Modified;
                 await db.SaveChangesAsync();

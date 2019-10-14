@@ -20,17 +20,24 @@ namespace FUTOMedical.Areas.Panel.Controllers
         // GET: Reports
         public async Task<ActionResult> Index()
         {
-            return View(await db.Reports.Include(x=>x.OPD).Include(x=>x.Doctor).Include(x=>x.Nurse).ToListAsync());
+            return View(await db.Reports.Include(x=>x.OPD).Include(x=>x.Doctor).Include(x=>x.Nurse).Include(x=>x.Patient).OrderByDescending(x=>x.Id).ToListAsync());
         }
 
-        // GET: Reports/Details/5
-        public async Task<ActionResult> Details(string folderNumber)
+        // GET: Reports
+        public async Task<ActionResult> PatientReport(int? id)
         {
-            if (folderNumber == null)
+            return View(await db.Reports.Include(x => x.OPD).Include(x => x.Doctor).Include(x => x.Nurse).Include(x=>x.Patient).OrderByDescending(x=>x.Id).Where(x => x.PatientId == id).ToListAsync());
+        }
+
+
+        // GET: Reports/Details/5
+        public async Task<ActionResult> Details(int? id)
+        {
+            if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Report report = await db.Reports.Include(x => x.OPD).Include(x => x.Doctor).Include(x => x.Nurse).FirstOrDefaultAsync(x => x.FolderNumber == folderNumber);
+            Report report = await db.Reports.Include(x => x.OPD).Include(x => x.Doctor).Include(x => x.Nurse).FirstOrDefaultAsync(x => x.Id == id);
             if (report == null)
             {
                 return HttpNotFound();
@@ -96,19 +103,21 @@ namespace FUTOMedical.Areas.Panel.Controllers
         }
 
 
-        public ActionResult Discharge(int id)
+        public ActionResult Discharge(int? id)
         {
-            var sec = db.Sections.FirstOrDefault(x => x.PatientId == id);
-            sec.CloseDate = DateTime.UtcNow.AddHours(1);
-            sec.SectionClose = true;
-            db.Entry(sec).State = EntityState.Modified;
+            var sec = db.Sections.OrderByDescending(x=>x.Id).FirstOrDefault(x => x.PatientId == id);
+            var sec2 = db.Sections.OrderByDescending(x => x.Id).FirstOrDefault(x => x.Id == sec.Id);
+            sec2.CloseDate = DateTime.UtcNow.AddHours(1);
+            sec2.SectionClose = true;
+            db.Entry(sec2).State = EntityState.Modified;
             db.SaveChanges();
             var adm = db.Admissions.FirstOrDefault(x => x.PatientId == id);
-            if (adm != null)
+            var adm2 = db.Admissions.FirstOrDefault(x => x.Id == adm.Id);
+            if (adm2 != null)
             {
-                adm.Status = AdmissionStatus.NotActive;
-                adm.DateDischarged = DateTime.UtcNow.AddHours(1);
-                db.Entry(adm).State = EntityState.Modified;
+                adm2.Status = AdmissionStatus.NotActive;
+                adm2.DateDischarged = DateTime.UtcNow.AddHours(1);
+                db.Entry(adm2).State = EntityState.Modified;
                 db.SaveChanges();
             }
 
@@ -129,7 +138,7 @@ namespace FUTOMedical.Areas.Panel.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Report report = await db.Reports.FirstOrDefaultAsync(x => x.PatientId == id);
+            Report report = await db.Reports.FirstOrDefaultAsync(x => x.Id == id);
             if (report == null)
             {
                 return HttpNotFound();

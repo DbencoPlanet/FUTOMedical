@@ -1,13 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace FUTOMedical.Models.Entities
 {
     public class TestReport
     {
         public int Id { get; set; }
+
+        [AllowHtml]
+        [Display(Name = "Test Report")]
+        public string TReport { get; set; }
 
         public ReportStatus Status { get; set; }
 

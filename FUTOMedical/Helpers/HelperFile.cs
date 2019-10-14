@@ -9,12 +9,12 @@ namespace FUTOMedical.Helpers
 {
     public class HelperFile
     {
-        public static string GetFullName(string name)
+        public static string GetFullName(int id)
         {
             var Name = "User";
             using (var db = new ApplicationDbContext())
             {
-                var user = db.Patients.FirstOrDefault(x => x.FolderNumber == name);
+                var user = db.Patients.FirstOrDefault(x => x.Id == id);
                 if (user != null)
                 {
                     Name = user.Fullname;

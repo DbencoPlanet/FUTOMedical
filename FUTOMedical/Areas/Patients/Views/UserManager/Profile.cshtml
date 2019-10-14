@@ -33,6 +33,18 @@
     <div class="panel-heading">
         <i class="fa fa-info-circle fa-fw"></i>User Information
     </div>
+
+    @if (User.IsInRole("Admin") || User.IsInRole("Doctor")|| User.IsInRole("SuperAdmin"))
+    {
+        <div class="panel-body">
+            <div class="btn-group pull-right">
+
+                <a class="btn btn-success" href="@Url.Action("NewPatient", "UserManager", null)"> <i class='fa fa-plus fa-fw'></i> New Patient</a>
+            </div>
+
+        </div>
+    }
+
     <!-- /.panel-heading -->
     <div class="panel-body">
         <div class="row">

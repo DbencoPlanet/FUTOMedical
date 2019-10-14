@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace FUTOMedical.Models.Entities
 {
@@ -24,5 +26,9 @@ namespace FUTOMedical.Models.Entities
 
         public int? PatientId { get; set; }
         public Patient Patient { get; set; }
+
+        [AllowHtml]
+        [Display(Name = "Doctor Report")]
+        public string DoctorReport { get; set; }
     }
 }

@@ -1,0 +1,76 @@
+﻿@model FUTOMedical.Models.Entities.Admission
+@using FUTOMedical.Helpers
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_FutoLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header titlehms"><i class="fa fa-info-circle"></i>Info<i class="fa fa-info-circle"></i></h1>
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+<div class="panel panel-info">
+    <div class="panel-heading">
+        <i class="fa fa-info-circle fa-fw"></i>Admission Information
+    </div>
+    <!-- /.panel-heading -->
+    <div class="col-lg-2"></div>
+    <div class="row">
+
+        <div class="col-lg-8">
+            <div class="panel-body">
+
+
+
+                <div class="form-group ">
+                    <label>@Html.DisplayNameFor(model => model.Patient.Fullname):</label>
+                    <span> @Html.DisplayFor(model => model.Patient.Fullname)</span>
+
+                </div>
+
+                <div class="form-group ">
+                    <label>@Html.DisplayNameFor(model => model.RoomNo):</label>
+                    <span>@Html.DisplayFor(model => model.RoomNo)</span>
+
+                </div>
+                <div class="form-group ">
+                    <label>@Html.DisplayNameFor(model => model.BedNo):</label>
+                    <span>@Html.DisplayFor(model => model.BedNo)</span>
+
+                </div>
+
+                <div class="form-group ">
+                    <label>@Html.DisplayNameFor(model => model.Status):</label>
+                    <span>
+                        @if (Model.Status == FUTOMedical.Models.Entities.AdmissionStatus.Active)
+                        {
+                            <text>Currently Admitted</text>
+                        }
+                        else
+                        {
+                            <text>Discharged</text>
+                        }
+                    </span>
+
+                </div>
+
+            </div>
+
+            <p class="text-center">
+                @if (Model.Status == FUTOMedical.Models.Entities.AdmissionStatus.Active)
+                {
+                    @Html.ActionLink("Discharged", "Discharge", "Reports", new { id = Model.PatientId, area = "Panel" }, new { @class = "btn btn-warning" })
+
+                }
+                @Html.ActionLink("View OPD", "Details", "OPDs", new { id = Model.OPDId, area = "Panel" }, new { @class = "btn btn-info" })
+            </p>
+
+        </div>
+        <div class="col-lg-2"></div>
+
+
+    </div>
+</div>
+

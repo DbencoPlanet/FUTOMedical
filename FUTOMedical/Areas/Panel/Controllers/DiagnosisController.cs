@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Net;
-using Microsoft.AspNet.Identity;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using FUTOMedical.Models;
@@ -17,141 +16,131 @@ namespace FUTOMedical.Areas.Panel.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: Reports
+        // GET: Diagnosis
         public async Task<ActionResult> Index()
         {
-            return View(await db.TestReports.Include(x => x.OPD).Include(x => x.Doctor).Include(x => x.Nurse).Include(x=>x.Laboratorists).ToListAsync());
+            var ind = await db.TestReports.Include(x => x.Doctor).Include(x => x.Laboratorists).Include(x => x.Nurse).Include(x => x.OPD).Include(x => x.Patient).Where(x => x.Status == ReportStatus.Test).ToListAsync();
+            return View(ind);
         }
 
-        // GET: Reports/Details/5
-        public async Task<ActionResult> Details(string folderNumber)
+        // GET: Diagnosis
+        public async Task<ActionResult> PatientDiagnosis()
         {
-            if (folderNumber == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            TestReport report = await db.TestReports.Include(x => x.OPD).Include(x => x.Doctor).Include(x => x.Nurse).FirstOrDefaultAsync(x => x.FolderNumber == folderNumber);
-            if (report == null)
-            {
-                return HttpNotFound();
-            }
-            return View(report);
+            return View(await db.Reports.Include(x => x.OPD).Include(x => x.Doctor).Include(x => x.Patient).Include(x => x.Nurse).Where(x => x.Status == ReportStatus.Test).ToListAsync());
         }
 
-        // GET: Reports/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: Reports/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create(TestReport report)
-        {
-            if (ModelState.IsValid)
-            {
-                db.TestReports.Add(report);
-                await db.SaveChangesAsync();
-                return RedirectToAction("Index");
-            }
-
-            return View(report);
-        }
-        public ActionResult SearchReport()
-        {
-            return View();
-        }
-        public ActionResult SearchPatientReport(string currentFilter, string searchString)
-        {
-            ViewBag.search = searchString;
-
-            if (!String.IsNullOrEmpty(searchString))
-            {
-
-            }
-            else
-            {
-                searchString = currentFilter;
-            }
-
-            ViewBag.CurrentFilter = currentFilter;
-            var report = db.Patients.FirstOrDefault(x => x.FolderNumber.ToUpper().Contains(searchString.ToUpper()));
-
-            if (String.IsNullOrEmpty(searchString))
-            {
-                ViewBag.SearchString = "Empty";
-            }
-         
-            else if (report == null)
-            {
-                TempData["error"] = "Folder not found.";
-            }
-            return View(report);
-        }
-
-
-        // GET: Reports/Edit/5
-        //  [Authorize(Roles="Doctor")]
-        public async Task<ActionResult> Edit(int? id)
+        // GET: Diagnosis/Details/5
+        public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            TestReport report = await db.TestReports.FirstOrDefaultAsync(x => x.PatientId == id);
-            if (report == null)
+            var diagnosis = db.TestReports.Include(x => x.Doctor).Include(x => x.Laboratorists).Include(x => x.Nurse).Include(x => x.OPD).Include(x => x.Patient).FirstOrDefault(x => x.Id == id);
+
+            if (diagnosis == null)
             {
                 return HttpNotFound();
             }
-            return View(report);
+            return View(diagnosis);
         }
 
-        // POST: Reports/Edit/5
+        // GET: Diagnosis/Create
+        public ActionResult Create(int? id)
+        {
+            ViewBag.id = id;
+            return View();
+        }
+
+        // POST: Diagnosis/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit(TestReport report)
+        public ActionResult Create(TestReport diagnosis, int? id)
         {
             if (ModelState.IsValid)
             {
-                var user = User.Identity.GetUserId();
-                var doc = await db.Laboratorists.FirstOrDefaultAsync(x => x.UserId == user);
-                report.LaboratoristsId = doc.Id;
-                db.Entry(report).State = EntityState.Modified;
-                await db.SaveChangesAsync();
-                return RedirectToAction("Index");
+                diagnosis.PatientId = id;
+                var opd = db.OPD.OrderByDescending(x => x.Id).FirstOrDefault(x => x.PatientId == id);
+                var pat = db.Reports.OrderByDescending(x => x.Id).FirstOrDefault(x => x.PatientId == id);
+                diagnosis.OPDId = opd.Id;
+                diagnosis.NurseId = opd.NurseId;
+                diagnosis.DoctorId = pat.DoctorId;
+                diagnosis.Status = ReportStatus.Test;
+
+                //Update Report status after diagnosis
+                var report = db.Reports.Include(x => x.Patient).FirstOrDefault(x => x.PatientId == id);
+                var report2 = db.Reports.Include(x => x.Patient).FirstOrDefault(x => x.Id == report.Id);
+                report2.Status = ReportStatus.None;
+                db.Entry(report2).State = EntityState.Modified;
+                db.SaveChanges();
+
+
+                db.TestReports.Add(diagnosis);
+                db.SaveChanges();
+                return RedirectToAction("Details", "Diagnosis", new { id = diagnosis.Id, area = "Panel" });
             }
-            return View(report);
+
+            return View(diagnosis);
         }
 
-        // GET: Reports/Delete/5
-        public async Task<ActionResult> Delete(int? id)
+        // GET: Diagnosis/Edit/5
+        public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Report report = await db.Reports.FindAsync(id);
-            if (report == null)
+            TestReport diagnosis = db.TestReports.Find(id);
+            if (diagnosis == null)
             {
                 return HttpNotFound();
             }
-            return View(report);
+            return View(diagnosis);
         }
 
-        // POST: Reports/Delete/5
+        // POST: Diagnosis/Edit/5
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(TestReport diagnosis)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(diagnosis).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(diagnosis);
+        }
+
+        // GET: Diagnosis/Delete/5
+        public ActionResult Delete(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            //TestReport diagnosis = db.TestReports.Find(id);
+            var diagnosis = db.TestReports.Include(x => x.Doctor).Include(x => x.Laboratorists).Include(x => x.Nurse).Include(x => x.OPD).Include(x => x.Patient).FirstOrDefault(x => x.Id == id);
+            if (diagnosis == null)
+            {
+                return HttpNotFound();
+            }
+            return View(diagnosis);
+        }
+
+        // POST: Diagnosis/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> DeleteConfirmed(int id)
+        public ActionResult DeleteConfirmed(int id)
         {
-            Report report = await db.Reports.FindAsync(id);
-            db.Reports.Remove(report);
-            await db.SaveChangesAsync();
-            return RedirectToAction("Index");
+            TestReport diagnosis = db.TestReports.Find(id);
+            db.TestReports.Remove(diagnosis);
+            db.SaveChanges();
+            return RedirectToAction("Index", "Diagnosis", new { area = "Panel" });
         }
 
         protected override void Dispose(bool disposing)

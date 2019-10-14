@@ -280,7 +280,7 @@ namespace FUTOMedical.Areas.Patients.Controllers
             var userinfo = User.Identity.GetUserId();
             var profile = await db.Patients.Include(x => x.User).FirstOrDefaultAsync(x => x.UserId == userinfo);
             ViewBag.profile = profile;
-            return View();
+            return View(profile);
         }
 
 
@@ -288,7 +288,7 @@ namespace FUTOMedical.Areas.Patients.Controllers
         {
             var profile = await db.Patients.Include(x => x.User).FirstOrDefaultAsync(x => x.Id == id);
             ViewBag.profile = profile;
-            return View();
+            return View(profile);
         }
 
 

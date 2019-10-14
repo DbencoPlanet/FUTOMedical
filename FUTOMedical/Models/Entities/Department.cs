@@ -11,7 +11,6 @@ namespace FUTOMedical.Models.Entities
         public int Id { get; set; }
 
         [Display(Name="Department Name")]
-        [Required]
         public string Name { get; set; }
 
         [Display(Name = "Description")]

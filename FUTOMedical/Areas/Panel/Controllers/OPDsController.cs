@@ -70,18 +70,26 @@ namespace FUTOMedical.Areas.Panel.Controllers
                 db.Reports.Add(report);
                 await db.SaveChangesAsync();
 
-                TestReport report2 = new TestReport();
-                report.Status = ReportStatus.None;
-                report.FolderNumber = folderNo;
-                report.OPDId = oPD.Id;
-                report.PatientId = id;
-                db.TestReports.Add(report2);
+                Section sec = new Section();
+                sec.OpenDate = DateTime.UtcNow.AddHours(1);
+                sec.OpdStatus = true;
+                sec.SectionOpen = true;
+                sec.PatientId = id;
+                db.Sections.Add(sec);
                 await db.SaveChangesAsync();
 
-                var sec = await db.Sections.FirstOrDefaultAsync(x => x.PatientId == id);
-                sec.OpdStatus = true;
-                db.Entry(sec).State = EntityState.Modified;
-                await db.SaveChangesAsync();
+                //TestReport report2 = new TestReport();
+                //report.Status = ReportStatus.None;
+                //report.FolderNumber = folderNo;
+                //report.OPDId = oPD.Id;
+                //report.PatientId = id;
+                //db.TestReports.Add(report2);
+                //await db.SaveChangesAsync();
+
+                //var sec = await db.Sections.FirstOrDefaultAsync(x => x.PatientId == id);
+                //sec.OpdStatus = true;
+                //db.Entry(sec).State = EntityState.Modified;
+                //await db.SaveChangesAsync();
                 return RedirectToAction("Success");
             }
 

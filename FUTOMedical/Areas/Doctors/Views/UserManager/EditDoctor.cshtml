@@ -38,7 +38,7 @@
                     </div>
                 }
             </div>
-            @using (Html.BeginForm("EditDoctor", "UserManager", FormMethod.Post, new { @class = "", enctype = "multipart/form-data", area = "Doctor" }))
+            @using (Html.BeginForm("EditDoctor", "UserManager", FormMethod.Post, new { @class = "", enctype = "multipart/form-data", area = "Doctors" }))
             {
                 @Html.AntiForgeryToken()
         <div class="panel-body">
@@ -46,6 +46,7 @@
             @Html.HiddenFor(model => model.Id)
             @Html.HiddenFor(model => model.Picture)
             @Html.HiddenFor(model => model.EmailAddress)
+            @Html.HiddenFor(model => model.UserId)
 
 
 
@@ -180,12 +181,12 @@
                 </div>
                 <div class="col-lg-4">
                     <div class="form-group">
-                        @Html.LabelFor(model => model.DeparmentId, htmlAttributes: new { @class = "control-label" })
+                        @Html.LabelFor(model => model.DepartmentId, htmlAttributes: new { @class = "control-label" })
                         <div class="">
 
-                            @Html.DropDownList("DeptId", ViewBag.DeptId as SelectList, "Select a Department", new { @class = "form-control" })
+                            @Html.DropDownList("DepartmentId", ViewBag.DepartmentId as SelectList, "Select a Department", new { @class = "form-control" })
 
-                            @Html.ValidationMessageFor(model => model.DeparmentId, "", new { @class = "text-danger" })
+                            @Html.ValidationMessageFor(model => model.DepartmentId, "", new { @class = "text-danger" })
                         </div>
                     </div>
                 </div>

@@ -7,6 +7,20 @@ using System.Web;
 
 namespace FUTOMedical.Models.Entities
 {
+
+    public enum BloodStatus
+    {
+
+        [Description("In Stock")]
+        [Display(Name = "In Stock")]
+        InStock = 1,
+        [Description("In Stock")]
+        [Display(Name = "Out Of Stock")]
+        OutOfStock = 2
+
+
+    }
+
     public enum ReportStatus
     {
 
@@ -14,8 +28,11 @@ namespace FUTOMedical.Models.Entities
         Admit = 1,
         [Description("Dont Admit")]
         DontAdmit = 2,
+        [Description("Test")]
+        Test = 4,
         [Description("None")]
         None = 3,
+
     }
 
     public enum AdmissionStatus
@@ -25,6 +42,8 @@ namespace FUTOMedical.Models.Entities
         Active = 1,
         [Description("NotActive")]
         NotActive = 2,
+        [Description("Discharged")]
+        Discharged = 3
 
     }
 

@@ -14,7 +14,7 @@ namespace FUTOMedical.Models.Entities
         public bool SectionOpen { get; set; }
         public bool SectionClose { get; set; }
 
-        public int PatientId { get; set; }
+        public int? PatientId { get; set; }
         public Patient Patient { get; set; }
     }
 }

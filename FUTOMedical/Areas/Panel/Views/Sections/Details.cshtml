@@ -1,0 +1,42 @@
+﻿@model FUTOMedical.Models.Entities.Section
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Section</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.OpenDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OpenDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CloseDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CloseDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SectionOpenClose)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SectionOpenClose)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.SectionId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

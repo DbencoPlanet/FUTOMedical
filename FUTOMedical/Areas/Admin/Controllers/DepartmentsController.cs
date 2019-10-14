@@ -48,7 +48,7 @@ namespace FUTOMedical.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "Id,DeptName,Description")] Department department)
+        public async Task<ActionResult> Create(Department department)
         {
             if (ModelState.IsValid)
             {
@@ -80,7 +80,7 @@ namespace FUTOMedical.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "Id,DeptName,Description")] Department department)
+        public async Task<ActionResult> Edit(Department department)
         {
             if (ModelState.IsValid)
             {

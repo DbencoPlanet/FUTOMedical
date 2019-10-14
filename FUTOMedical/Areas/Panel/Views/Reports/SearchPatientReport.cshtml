@@ -1,0 +1,70 @@
+﻿
+@model FUTOMedical.Models.Entities.Patient
+@using FUTOMedical.Helpers
+@{
+    ViewBag.Title = "SearchPatientReport";
+    Layout = "~/Views/Shared/_FutoLayout.cshtml";
+}
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="" style="background-color: #fff; font-size:14px;margin-top:20px;">
+                <h4 class="page-header" style="margin-top:0px;padding:5px; font-size: 16px !important; color: #42ae0e;">Search Results for @ViewBag.search </h4>
+
+
+                @if (ViewBag.SearchString == "Empty")
+                {
+                    <div class="alert alert-info">
+                        <p>Type your Search keyword(s) on the Search bar above and click search.</p>
+                    </div>
+                }
+                else if (TempData["error"] != null)
+                {
+                    <div class="alert alert-danger">
+                        <p>Sorry, we didn’t find any results for your search. Please try the following:</p>
+                        <ul>
+                            <li>Double-check spelling, especially people and place names.</li>
+                            <li>Make sure there are spaces between words.</li>
+                            <li>Use fewer keywords in your search, especially if you’re unsure of the exact keyword.</li>
+                        </ul>
+                    </div>
+                }
+                else
+                {
+                    <div class="table-responsive">
+                        <table class="table">
+                            <tr>
+                                <th>
+                                    Patient Name
+                                </th>
+
+                                <th>
+                                    @Html.DisplayNameFor(model => model.FolderNumber)
+                                </th>
+
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    @Model.Fullname
+                                </td>
+
+                                <td>
+                                    @Model.FolderNumber)
+                                </td>
+
+                            </tr>
+
+                        </table>
+                        <div class="text-center">
+                            <p>
+                                @Html.ActionLink("Add Report", "Edit", new { id = Model.Id }, new { @class = "btn btn-info" })
+
+                            </p>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>

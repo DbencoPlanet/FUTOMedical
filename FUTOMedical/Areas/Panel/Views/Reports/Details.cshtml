@@ -1,0 +1,54 @@
+﻿@model FUTOMedical.Models.Entities.Report
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_FutoLayout.cshtml";
+}
+<div class="container">
+    <div class="row" style="background-color:#ffffff;">
+        <div class="col-md-12">
+            <h2 class="text-center">Patient Doctors Report</h2>
+            <hr />
+<div>
+  
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.DoctorReport)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DoctorReport)
+        </dd>
+        <hr />
+        <dt>
+            @Html.DisplayNameFor(model => model.FolderNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FolderNumber)
+        </dd>
+        <hr />
+        <dt>
+            Report Status
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Status)
+        </dd>
+    </dl>
+
+    <p class="text-center">
+        @if (Model.Status == FUTOMedical.Models.Entities.ReportStatus.Admit)
+        {
+            @Html.ActionLink("Admit", "Create", "Admissions", new { id = Model.PatientId }, new { @class = "btn btn-info" })
+        }
+        @if (Model.Status == FUTOMedical.Models.Entities.ReportStatus.Test)
+        {
+            @Html.ActionLink("Create Test Report", "Create", "Diagnosis", new { id = Model.PatientId }, new { @class = "btn btn-info", area = "Panel" })
+        }
+        @if (Model.Status == FUTOMedical.Models.Entities.ReportStatus.DontAdmit)
+        {
+            @Html.ActionLink("Discharge", "Discharge", new { id = Model.PatientId }, new { @class = "btn btn-info", area = "Panel" })
+        }
+        @Html.ActionLink("Back", "Index", null, new { @class = "btn btn-info" })
+    </p>
+</div></div></div></div>

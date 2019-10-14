@@ -206,12 +206,12 @@
                         </div>
                         <div class="col-lg-4">
                             <div class="form-group">
-                                @Html.LabelFor(model => model.DeptId, htmlAttributes: new { @class = "control-label" })
+                                @Html.LabelFor(model => model.DepartmentId, htmlAttributes: new { @class = "control-label" })
                                 <div class="">
 
-                                    @Html.DropDownList("DeptId", ViewBag.DeptId as SelectList, "Select a Department", new { @class = "form-control" })
+                                    @Html.DropDownList("DepartmentId", ViewBag.DepartmentId as SelectList, "Select a Department", new { @class = "form-control" })
 
-                                    @Html.ValidationMessageFor(model => model.DeptId, "", new { @class = "text-danger" })
+                                    @Html.ValidationMessageFor(model => model.DepartmentId, "", new { @class = "text-danger" })
                                 </div>
                             </div>
                         </div>

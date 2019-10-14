@@ -59,7 +59,7 @@ namespace FUTOMedical.Models.Dtos
         public string Designation { get; set; }
 
         [Display(Name = " Department")]
-        public int? DeptId { get; set; }
+        public int? DepartmentId { get; set; }
         public Department Department { get; set; }
 
         [Display(Name = "Phone No")]

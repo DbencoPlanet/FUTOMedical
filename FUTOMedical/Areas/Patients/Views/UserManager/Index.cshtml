@@ -21,16 +21,7 @@
                 <i class="fa fa-fw fa-file-text-o"></i>
                 Patient Management
             </div>
-            @if (User.IsInRole("SuperAdmin,Doctor,Admin"))
-            {
-                <div class="panel-body">
-                    <div class="btn-group pull-right">
-
-                        <a class="btn btn-success" href="@Url.Action("NewPatient", "UserManager", null)"> <i class='fa fa-plus fa-fw'></i> New Patient</a>
-                    </div>
-
-                </div>
-            }
+           
             <div class="panel-body">
                 <div class="table-responsive">
                     <table class="table table-striped table-bordered table-hover" id="example1">
@@ -43,12 +34,12 @@
                                 <th>
                                     @Html.DisplayNameFor(model => model.CardNumber)
                                 </th>
-                                @if (User.IsInRole("SuperAdmin"))
-                                {
+                                @*@if (User.IsInRole("SuperAdmin,Doctor,Admin,Nurse"))
+                                {*@
                                     <th>
                                         Action
                                     </th>
-                                }
+                                @*}*@
                             </tr>
                         </thead>
                         <tbody>
@@ -71,19 +62,22 @@
                                     <td>
                                         @Html.DisplayFor(modelItem => item.CardNumber)
                                     </td>
-                                    @if (User.IsInRole("SuperAdmin"))
-                                    {
+                                    @*@if (User.IsInRole("SuperAdmin,Doctor,Admin,Nurse"))
+                                    {*@
                                         <td>
 
                                             <div class="btn-group">
+                                                @if (User.IsInRole("Nurse"))
+                                                {
+                                                    <a class="btn btn-primary" href="@Url.Action("Create", "OPDs", new { id = item.Id, area = "Panel" })"> <i class='fa fa-plus fa-fw'></i> New OPD</a>
+                                                }
+                                                    <a class="btn btn-success" href="@Url.Action("PatientReport", "Reports", new { id = item.Id, area ="Panel" })"> <i class='fa fa-eye-slash fa-fw'></i>View Report</a>
+                                                    <a class="btn btn-danger" href="@Url.Action("Profile", "UserManager", new { id = item.Id,area = "Patients" })"> <i class='fa fa-eye fa-fw'></i>Profile</a>
 
-                                                <a class="btn btn-success" href="@Url.Action("Details", "Reports", new { folderNumber = item.FolderNumber }, null)"> <i class='fa fa-edit fa-fw'></i>View Report</a>
-                                                <a class="btn btn-danger" href="@Url.Action("Profile", "UserManager", new { id = item.Id,area = "Patients" })"> <i class='fa fa-eye fa-fw'></i>Profile</a>
-
-                                            </div>
+                                                </div>
 
                                         </td>
-                                    }
+                                    @*}*@
                                 </tr>
                             }
                         </tbody>

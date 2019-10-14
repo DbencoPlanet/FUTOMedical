@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using FUTOMedical.Models;
@@ -18,8 +19,14 @@ namespace FUTOMedical.Areas.Panel.Controllers
         // GET: Admissions
         public ActionResult Index()
         {
-            var ind = db.Admissions.Where(x => x.Status == AdmissionStatus.Active);
+            var ind = db.Admissions.Include(x=>x.OPD).Include(x=>x.Patient).Where(x => x.Status == AdmissionStatus.Active);
             return View(ind.ToList());
+        }
+
+        // GET: Reports
+        public async Task<ActionResult> Admit()
+        {
+            return View(await db.Reports.Include(x => x.OPD).Include(x => x.Doctor).Include(x=>x.Patient).Include(x => x.Nurse).Where(x=>x.Status == ReportStatus.Admit).ToListAsync());
         }
 
         // GET: Admissions/Details/5
@@ -29,7 +36,8 @@ namespace FUTOMedical.Areas.Panel.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Admission admission = db.Admissions.Find(id);
+            //Admission admission = db.Admissions.Find(id);
+            var admission = db.Admissions.Include(x => x.OPD).Include(x => x.Patient).FirstOrDefault(x=>x.Id == id);
             if (admission == null)
             {
                 return HttpNotFound();
@@ -38,7 +46,7 @@ namespace FUTOMedical.Areas.Panel.Controllers
         }
 
         // GET: Admissions/Create
-        public ActionResult Create(int id)
+        public ActionResult Create(int? id)
         {
             ViewBag.id = id;
             return View();
@@ -49,18 +57,26 @@ namespace FUTOMedical.Areas.Panel.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Admission admission, int id)
+        public ActionResult Create(Admission admission, int? id)
         {
             if (ModelState.IsValid)
             {
                 admission.PatientId = id;
                 var opd = db.OPD.OrderByDescending(x => x.Id).FirstOrDefault(x => x.PatientId == id).Id;
-                admission.Id = opd;
+                admission.OPDId = opd;
                 admission.DateAdmitted = DateTime.UtcNow.AddHours(1);
                 admission.Status = AdmissionStatus.Active;
+
+                //Update Report status after admission
+                var report = db.Reports.Include(x=>x.Patient).FirstOrDefault(x=>x.PatientId == id);
+                var report2 = db.Reports.Include(x => x.Patient).FirstOrDefault(x=>x.Id == report.Id);
+                report2.Status = ReportStatus.DontAdmit;
+                db.Entry(report2).State = EntityState.Modified;
+                db.SaveChanges();
+
                 db.Admissions.Add(admission);
                 db.SaveChanges();
-                return RedirectToAction("Details", new { id = admission.Id });
+                return RedirectToAction("Details","Admissions", new { id = admission.Id, area ="Panel" });
             }
 
             return View(admission);
@@ -86,7 +102,7 @@ namespace FUTOMedical.Areas.Panel.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,RoomNo,BedNo,Status")] Admission admission)
+        public ActionResult Edit(Admission admission)
         {
             if (ModelState.IsValid)
             {
@@ -120,7 +136,7 @@ namespace FUTOMedical.Areas.Panel.Controllers
             Admission admission = db.Admissions.Find(id);
             db.Admissions.Remove(admission);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Index","Admissions",new { area = "Panel"});
         }
 
         protected override void Dispose(bool disposing)

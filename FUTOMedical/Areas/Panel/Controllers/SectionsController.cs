@@ -19,7 +19,14 @@ namespace FUTOMedical.Areas.Panel.Controllers
         // GET: Sections
         public ActionResult Index(int id)
         {
-            var pSection = db.Sections.Where(x => x.PatientId == id && x.SectionClose == false);
+            var pSection = db.Sections.Include(x=>x.Patient).Where(x => x.PatientId == id && x.SectionClose == false);
+            return View(pSection);
+        }
+
+        // GET: Sections
+        public ActionResult Discharged()
+        {
+            var pSection = db.Sections.Include(x => x.Patient).Where(x=>x.SectionClose == true);
             return View(pSection);
         }
 

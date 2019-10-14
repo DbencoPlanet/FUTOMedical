@@ -167,6 +167,7 @@
     <Compile Include="Areas\Accountant\Controllers\UserManagerController.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\BloodBanksController.cs" />
+    <Compile Include="Areas\Admin\Controllers\DashBoardController.cs" />
     <Compile Include="Areas\Admin\Controllers\DepartmentsController.cs" />
     <Compile Include="Areas\Admin\Controllers\RolesController.cs" />
     <Compile Include="Areas\Admin\Controllers\UserManagerController.cs" />
@@ -184,6 +185,7 @@
     <Compile Include="Areas\Data\Services\LaboratoristService.cs" />
     <Compile Include="Areas\Data\Services\PharmacistService.cs" />
     <Compile Include="Areas\Data\Services\UserManagerService.cs" />
+    <Compile Include="Areas\Doctors\Controllers\DashBoardController.cs" />
     <Compile Include="Areas\Doctors\Controllers\UserManagerController.cs" />
     <Compile Include="Areas\Doctors\DoctorsAreaRegistration.cs" />
     <Compile Include="Areas\Laboratorist\Controllers\UserManagerController.cs" />
@@ -236,6 +238,30 @@
     <Compile Include="Migrations\201909242141417_nurseupdate.Designer.cs">
       <DependentUpon>201909242141417_nurseupdate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201910012205354_department.cs" />
+    <Compile Include="Migrations\201910012205354_department.Designer.cs">
+      <DependentUpon>201910012205354_department.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201910012249599_departmentupdate.cs" />
+    <Compile Include="Migrations\201910012249599_departmentupdate.Designer.cs">
+      <DependentUpon>201910012249599_departmentupdate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201910031404309_reportupdate.cs" />
+    <Compile Include="Migrations\201910031404309_reportupdate.Designer.cs">
+      <DependentUpon>201910031404309_reportupdate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201910102131498_updatee1.cs" />
+    <Compile Include="Migrations\201910102131498_updatee1.Designer.cs">
+      <DependentUpon>201910102131498_updatee1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201910121311593_patientudpaaa.cs" />
+    <Compile Include="Migrations\201910121311593_patientudpaaa.Designer.cs">
+      <DependentUpon>201910121311593_patientudpaaa.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201910132031074_diagnosisupdate.cs" />
+    <Compile Include="Migrations\201910132031074_diagnosisupdate.Designer.cs">
+      <DependentUpon>201910132031074_diagnosisupdate.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Dtos\DoctorDto.cs" />
@@ -270,6 +296,31 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Areas\Panel\Views\Admissions\Create.cshtml" />
+    <Content Include="Areas\Panel\Views\Admissions\Delete.cshtml" />
+    <Content Include="Areas\Panel\Views\Admissions\Details.cshtml" />
+    <Content Include="Areas\Panel\Views\Admissions\Edit.cshtml" />
+    <Content Include="Areas\Panel\Views\Admissions\Index.cshtml" />
+    <Content Include="Areas\Panel\Views\OPDs\Create.cshtml" />
+    <Content Include="Areas\Panel\Views\OPDs\Delete.cshtml" />
+    <Content Include="Areas\Panel\Views\OPDs\Details.cshtml" />
+    <Content Include="Areas\Panel\Views\OPDs\Edit.cshtml" />
+    <Content Include="Areas\Panel\Views\OPDs\Index.cshtml" />
+    <Content Include="Areas\Panel\Views\OPDs\Success.cshtml" />
+    <Content Include="Areas\Panel\Views\Reports\Create.cshtml" />
+    <Content Include="Areas\Panel\Views\Reports\Delete.cshtml" />
+    <Content Include="Areas\Panel\Views\Reports\Details.cshtml" />
+    <Content Include="Areas\Panel\Views\Reports\Edit.cshtml" />
+    <Content Include="Areas\Panel\Views\Reports\Index.cshtml" />
+    <Content Include="Areas\Panel\Views\Reports\SearchPatientReport.cshtml" />
+    <Content Include="Areas\Panel\Views\Reports\SearchReport.cshtml" />
+    <Content Include="Areas\Panel\Views\Reports\Success.cshtml" />
+    <Content Include="Areas\Panel\Views\Sections\Create.cshtml" />
+    <Content Include="Areas\Panel\Views\Sections\Delete.cshtml" />
+    <Content Include="Areas\Panel\Views\Sections\Details.cshtml" />
+    <Content Include="Areas\Panel\Views\Sections\Edit.cshtml" />
+    <Content Include="Areas\Panel\Views\Sections\Index.cshtml" />
+    <Content Include="Areas\Panel\Views\web.config" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -434,7 +485,6 @@
     <Content Include="Areas\Admin\Views\UserManager\CreateAccount.cshtml" />
     <Content Include="Areas\Accountant\Views\web.config" />
     <Content Include="Areas\Laboratorist\Views\web.config" />
-    <Content Include="Areas\Panel\Views\web.config" />
     <Content Include="Areas\Patients\Views\UserManager\Index.cshtml" />
     <Content Include="Areas\Patients\Views\UserManager\Patient.cshtml" />
     <Content Include="Areas\Patients\Views\UserManager\SearchPatient.cshtml" />
@@ -506,6 +556,19 @@
     <Content Include="Areas\Admin\Views\UserManager\Laboratorists.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_LaboratoristMenu.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_AccountantMenu.cshtml" />
+    <Content Include="Areas\Panel\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Panel\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Panel\Views\Reports\PatientReport.cshtml" />
+    <Content Include="Areas\Admin\Views\DashBoard\Index.cshtml" />
+    <Content Include="Areas\Panel\Views\Diagnosis\Index.cshtml" />
+    <Content Include="Areas\Panel\Views\Diagnosis\Details.cshtml" />
+    <Content Include="Areas\Panel\Views\Diagnosis\Create.cshtml" />
+    <Content Include="Areas\Panel\Views\Diagnosis\Edit.cshtml" />
+    <Content Include="Areas\Panel\Views\Diagnosis\Delete.cshtml" />
+    <Content Include="Areas\Doctors\Views\DashBoard\Index.cshtml" />
+    <Content Include="Areas\Panel\Views\Admissions\Admit.cshtml" />
+    <Content Include="Areas\Panel\Views\Sections\Discharged.cshtml" />
+    <Content Include="Areas\Panel\Views\Diagnosis\PatientDiagnosis.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -562,8 +625,6 @@
     <Folder Include="Areas\Laboratorist\Models\" />
     <Folder Include="Areas\Nurses\Models\" />
     <Folder Include="Areas\Panel\Models\" />
-    <Folder Include="Areas\Panel\Views\Diagnosis\" />
-    <Folder Include="Areas\Panel\Views\Shared\" />
     <Folder Include="Areas\Patients\Models\" />
     <Folder Include="Areas\Pharmacists\Models\" />
     <Folder Include="Uploads\Profile\" />
@@ -602,6 +663,24 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201909242141417_nurseupdate.resx">
       <DependentUpon>201909242141417_nurseupdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910012205354_department.resx">
+      <DependentUpon>201910012205354_department.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910012249599_departmentupdate.resx">
+      <DependentUpon>201910012249599_departmentupdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910031404309_reportupdate.resx">
+      <DependentUpon>201910031404309_reportupdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910102131498_updatee1.resx">
+      <DependentUpon>201910102131498_updatee1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910121311593_patientudpaaa.resx">
+      <DependentUpon>201910121311593_patientudpaaa.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910132031074_diagnosisupdate.resx">
+      <DependentUpon>201910132031074_diagnosisupdate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -110,6 +110,10 @@
                                                     @Html.ActionLink("Edit User Profile", "EditPatient", new { id = item.Id, area = "Patients" }, new { @class = "" })
                                                 </li>
 
+                                                <li>
+                                                    @Html.ActionLink("View Patient Reports", "PatientReport","Reports", new { id = item.Id, area = "Panel" }, new { @class = "" })
+                                                </li>
+
                                             </ul>
                                         </div>
                                     </td>

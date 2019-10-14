@@ -1,0 +1,169 @@
+﻿
+@model FUTOMedical.Models.Entities.TestReport
+@using FUTOMedical.Helpers
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_FutoLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header titlehms"><i class="fa fa-info-circle"></i>Info<i class="fa fa-info-circle"></i></h1>
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+<div class="panel panel-info">
+    <div class="panel-heading">
+        <i class="fa fa-info-circle fa-fw"></i>Diagnosis Information
+    </div>
+    <!-- /.panel-heading -->
+    <div class="col-lg-2"></div>
+    <div class="row">
+
+        <div class="col-lg-8">
+            <div class="panel-body">
+
+
+
+                <div class="form-group ">
+                    <label>Patient Name:</label>
+                    <span> @Html.DisplayFor(model => model.Patient.Fullname)</span>
+
+                </div>
+                <div class="form-group ">
+                    <label>Folder Number:</label>
+                    <span>@Html.DisplayFor(model => model.Patient.FolderNumber)</span>
+
+                </div>
+
+                <div class="form-group ">
+                    <label>Doctor Name:</label>
+                    <span>@Html.DisplayFor(model => model.Doctor.Fullname)</span>
+
+                </div>
+                <div class="form-group ">
+                    <label>Nurse Name:</label>
+                    <span>@Html.DisplayFor(model => model.Nurse.Fullname)</span>
+
+                </div>
+
+                <div class="form-group ">
+                    <label>@Html.DisplayNameFor(model => model.OPD.BP):</label>
+                    <span>@Html.DisplayFor(model => model.OPD.BP)</span>
+
+                </div>
+                <div class="form-group ">
+                    <label>@Html.DisplayNameFor(model => model.OPD.Temperature):</label>
+                    <span>@Html.DisplayFor(model => model.OPD.Temperature)</span>
+
+                </div>
+                <div class="form-group ">
+                    <label>@Html.DisplayNameFor(model => model.OPD.Weight):</label>
+                    <span>@Html.DisplayFor(model => model.OPD.Weight)</span>
+
+                </div>
+
+                <div class="form-group ">
+                    <label>@Html.DisplayNameFor(model => model.TReport):</label>
+                    <span>@Html.Raw(Model.TReport)</span>
+
+                </div>
+
+
+
+            </div>
+
+           
+        </div>
+        <div class="col-lg-2"></div>
+
+
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@*<h2>Details</h2>
+
+<div>
+    <h4>TestReport</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Doctor.UserId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Doctor.UserId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Laboratorists.UserId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Laboratorists.UserId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Nurse.UserId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nurse.UserId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OPD.BP)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OPD.BP)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Patient.UserId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Patient.UserId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Status)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FolderNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FolderNumber)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>*@

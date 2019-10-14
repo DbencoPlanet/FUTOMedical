@@ -77,7 +77,7 @@ namespace FUTOMedical.Areas.Doctors.Controllers
         // GET: Doctors/UserManager
         public async Task<ActionResult> NewDoctor()
         {
-            ViewBag.DeptId = new SelectList(db.Departments, "Id", "Name");
+            ViewBag.DepartmentId = new SelectList(db.Departments, "Id", "Name");
             ViewBag.StateOfOrigin = new SelectList(db.States.OrderBy(x => x.StateName), "StateName", "StateName");
             return View();
         }
@@ -149,7 +149,7 @@ namespace FUTOMedical.Areas.Doctors.Controllers
             }
             var allErrors = ModelState.Values.SelectMany(v => v.Errors);
             TempData["error"] = "Creation of new Doctor not successful" + ee;
-            ViewBag.DeptId = new SelectList(db.Departments, "Id", "Name", model.DeptId);
+            ViewBag.DepartmentId = new SelectList(db.Departments, "Id", "Name", model.DepartmentId);
             ViewBag.StateOfOrigin = new SelectList(db.States.OrderBy(x => x.StateName), "StateName", "StateName", model.StateOfOrigin);
             return View(model);
         }
@@ -164,7 +164,7 @@ namespace FUTOMedical.Areas.Doctors.Controllers
             }
 
             ViewBag.StateName = new SelectList(db.States.OrderBy(x => x.StateName), "StateName", "StateName");
-            ViewBag.DeptId = new SelectList(db.Departments.OrderBy(x => x.Name), "Id", "Name");
+            ViewBag.DepartmentId = new SelectList(db.Departments.OrderBy(x => x.Name), "Id", "Name");
 
             var profile = await db.Doctors.Include(x => x.User).Include(x => x.Department).FirstOrDefaultAsync(x => x.Id == id);
 
@@ -224,7 +224,7 @@ namespace FUTOMedical.Areas.Doctors.Controllers
             }
             TempData["error"] = "Unable to Edit Profile.";
             ViewBag.StateOfOrigin = new SelectList(db.States.OrderBy(x => x.StateName), "StateName", "StateName", profile.StateOfOrigin);
-            ViewBag.DeptId = new SelectList(db.Departments.OrderBy(x => x.Name), "Id", "Name", profile.DeparmentId);
+            ViewBag.DepartmentId = new SelectList(db.Departments.OrderBy(x => x.Name), "Id", "Name", profile.DepartmentId);
             return View(profile);
         }
 

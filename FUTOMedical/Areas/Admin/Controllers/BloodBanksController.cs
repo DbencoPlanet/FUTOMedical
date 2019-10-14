@@ -48,7 +48,7 @@ namespace FUTOMedical.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "Id,Age,DonorName,Sex,BloodGroup,LastDonationDate")] BloodBank bloodBank)
+        public async Task<ActionResult> Create(BloodBank bloodBank)
         {
             if (ModelState.IsValid)
             {
@@ -80,7 +80,7 @@ namespace FUTOMedical.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "Id,Age,DonorName,Sex,BloodGroup,LastDonationDate")] BloodBank bloodBank)
+        public async Task<ActionResult> Edit(BloodBank bloodBank)
         {
             if (ModelState.IsValid)
             {

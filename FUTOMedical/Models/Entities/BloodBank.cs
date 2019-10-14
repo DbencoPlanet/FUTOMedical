@@ -19,5 +19,7 @@ namespace FUTOMedical.Models.Entities
 
         [Display(Name="Last Donation Date")]
         public DateTime LastDonationDate { get; set; }
+        
+        public BloodStatus Status { get; set; }
     }
 }
