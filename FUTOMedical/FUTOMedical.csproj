@@ -170,6 +170,7 @@
     <Compile Include="Areas\Admin\Controllers\DashBoardController.cs" />
     <Compile Include="Areas\Admin\Controllers\DepartmentsController.cs" />
     <Compile Include="Areas\Admin\Controllers\RolesController.cs" />
+    <Compile Include="Areas\Admin\Controllers\SettingsController.cs" />
     <Compile Include="Areas\Admin\Controllers\UserManagerController.cs" />
     <Compile Include="Areas\Data\IServices\IDoctorService.cs" />
     <Compile Include="Areas\Data\IServices\INurseService.cs" />
@@ -194,6 +195,9 @@
     <Compile Include="Areas\Nurses\NursesAreaRegistration.cs" />
     <Compile Include="Areas\Panel\Controllers\AdmissionsController.cs" />
     <Compile Include="Areas\Panel\Controllers\DiagnosisController.cs" />
+    <Compile Include="Areas\Panel\Controllers\EventReportController.cs" />
+    <Compile Include="Areas\Panel\Controllers\MedicineCategoriesController.cs" />
+    <Compile Include="Areas\Panel\Controllers\MedicinesController.cs" />
     <Compile Include="Areas\Panel\Controllers\OPDsController.cs" />
     <Compile Include="Areas\Panel\Controllers\ReportsController.cs" />
     <Compile Include="Areas\Panel\Controllers\SectionsController.cs" />
@@ -262,6 +266,14 @@
     <Compile Include="Migrations\201910132031074_diagnosisupdate.Designer.cs">
       <DependentUpon>201910132031074_diagnosisupdate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201910141057333_medicineupdate.cs" />
+    <Compile Include="Migrations\201910141057333_medicineupdate.Designer.cs">
+      <DependentUpon>201910141057333_medicineupdate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201910151724523_medupdate.cs" />
+    <Compile Include="Migrations\201910151724523_medupdate.Designer.cs">
+      <DependentUpon>201910151724523_medupdate.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Dtos\DoctorDto.cs" />
@@ -276,9 +288,12 @@
     <Compile Include="Models\Entities\Department.cs" />
     <Compile Include="Models\Entities\Doctor.cs" />
     <Compile Include="Models\Entities\Enum.cs" />
+    <Compile Include="Models\Entities\GReport.cs" />
     <Compile Include="Models\Entities\Invoice.cs" />
     <Compile Include="Models\Entities\InvoiceLine.cs" />
     <Compile Include="Models\Entities\LocalGovs.cs" />
+    <Compile Include="Models\Entities\Medicine.cs" />
+    <Compile Include="Models\Entities\MedicineCategory.cs" />
     <Compile Include="Models\Entities\Nurse.cs" />
     <Compile Include="Models\Entities\OPD.cs" />
     <Compile Include="Models\Entities\Patient.cs" />
@@ -542,12 +557,12 @@
     <Content Include="Areas\Admin\Views\PartialView\AccountantProfileLayout.cshtml" />
     <Content Include="Areas\Admin\Views\PartialView\LaboratoristProfileInfo.cshtml" />
     <Content Include="Areas\Admin\Views\PartialView\LaboratoristProfileLayout.cshtml" />
-    <Content Include="Areas\Accountant\Views\UserManager\Profile.cshtml" />
-    <Content Include="Areas\Doctors\Views\UserManager\Profile.cshtml" />
-    <Content Include="Areas\Laboratorist\Views\UserManager\Profile.cshtml" />
-    <Content Include="Areas\Nurses\Views\UserManager\Profile.cshtml" />
-    <Content Include="Areas\Patients\Views\UserManager\Profile.cshtml" />
-    <Content Include="Areas\Pharmacists\Views\UserManager\Profile.cshtml" />
+    <Content Include="Areas\Accountant\Views\UserManager\profile.cshtml" />
+    <Content Include="Areas\Doctors\Views\UserManager\profile.cshtml" />
+    <Content Include="Areas\Laboratorist\Views\UserManager\profile.cshtml" />
+    <Content Include="Areas\Nurses\Views\UserManager\profile.cshtml" />
+    <Content Include="Areas\Patients\Views\UserManager\profile.cshtml" />
+    <Content Include="Areas\Pharmacists\Views\UserManager\profile.cshtml" />
     <Content Include="Areas\Admin\Views\UserManager\Doctors.cshtml" />
     <Content Include="Areas\Admin\Views\UserManager\Nurses.cshtml" />
     <Content Include="Areas\Admin\Views\UserManager\Pharmacists.cshtml" />
@@ -569,6 +584,30 @@
     <Content Include="Areas\Panel\Views\Admissions\Admit.cshtml" />
     <Content Include="Areas\Panel\Views\Sections\Discharged.cshtml" />
     <Content Include="Areas\Panel\Views\Diagnosis\PatientDiagnosis.cshtml" />
+    <Content Include="Areas\Panel\Views\Admissions\Discharged.cshtml" />
+    <Content Include="Areas\Panel\Views\EventReport\Operate.cshtml" />
+    <Content Include="Areas\Panel\Views\EventReport\BirthReport.cshtml" />
+    <Content Include="Areas\Panel\Views\EventReport\DeathReport.cshtml" />
+    <Content Include="Areas\Panel\Views\EventReport\Details.cshtml" />
+    <Content Include="Areas\Panel\Views\EventReport\Birth.cshtml" />
+    <Content Include="Areas\Panel\Views\EventReport\Death.cshtml" />
+    <Content Include="Areas\Panel\Views\EventReport\Operation.cshtml" />
+    <Content Include="Areas\Panel\Views\EventReport\Index.cshtml" />
+    <Content Include="Areas\Panel\Views\MedicineCategories\Create.cshtml" />
+    <Content Include="Areas\Panel\Views\MedicineCategories\Delete.cshtml" />
+    <Content Include="Areas\Panel\Views\MedicineCategories\Details.cshtml" />
+    <Content Include="Areas\Panel\Views\MedicineCategories\Edit.cshtml" />
+    <Content Include="Areas\Panel\Views\MedicineCategories\Index.cshtml" />
+    <Content Include="Areas\Panel\Views\Medicines\Create.cshtml" />
+    <Content Include="Areas\Panel\Views\Medicines\Delete.cshtml" />
+    <Content Include="Areas\Panel\Views\Medicines\Details.cshtml" />
+    <Content Include="Areas\Panel\Views\Medicines\Edit.cshtml" />
+    <Content Include="Areas\Panel\Views\Medicines\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Settings\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Settings\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Settings\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Settings\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Settings\Index.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -628,6 +667,7 @@
     <Folder Include="Areas\Patients\Models\" />
     <Folder Include="Areas\Pharmacists\Models\" />
     <Folder Include="Uploads\Profile\" />
+    <Folder Include="Uploads\Settings\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -681,6 +721,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201910132031074_diagnosisupdate.resx">
       <DependentUpon>201910132031074_diagnosisupdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910141057333_medicineupdate.resx">
+      <DependentUpon>201910141057333_medicineupdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910151724523_medupdate.resx">
+      <DependentUpon>201910151724523_medupdate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

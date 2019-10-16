@@ -151,16 +151,35 @@ namespace FUTOMedical.Areas.Panel.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit(Report report)
+        public async Task<ActionResult> Edit(Report report, int? id)
         {
             if (ModelState.IsValid)
             {
+                Report report1 = await db.Reports.FirstOrDefaultAsync(x => x.Id == id);
                 var user = User.Identity.GetUserId();
                 var doc = await db.Doctors.FirstOrDefaultAsync(x=>x.UserId == user);
                 report.DoctorId = doc.Id;
-                db.Entry(report).State = EntityState.Modified;
-                await db.SaveChangesAsync();
-                return RedirectToAction("Index");
+                if (report1.Status == ReportStatus.Operation)
+                {
+                    GReport greport = new GReport();
+                    greport.PatientId = report1.PatientId;
+                    greport.Report = report.DoctorReport;
+                    greport.Type = GReportType.Operation;
+                    db.GReports.Add(greport);
+                    await db.SaveChangesAsync();
+
+                    report1.Status = ReportStatus.None;
+                    db.Entry(report1).State = EntityState.Modified;
+                    await db.SaveChangesAsync();
+                    return RedirectToAction("Operation","EventReport","Panel");
+                }
+                else
+                {
+                    db.Entry(report).State = EntityState.Modified;
+                    await db.SaveChangesAsync();
+                    return RedirectToAction("Index");
+                }
+                
             }
             return View(report);
         }

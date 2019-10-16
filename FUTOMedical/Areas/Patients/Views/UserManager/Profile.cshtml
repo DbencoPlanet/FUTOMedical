@@ -46,7 +46,9 @@
     }
 
     <!-- /.panel-heading -->
-    <div class="panel-body">
+<div class="panel-body">
+    @if (ViewBag.profile != null)
+    {
         <div class="row">
             <div class="col-lg-12">
 
@@ -55,9 +57,13 @@
                 <div class="col-lg-4">
                     @*<img src="./photos/<?php echo $user_image?>" alt="" width="304" height="236" class=" img-circle proimg">*@
 
-                    @if (!string.IsNullOrEmpty(img))
+                    @*@if (!string.IsNullOrEmpty(img))
+        {
+            <img src="@Url.Content(img)" alt="" width="304" height="236" class=" img-circle proimg">
+        }*@
+                    @if (ViewBag.profile.Photo != null)
                     {
-                        <img src="@Url.Content(img)" alt="" width="304" height="236" class=" img-circle proimg">
+                        <img src="@Url.Content(ViewBag.profile.Photo)" alt="" width="304" height="236" class=" img-circle proimg">
                     }
                     else
                     {
@@ -66,7 +72,7 @@
 
                             <img src="~/Content/FUTOMedical/assets/img/avatar5.png" alt="User Image" />
                         }
-                        else if (GeneralService.PatientInfo().Sex == "Female")
+                        else if (GeneralService.PatientInfo2().Sex == "Female")
                         {
                             <img src="~/Content/FUTOMedical/assets/img/avatar2.png" alt="User Image" />
 
@@ -341,5 +347,6 @@
 
             </div>
         </div>
+    }
     </div>
 </div>

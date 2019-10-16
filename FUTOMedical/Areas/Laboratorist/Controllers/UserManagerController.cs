@@ -232,7 +232,7 @@ namespace FUTOMedical.Areas.Laboratorist.Controllers
         }
 
 
-        public async Task<ActionResult> Profile(int? id)
+        public async Task<ActionResult> profile(int? id)
         {
             var profile = await db.Laboratorists.Include(x => x.User).FirstOrDefaultAsync(x => x.Id == id);
             ViewBag.profile = profile;

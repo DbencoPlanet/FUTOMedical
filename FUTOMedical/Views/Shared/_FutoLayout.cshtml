@@ -1,8 +1,30 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
+    @using FUTOMedical.Areas.Service
+    @{
+
+        string img = "";
+        string fav = "";
+        string init = "";
+        if (GeneralService.Image() != null)
+        {
+            fav = GeneralService.Image().Favicon;
+            img = GeneralService.Image().Logo;
+            init = GeneralService.Image().Initial;
+
+        }
+    }
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    @if (!string.IsNullOrEmpty(fav))
+    {
+        <link rel="icon" href="@Url.Content(fav)" type="image/x-icon">
+    }
+    else
+    {
+        <link rel="icon" href="~/Content/FUTOMedical/assets/img/logo.png" type="image/x-icon">
+    }
     <title>FUTO Medical || @ViewBag.Title</title>
     @Scripts.Render("~/bundles/modernizr")
     <!-- Core CSS - Include with every page -->
@@ -41,8 +63,17 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">
-                    <img src="~/Content/FUTOMedical/assets/img/logo.png" alt="" />
+
+                <a class="navbar-brand" href="#">
+                    @if (!string.IsNullOrEmpty(img))
+                    {
+                        <img src="@Url.Content(img)" alt="logo">
+                    }
+                    else
+                    {
+                       <p>@init</p>
+                    }
+
                 </a>
             </div>
             <!-- end navbar-header -->

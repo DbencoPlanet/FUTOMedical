@@ -179,5 +179,18 @@ namespace FUTOMedical.Areas.Service
         }
 
 
+        public static Setting Image()
+        {
+            Setting img;
+            using (var db = new ApplicationDbContext())
+            {
+                img = db.Settings.FirstOrDefault();
+
+            }
+            return img;
+
+        }
+
+
     }
 }

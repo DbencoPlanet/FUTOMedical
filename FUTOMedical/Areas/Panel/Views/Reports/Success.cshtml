@@ -3,14 +3,27 @@
     ViewBag.Title = "Success";
     Layout = "~/Views/Shared/_FutoLayout.cshtml";
 }
-<div class="container" style="background-color:#ffffff; padding:15px;">
-    <div class="row">
-        <div class="col-xs-12">
+<div class="row">
+    <!--  page header -->
+    <div class="col-lg-12">
+        <h1 class="page-header">PATIENT DISCHARGE</h1>
+    </div>
+    <!-- end  page header -->
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        <!-- Advanced Tables -->
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <i class="fa fa-fw fa-file-text-o"></i>
+                PATIENT DISCHARGE
+            </div>
+
             <div class="panel-body">
                 <div class="alert alert-success">
                     <p>
                         PATIENT DISCHARGED
-                        @Html.ActionLink("Home", "Index", "Home")
+                        @Html.ActionLink("Home", "Index", "Reports",new { area = "Panel"})
                     </p>
                 </div>
             </div>

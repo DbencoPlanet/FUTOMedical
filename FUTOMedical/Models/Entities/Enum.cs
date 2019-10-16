@@ -8,6 +8,24 @@ using System.Web;
 namespace FUTOMedical.Models.Entities
 {
 
+
+    public enum GReportType
+    {
+
+        [Description("Birth Report")]
+        [Display(Name = "Birth Report")]
+        Birth = 1,
+        [Description("Death Report")]
+        [Display(Name = "Death Report")]
+        Death = 2,
+        [Description("Operation Report")]
+        [Display(Name = "Operation Report")]
+        Operation = 3
+
+
+    }
+
+
     public enum BloodStatus
     {
 
@@ -21,17 +39,31 @@ namespace FUTOMedical.Models.Entities
 
     }
 
+
+    public enum MedicineStatus
+    {
+        [Description("In Stock")]
+        [Display(Name = "In Stock")]
+        InStock = 1,
+        [Description("In Stock")]
+        [Display(Name = "Out Of Stock")]
+        OutOfStock = 2
+    }
+
     public enum ReportStatus
     {
 
+        [Description("None")]
+        None = 0,
         [Description("Admit")]
         Admit = 1,
         [Description("Dont Admit")]
         DontAdmit = 2,
         [Description("Test")]
-        Test = 4,
-        [Description("None")]
-        None = 3,
+        Test = 3,
+        [Description("Operation")]
+        Operation = 4
+
 
     }
 

@@ -1,50 +1,68 @@
-﻿@model FUTOMedical.Models.Entities.OPD
-
+﻿
+@model FUTOMedical.Models.Entities.OPD
+@using FUTOMedical.Helpers
 @{
     ViewBag.Title = "Details";
-     Layout = "~/Views/Shared/_FutoLayout.cshtml";
+    Layout = "~/Views/Shared/_FutoLayout.cshtml";
 }
-<div class="container">
-    <div class="row" style="background-color:#ffffff;">
-        <div class="col-md-12">
-            <div class="panel">
-                <div class="panel-heading">
-                    <h3>OPD Details</h3>
-                    <hr />
-                </div>
-                <div class="panel-body">
 
-  
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.BP)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.BP)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Temperature)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Temperature)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Weight)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Weight)
-        </dd>
-
-       
-    </dl>
-<p class="text-center">
-    <span class="btn btn-default"><a href="javascript:history.back()">Back</a></span>
-</p>
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header titlehms"><i class="fa fa-info-circle"></i>Info<i class="fa fa-info-circle"></i></h1>
+    </div>
+    <!-- /.col-lg-12 -->
 </div>
-                </div></div></div></div>
+<div class="panel panel-info">
+    <div class="panel-heading">
+        <i class="fa fa-info-circle fa-fw"></i>OPD Information
+    </div>
+    <!-- /.panel-heading -->
+    <div class="col-lg-2"></div>
+    <div class="row">
+
+        <div class="col-lg-8">
+            <div class="panel-body">
+
+
+
+                <div class="form-group ">
+                    <label>Patient Name:</label>
+                    <span> @Html.DisplayFor(model => model.Patient.Fullname)</span>
+
+                </div>
+                <div class="form-group ">
+                    <label>Folder Number:</label>
+                    <span>@Html.DisplayFor(model => model.Patient.FolderNumber)</span>
+
+                </div>
+
+                <div class="form-group ">
+                    <label>Nurse Name:</label>
+                    <span>@Html.DisplayFor(model => model.Nurse.Fullname)</span>
+
+                </div>
+                <div class="form-group ">
+                    <label>BP:</label>
+                    <span>@Html.DisplayFor(model => model.BP)</span>
+
+                </div>
+
+                <div class="form-group ">
+                    <label>@Html.DisplayNameFor(model => model.Temperature):</label>
+                    <span>@Html.DisplayFor(model => model.Temperature)</span>
+
+                </div>
+                <div class="form-group ">
+                    <label>@Html.DisplayNameFor(model => model.Weight):</label>
+                    <span>@Html.DisplayFor(model => model.Weight)</span>
+
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-2"></div>
+
+
+    </div>
+</div>
+
 

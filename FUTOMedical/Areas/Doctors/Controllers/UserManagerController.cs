@@ -238,7 +238,7 @@ namespace FUTOMedical.Areas.Doctors.Controllers
         }
 
 
-        public async Task<ActionResult> Profile(int? id)
+        public async Task<ActionResult> profile(int? id)
         {
             var profile = await db.Doctors.Include(x => x.User).Include(x => x.Department).FirstOrDefaultAsync(x => x.Id == id);
             ViewBag.profile = profile;

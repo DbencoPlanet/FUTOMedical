@@ -1,54 +1,79 @@
-﻿@model FUTOMedical.Models.Entities.Report
-
+﻿
+@model FUTOMedical.Models.Entities.Report
+@using FUTOMedical.Helpers
 @{
     ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_FutoLayout.cshtml";
 }
-<div class="container">
-    <div class="row" style="background-color:#ffffff;">
-        <div class="col-md-12">
-            <h2 class="text-center">Patient Doctors Report</h2>
-            <hr />
-<div>
-  
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.DoctorReport)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.DoctorReport)
-        </dd>
-        <hr />
-        <dt>
-            @Html.DisplayNameFor(model => model.FolderNumber)
-        </dt>
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header titlehms"><i class="fa fa-info-circle"></i>Info<i class="fa fa-info-circle"></i></h1>
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+<div class="panel panel-info">
+    <div class="panel-heading">
+        <i class="fa fa-info-circle fa-fw"></i>Report Information
+    </div>
+    <!-- /.panel-heading -->
+    <div class="col-lg-2"></div>
+    <div class="row">
 
-        <dd>
-            @Html.DisplayFor(model => model.FolderNumber)
-        </dd>
-        <hr />
-        <dt>
-            Report Status
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Status)
-        </dd>
-    </dl>
+        <div class="col-lg-8">
+            <div class="panel-body">
 
-    <p class="text-center">
-        @if (Model.Status == FUTOMedical.Models.Entities.ReportStatus.Admit)
-        {
-            @Html.ActionLink("Admit", "Create", "Admissions", new { id = Model.PatientId }, new { @class = "btn btn-info" })
-        }
-        @if (Model.Status == FUTOMedical.Models.Entities.ReportStatus.Test)
-        {
-            @Html.ActionLink("Create Test Report", "Create", "Diagnosis", new { id = Model.PatientId }, new { @class = "btn btn-info", area = "Panel" })
-        }
-        @if (Model.Status == FUTOMedical.Models.Entities.ReportStatus.DontAdmit)
-        {
-            @Html.ActionLink("Discharge", "Discharge", new { id = Model.PatientId }, new { @class = "btn btn-info", area = "Panel" })
-        }
-        @Html.ActionLink("Back", "Index", null, new { @class = "btn btn-info" })
-    </p>
-</div></div></div></div>
+
+
+                <div class="form-group ">
+                    <label>Patient Name:</label>
+                    <span> @Html.DisplayFor(model => model.Patient.Fullname)</span>
+
+                </div>
+                <div class="form-group ">
+                    <label>Folder Number:</label>
+                    <span>@Html.DisplayFor(model => model.Patient.FolderNumber)</span>
+
+                </div>
+
+                <div class="form-group ">
+                    <label>Doctor Name:</label>
+                    <span>@Html.DisplayFor(model => model.Doctor.Fullname)</span>
+
+                </div>
+                <div class="form-group ">
+                    <label>Doctor Report:</label>
+                    <span>@Html.Raw(Model.DoctorReport)</span>
+
+                </div>
+
+                <div class="form-group ">
+                    <label>Status:</label>
+                    <span>@Html.DisplayFor(model => model.Status)</span>
+
+                </div>
+                <p class="text-center">
+                    <div class="btn-group">
+                       
+                        @if (Model.Status == FUTOMedical.Models.Entities.ReportStatus.Admit)
+                        {
+                            <a class="btn btn-warning" href="@Url.Action("Create", "Admissions", new { id = Model.PatientId, area = "Panel" })"> <i class='fa fa-plus-circle fa-fw'></i>Admit</a>
+                        }
+                        @if (Model.Status == FUTOMedical.Models.Entities.ReportStatus.Test)
+                        {
+                            <a class="btn btn-success" href="@Url.Action("Create", "Diagnosis", new { id = Model.PatientId , area = "Panel" })"> <i class='fa fa-plus-circle fa-fw'></i>Add Test Report</a>
+                        }
+                        @if (Model.Status == FUTOMedical.Models.Entities.ReportStatus.DontAdmit)
+                        {
+                            <a class="btn btn-danger" href="@Url.Action("Discharge", "Discharge", new { id = Model.PatientId, area = "Panel" })"> <i class='fa fa-minus-circle fa-fw'></i>Delete</a>
+                        }
+                        <a class="btn btn-default" href="javascript:history.back()">Back</a>
+                    </div>
+
+            </div>
+        </div>
+        <div class="col-lg-2"></div>
+
+
+    </div>
+</div>

@@ -29,6 +29,13 @@ namespace FUTOMedical.Areas.Panel.Controllers
             return View(await db.Reports.Include(x => x.OPD).Include(x => x.Doctor).Include(x=>x.Patient).Include(x => x.Nurse).Where(x=>x.Status == ReportStatus.Admit).ToListAsync());
         }
 
+        // GET: Sections
+        public ActionResult Discharged()
+        {
+            var discharge = db.Admissions.Include(x => x.OPD).Include(x => x.Patient).Where(x => x.Status == AdmissionStatus.Discharged);
+            return View(discharge);
+        }
+
         // GET: Admissions/Details/5
         public ActionResult Details(int? id)
         {

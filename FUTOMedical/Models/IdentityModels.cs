@@ -47,19 +47,22 @@ namespace FUTOMedical.Models
         public DbSet<Pharmacist> Pharmacist { get; set; }
         public DbSet<Report> Reports { get; set; }
         public DbSet<TestReport> TestReports { get; set; }
-        //public DbSet<School> Schools { get; set; }
         public DbSet<Section> Sections { get; set; }
         public DbSet<States> States { get; set; }
-        //public DbSet<StudentDept> StudentDepts { get; set; }
         public DbSet<Accountants> Accountants { get; set; }
         public DbSet<Laboratorists> Laboratorists { get; set; }
         public DbSet<BloodBank> BloodBank { get; set; }
         public DbSet<Invoice> Invoices { get; set; }
         public DbSet<InvoiceLine> InvoiceLines { get; set; }
+        public DbSet<Medicine> Medicines { get; set; }
+        public DbSet<MedicineCategory> MedicineCategories { get; set; }
+        public DbSet<GReport> GReports { get; set; }
 
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();
         }
+
+        public System.Data.Entity.DbSet<FUTOMedical.Models.Entities.Setting> Settings { get; set; }
     }
 }
