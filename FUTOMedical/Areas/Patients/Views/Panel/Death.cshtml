@@ -1,16 +1,14 @@
-﻿@model IEnumerable<FUTOMedical.Models.Entities.Report>
+﻿@model IEnumerable<FUTOMedical.Models.Entities.GReport>
 @using FUTOMedical.Helpers
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Death";
     Layout = "~/Views/Shared/_FutoLayout.cshtml";
 }
-
-
 
 <div class="row">
     <!--  page header -->
     <div class="col-lg-12">
-        <h1 class="page-header">Patient Report</h1>
+        <h1 class="page-header">Death Report</h1>
     </div>
     <!-- end  page header -->
 </div>
@@ -21,7 +19,7 @@
         <div class="panel panel-default">
             <div class="panel-heading">
                 <i class="fa fa-fw fa-file-text-o"></i>
-                Patient Report Management
+                Death Report Management
             </div>
 
             <div class="panel-body">
@@ -35,11 +33,12 @@
                                 </th>
 
                                 <th>
-                                    @Html.DisplayNameFor(model => model.FolderNumber)
+                                    Report Type
                                 </th>
 
+
                                 <th>
-                                    Status
+                                    Report
                                 </th>
 
                                 <th>
@@ -61,40 +60,21 @@
                                         @sno
                                     </td>
 
-                                    <td>
+                                    <th>
                                         @Html.DisplayFor(modelItem => item.Patient.Fullname)
-                                    </td>
+                                    </th>
+                                    <th>
+                                        @Html.DisplayFor(modelItem => item.Type)
+                                    </th>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.FolderNumber)
+                                        @Html.Raw(item.Report)
                                     </td>
+
+
                                     <td>
-                                        @if (item.Status == FUTOMedical.Models.Entities.ReportStatus.None)
-                                        {
-                                            <text>Waiting For Doctor</text>
-                                        }
-                                        else
-                                        {
-                                            <text>Patient Has been attended to</text>
-                                        }
-                                    </td>
-                                    <td>
-                                        <div class="btn-group">
-                                            @if (User.IsInRole("Admin") || User.IsInRole("Doctor") || User.IsInRole("Nurse"))
-                                            {
-                                                <a class="btn btn-primary" href="@Url.Action("Details", "OPDs", new { id = item.OPDId, area = "Panel"  })"> <i class='fa fa-eye-slash fa-fw'></i>View OPD</a>
 
-                                                if (item.Status != FUTOMedical.Models.Entities.ReportStatus.None)
-                                                {
-                                                    <a class="btn btn-success" href="@Url.Action("Details", "Reports", new { id = item.Id, area = "Panel"  })"> <i class='fa fa-eye fa-fw'></i>View Report</a>
+                                        <a class="btn btn-success" href="@Url.Action("Details", "EventReport", new { id = item.Id, area = "Panel"  })"> <i class='fa fa-eye fa-fw'></i>Details</a>
 
-                                                }
-                                            }
-                                            @if (User.IsInRole("Admin") || User.IsInRole("Doctor") && item.Status == FUTOMedical.Models.Entities.ReportStatus.None)
-                                            {
-                                                <a class="btn btn-warning" href="@Url.Action("Edit", "Reports", new { id = item.Id, area = "Panel"  })"> <i class='fa fa-edit fa-fw'></i>Update Report</a>
-                                            }
-
-                                        </div>
                                     </td>
 
                                 </tr>

@@ -69,10 +69,10 @@
                                             @if (User.IsInRole("Admin") || User.IsInRole("Doctor") || User.IsInRole("Nurse"))
                                             {
                                                 <a class="btn btn-primary" href="@Url.Action("Create", "Admissions", new { id = item.PatientId, area = "Panel"  })"> <i class='fa fa-edit fa-fw'></i>Admit Patient</a>
+                                                <a class="btn btn-danger" href="@Url.Action("Delete", "Admissions", new { id = item.Id, area = "Panel"  })"> <i class='fa fa-minus-circle fa-fw'></i>Delete</a>
 
-                                               
                                             }
-                                          
+
                                         </div>
                                     </td>
 

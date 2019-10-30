@@ -32,7 +32,7 @@ namespace FUTOMedical.Areas.Panel.Controllers
         // GET: Sections
         public ActionResult Discharged()
         {
-            var discharge = db.Admissions.Include(x => x.OPD).Include(x => x.Patient).Where(x => x.Status == AdmissionStatus.Discharged);
+            var discharge = db.Admissions.Include(x => x.OPD).Include(x => x.Patient).Where(x => x.Status == AdmissionStatus.Discharged).ToList();
             return View(discharge);
         }
 

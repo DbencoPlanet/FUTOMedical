@@ -21,6 +21,13 @@
                 <i class="fa fa-fw fa-file-text-o"></i>
                 Birth Report Management
             </div>
+            <div class="panel-body">
+                <div class="btn-group pull-right">
+
+                    <a class="btn btn-success" href="@Url.Action("BirthReoprt", "EventReport", null)"> <i class='fa fa-plus fa-fw'></i> Create Birth Report</a>
+                </div>
+
+            </div>
 
             <div class="panel-body">
                 <div class="table-responsive">
@@ -73,7 +80,7 @@
 
                                     <td>
                                         <div class="btn-group">
-                                            @if (User.IsInRole("Admin") || User.IsInRole("Doctor") || User.IsInRole("Nurse") )
+                                            @if (User.IsInRole("Admin") || User.IsInRole("Doctor") || User.IsInRole("Nurse"))
                                             {
                                                 <a class="btn btn-warning" href="@Url.Action("Edit", "EventReport", new { id = item.Id, area = "Panel"  })"> <i class='fa fa-edit fa-fw'></i>Edit</a>
                                                 <a class="btn btn-success" href="@Url.Action("Details", "EventReport", new { id = item.Id, area = "Panel"  })"> <i class='fa fa-eye fa-fw'></i>Details</a>

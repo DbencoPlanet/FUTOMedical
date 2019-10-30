@@ -61,7 +61,7 @@
             <p class="text-center">
                 @if (Model.Status == FUTOMedical.Models.Entities.AdmissionStatus.Active)
                 {
-                    @Html.ActionLink("Discharged", "Discharge", "Reports", new { id = Model.PatientId, area = "Panel" }, new { @class = "btn btn-warning" })
+                    @Html.ActionLink("Discharge", "Discharge", "Reports", new { id = Model.PatientId, area = "Panel" }, new { @class = "btn btn-warning" })
 
                 }
                 @Html.ActionLink("View OPD", "Details", "OPDs", new { id = Model.OPDId, area = "Panel" }, new { @class = "btn btn-info" })

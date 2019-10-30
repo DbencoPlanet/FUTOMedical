@@ -115,14 +115,14 @@ namespace FUTOMedical.Areas.Panel.Controllers
             var adm2 = db.Admissions.FirstOrDefault(x => x.Id == adm.Id);
             if (adm2 != null)
             {
-                adm2.Status = AdmissionStatus.NotActive;
+                adm2.Status = AdmissionStatus.Discharged;
                 adm2.DateDischarged = DateTime.UtcNow.AddHours(1);
                 db.Entry(adm2).State = EntityState.Modified;
                 db.SaveChanges();
             }
 
 
-            return RedirectToAction("Success");
+            return RedirectToAction("Discharged","Admissions",new { area = "Panel"});
         }
 
         //
@@ -168,7 +168,7 @@ namespace FUTOMedical.Areas.Panel.Controllers
                     db.GReports.Add(greport);
                     await db.SaveChangesAsync();
 
-                    report1.Status = ReportStatus.None;
+                    report1.Status = ReportStatus.AttendedTo;
                     db.Entry(report1).State = EntityState.Modified;
                     await db.SaveChangesAsync();
                     return RedirectToAction("Operation","EventReport","Panel");

@@ -1,16 +1,14 @@
-﻿@model IEnumerable<FUTOMedical.Models.Entities.Report>
+﻿@model IEnumerable<FUTOMedical.Models.Entities.OPD>
 @using FUTOMedical.Helpers
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_FutoLayout.cshtml";
 }
 
-
-
 <div class="row">
     <!--  page header -->
     <div class="col-lg-12">
-        <h1 class="page-header">Patient Report</h1>
+        <h1 class="page-header">Patient OPD</h1>
     </div>
     <!-- end  page header -->
 </div>
@@ -21,7 +19,7 @@
         <div class="panel panel-default">
             <div class="panel-heading">
                 <i class="fa fa-fw fa-file-text-o"></i>
-                Patient Report Management
+                Patient OPD
             </div>
 
             <div class="panel-body">
@@ -33,14 +31,13 @@
                                 <th>
                                     Patient Name
                                 </th>
-
                                 <th>
-                                    @Html.DisplayNameFor(model => model.FolderNumber)
+                                    Folder Number
                                 </th>
-
-                                <th>
-                                    Status
-                                </th>
+                                <th>Nurse Name</th>
+                                <th>BP</th>
+                                <th>Temperature</th>
+                                <th>Weight</th>
 
                                 <th>
                                     Action
@@ -61,40 +58,28 @@
                                         @sno
                                     </td>
 
-                                    <td>
+                                    <th>
                                         @Html.DisplayFor(modelItem => item.Patient.Fullname)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayFor(modelItem => item.Patient.FolderNumber)
+                                    </th>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Nurse.Fullname)
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.FolderNumber)
+                                        @Html.DisplayFor(modelItem => item.BP)
                                     </td>
                                     <td>
-                                        @if (item.Status == FUTOMedical.Models.Entities.ReportStatus.None)
-                                        {
-                                            <text>Waiting For Doctor</text>
-                                        }
-                                        else
-                                        {
-                                            <text>Patient Has been attended to</text>
-                                        }
+                                        @Html.DisplayFor(modelItem => item.Temperature)
                                     </td>
                                     <td>
-                                        <div class="btn-group">
-                                            @if (User.IsInRole("Admin") || User.IsInRole("Doctor") || User.IsInRole("Nurse"))
-                                            {
-                                                <a class="btn btn-primary" href="@Url.Action("Details", "OPDs", new { id = item.OPDId, area = "Panel"  })"> <i class='fa fa-eye-slash fa-fw'></i>View OPD</a>
+                                        @Html.DisplayFor(modelItem => item.Weight)
+                                    </td>
 
-                                                if (item.Status != FUTOMedical.Models.Entities.ReportStatus.None)
-                                                {
-                                                    <a class="btn btn-success" href="@Url.Action("Details", "Reports", new { id = item.Id, area = "Panel"  })"> <i class='fa fa-eye fa-fw'></i>View Report</a>
 
-                                                }
-                                            }
-                                            @if (User.IsInRole("Admin") || User.IsInRole("Doctor") && item.Status == FUTOMedical.Models.Entities.ReportStatus.None)
-                                            {
-                                                <a class="btn btn-warning" href="@Url.Action("Edit", "Reports", new { id = item.Id, area = "Panel"  })"> <i class='fa fa-edit fa-fw'></i>Update Report</a>
-                                            }
-
-                                        </div>
+                                    <td>
+                                        <a class="btn btn-info" href="@Url.Action("Details", "OPDs", new { id= item.Id, area = "Panel"  })"> <i class='fa fa-eye fa-fw'></i>Details</a>
                                     </td>
 
                                 </tr>

@@ -20,7 +20,7 @@ namespace FUTOMedical.Areas.Panel.Controllers
         // GET: OPDs
         public async Task<ActionResult> Index()
         {
-            return View(await db.OPD.ToListAsync());
+            return View(await db.OPD.Include(x=>x.Patient).Include(x=>x.Nurse).ToListAsync());
         }
 
         // GET: OPDs/Details/5
@@ -30,7 +30,8 @@ namespace FUTOMedical.Areas.Panel.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            OPD oPD = await db.OPD.FindAsync(id);
+            //OPD oPD = await db.OPD.FindAsync(id);
+            var oPD = await db.OPD.Include(x => x.Patient).Include(x => x.Nurse).FirstOrDefaultAsync(x=>x.Id == id);
             if (oPD == null)
             {
                 return HttpNotFound();

@@ -195,6 +195,10 @@
                     {
                         @Html.Partial("~/Areas/Admin/Views/Shared/_LaboratoristMenu.cshtml")
                     }
+                    else if (User.IsInRole("Pharmacist"))
+                    {
+                        @Html.Partial("~/Areas/Admin/Views/Shared/_PharmacistMenu.cshtml")
+                    }
                     else
                     {
 

@@ -68,9 +68,7 @@
                                         <div class="btn-group">
                                             @if (User.IsInRole("Admin") || User.IsInRole("Doctor") || User.IsInRole("Nurse") || User.IsInRole("Laboratorist"))
                                             {
-                                                <a class="btn btn-primary" href="@Url.Action("Create", "Diagnosis", new { id = item.PatientId, area = "Panel"  })"> <i class='fa fa-edit fa-fw'></i>Diagnose A Patient</a>
-
-
+                                            <a class="btn btn-primary" href="@Url.Action("Create", "Diagnosis", new { id = item.PatientId, area = "Panel"  })"> <i class='fa fa-edit fa-fw'></i>Add Patient Diagnosis Report </a>
                                             }
 
                                         </div>

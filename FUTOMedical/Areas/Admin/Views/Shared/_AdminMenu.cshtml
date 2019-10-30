@@ -53,6 +53,7 @@
     </ul>
     <!-- second-level-items -->
 </li>
+
 <li>
     <a href="#"><i class="fa fa-users fa-fw"></i> Pharmacist Management<span class="fa arrow"></span></a>
     <ul class="nav nav-second-level">
@@ -66,7 +67,7 @@
     <!-- second-level-items -->
 </li>
 <li>
-    <a href="#"><i class="fa fa-users fa-fw"></i> Pharmacist Management<span class="fa arrow"></span></a>
+    <a href="#"><i class="fa fa-users fa-fw"></i> Laboratorist Management<span class="fa arrow"></span></a>
     <ul class="nav nav-second-level">
         <li>
             <a href="@Url.Action("NewLaboratorist","UserManager",new { area = "Laboratorist"})"><i class="fa fa-user fa-fw"></i>Add a Laboratorist</a>
@@ -109,3 +110,74 @@
     </ul>
     <!-- second-level-items -->
 </li>
+
+<li>
+    <a href="@Url.Action("Index","BloodBanks",new { area = "Admin"})"><i class="fa fa-hospital-o fa-fw"></i>Blood Bank</a>
+</li>
+
+<li>
+    <a href="#"><i class="fa fa-hospital-o fa-fw"></i> Medicine<span class="fa arrow"></span></a>
+    <ul class="nav nav-second-level">
+        <li>
+            <a href="@Url.Action("Index","MedicineCategories",new { area = "Panel"})"><i class="fa fa-hospital-o fa-fw"></i>View Categories</a>
+        </li>
+        <li>
+            <a href="@Url.Action("Index","Medicines",new { area = "Panel"})"><i class="fa fa-hospital-o fa-fw"></i>View Medicines</a>
+        </li>
+
+
+    </ul>
+    <!-- second-level-items -->
+</li>
+
+<li>
+    <a href="#"><i class="fa fa-info fa-fw"></i> Reports<span class="fa arrow"></span></a>
+    <ul class="nav nav-second-level">
+        <li>
+            <a href="@Url.Action("Birth","EventReport",new { area = "Panel"})"><i class="fa fa-hospital-o fa-fw"></i>Birth Report</a>
+        </li>
+
+
+        <li>
+            <a href="@Url.Action("Death","EventReport",new { area = "Panel"})"><i class="fa fa-hospital-o fa-fw"></i>Death Report</a>
+        </li>
+
+        <li>
+            <a href="@Url.Action("Operation","EventReport",new { area = "Panel"})"><i class="fa fa-hospital-o fa-fw"></i>Operation Report</a>
+        </li>
+        <li>
+            <a href="@Url.Action("Index","Diagnosis",new { area = "Panel"})"><i class="fa fa-hospital-o fa-fw"></i>Test Report</a>
+        </li>
+    </ul>
+    <!-- second-level-items -->
+</li>
+
+<li>
+    <a href="#"><i class="fa fa-users fa-fw"></i> All User Management<span class="fa arrow"></span></a>
+    <ul class="nav nav-second-level">
+        <li>
+            <a href="@Url.Action("Index","UserManager",new { area = "Admin"})"><i class="fa fa-user fa-fw"></i>Users</a>
+        </li>
+        <li>
+            <a href="@Url.Action("Index","Roles",new { area = "Admin"})"><i class="fa fa-user fa-fw"></i>Roles</a>
+        </li>
+    </ul>
+    <!-- second-level-items -->
+</li>
+
+<li>
+    <a href="#"><i class="fa fa-users fa-fw"></i> Account Setting<span class="fa arrow"></span></a>
+    <ul class="nav nav-second-level">
+        <li>
+            <a href="@Url.Action("MyProfile","UserManager",new { area = "Doctors"})"><i class="fa fa-user fa-fw"></i>Profile</a>
+        </li>
+        <li><a href="@Url.Action("ChangePassword", "Manage", new { area=""})"><i class="fa fa-key"></i> Change Password</a></li>
+    </ul>
+    <!-- second-level-items -->
+</li>
+
+<li>
+    <a href="@Url.Action("Index","Settings",new { area = "Admin"})"><i class="fa fa-gears fa-fw"></i>System Setting</a>
+</li>
+
+

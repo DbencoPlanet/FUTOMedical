@@ -67,12 +67,12 @@ namespace FUTOMedical.Areas.Panel.Controllers
                 diagnosis.OPDId = opd.Id;
                 diagnosis.NurseId = opd.NurseId;
                 diagnosis.DoctorId = pat.DoctorId;
-                diagnosis.Status = ReportStatus.Test;
+                diagnosis.Status = ReportStatus.AttendedTo;
 
                 //Update Report status after diagnosis
                 var report = db.Reports.Include(x => x.Patient).FirstOrDefault(x => x.PatientId == id);
                 var report2 = db.Reports.Include(x => x.Patient).FirstOrDefault(x => x.Id == report.Id);
-                report2.Status = ReportStatus.None;
+                report2.Status = ReportStatus.AttendedTo;
                 db.Entry(report2).State = EntityState.Modified;
                 db.SaveChanges();
 

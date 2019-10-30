@@ -189,6 +189,7 @@
     <Compile Include="Areas\Doctors\Controllers\DashBoardController.cs" />
     <Compile Include="Areas\Doctors\Controllers\UserManagerController.cs" />
     <Compile Include="Areas\Doctors\DoctorsAreaRegistration.cs" />
+    <Compile Include="Areas\Laboratorist\Controllers\DashBoardController.cs" />
     <Compile Include="Areas\Laboratorist\Controllers\UserManagerController.cs" />
     <Compile Include="Areas\Laboratorist\LaboratoristAreaRegistration.cs" />
     <Compile Include="Areas\Nurses\Controllers\UserManagerController.cs" />
@@ -202,8 +203,10 @@
     <Compile Include="Areas\Panel\Controllers\ReportsController.cs" />
     <Compile Include="Areas\Panel\Controllers\SectionsController.cs" />
     <Compile Include="Areas\Panel\PanelAreaRegistration.cs" />
+    <Compile Include="Areas\Patients\Controllers\PanelController.cs" />
     <Compile Include="Areas\Patients\Controllers\UserManagerController.cs" />
     <Compile Include="Areas\Patients\PatientsAreaRegistration.cs" />
+    <Compile Include="Areas\Pharmacists\Controllers\DashBoardController.cs" />
     <Compile Include="Areas\Pharmacists\Controllers\UserManagerController.cs" />
     <Compile Include="Areas\Pharmacists\PharmacistsAreaRegistration.cs" />
     <Compile Include="Areas\Service\GeneralService.cs" />
@@ -608,6 +611,18 @@
     <Content Include="Areas\Admin\Views\Settings\Details.cshtml" />
     <Content Include="Areas\Admin\Views\Settings\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Settings\Index.cshtml" />
+    <Content Include="Areas\Patients\Views\Panel\Index.cshtml" />
+    <Content Include="Areas\Patients\Views\Panel\Admission.cshtml" />
+    <Content Include="Areas\Patients\Views\Panel\Death.cshtml" />
+    <Content Include="Areas\Patients\Views\Panel\Operation.cshtml" />
+    <Content Include="Areas\Patients\Views\Panel\Birth.cshtml" />
+    <Content Include="Areas\Patients\Views\Panel\Prescription.cshtml" />
+    <Content Include="Areas\Patients\Views\Panel\Diagnosis.cshtml" />
+    <Content Include="Areas\Patients\Views\Panel\BloodBank.cshtml" />
+    <Content Include="Areas\Patients\Views\Panel\Doctors.cshtml" />
+    <Content Include="Areas\Doctors\Views\DashBoard\Report.cshtml" />
+    <Content Include="Areas\Pharmacists\Views\DashBoard\Index.cshtml" />
+    <Content Include="Areas\Laboratorist\Views\DashBoard\Index.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -655,6 +670,7 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\_LoginLayout.cshtml" />
+    <Content Include="Views\Account\ResetUserPassword.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

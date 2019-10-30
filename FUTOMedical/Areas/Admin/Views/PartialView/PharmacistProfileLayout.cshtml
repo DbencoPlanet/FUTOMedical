@@ -19,12 +19,10 @@
         <!-- dropdown user-->
         <ul class="dropdown-menu dropdown-user">
             <li>
-                <a href="@Url.Action("MyProfile", "UserManager", new { area = "Nurses" })"><i class="fa fa-user fa-fw"></i> Profile</a>
-                @*<a href="#"><i class="fa fa-user fa-fw"></i>User Profile</a>*@
+                <a href="@Url.Action("MyProfile", "UserManager", new { area = "Pharmacists" })"><i class="fa fa-user fa-fw"></i> Profile</a>
             </li>
             <li>
-                <a href="@Url.Action("EditNurse", "UserManager", new { area = "Nurses", id = GeneralService.PharmacistInfo().Id })"> <i class="fa fa-gear fa-fw"></i>Settings</a>
-                @*<a href="#"><i class="fa fa-gear fa-fw"></i>Settings</a>*@
+                <a href="@Url.Action("EditPharmacist", "UserManager", new { area = "Pharmacists", id = GeneralService.PharmacistInfo().Id })"> <i class="fa fa-gear fa-fw"></i>Settings</a>
             </li>
             <li class="divider"></li>
             <li>

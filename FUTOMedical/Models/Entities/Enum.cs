@@ -62,7 +62,9 @@ namespace FUTOMedical.Models.Entities
         [Description("Test")]
         Test = 3,
         [Description("Operation")]
-        Operation = 4
+        Operation = 4,
+        [Description("AttendedTo")]
+        AttendedTo = 5,
 
 
     }
@@ -79,43 +81,5 @@ namespace FUTOMedical.Models.Entities
 
     }
 
-    public enum ModeOfStudy
-    {
-        [Description("None")]
-        [Display(Name = "None")]
-        NONE = 0,
-
-        [Description("Regular")]
-        [Display(Name = "Regular")]
-        Regular = 1,
-
-        [Description("Weekend")]
-        [Display(Name = "Weekend")]
-        Weekend = 2,
-
-        [Description("PGD")]
-        [Display(Name = "PGD")]
-        PGD = 3
-
-    }
-
-    public enum ModeOfEntry
-    {
-        [Description("None")]
-        [Display(Name = "None")]
-        NONE = 0,
-
-        [Description("UTME")]
-        [Display(Name = "UTME")]
-        UTME = 1,
-
-        [Description("Direct Entry")]
-        [Display(Name = "Direct Entry")]
-        DirectEntry = 2,
-
-        [Description("Pre-degree")]
-        [Display(Name = "Pre-degree")]
-        Predegree = 3
-
-    }
+   
 }

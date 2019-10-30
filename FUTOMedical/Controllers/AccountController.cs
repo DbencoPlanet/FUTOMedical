@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using FUTOMedical.Models;
+using System.Data.Entity;
 
 namespace FUTOMedical.Controllers
 {
@@ -124,7 +125,7 @@ namespace FUTOMedical.Controllers
 
                         else if (await SignInManager.UserManager.IsInRoleAsync(user.Id, "Patient"))
                         {
-                            return RedirectToAction("Index", "DashBoard", new { area = "Patients" });
+                            return RedirectToAction("Index", "Panel", new { area = "Patients" });
                         }
 
                         else if (await SignInManager.UserManager.IsInRoleAsync(user.Id, "Pharmacist"))
@@ -150,6 +151,41 @@ namespace FUTOMedical.Controllers
                     ModelState.AddModelError("", "Invalid login attempt.");
                     return View(model);
             }
+        }
+
+
+        [AllowAnonymous]
+        public async Task<ActionResult> ResetUserPassword()
+        {
+            var u = await UserManager.Users.Where(x => x.UserName != "super@admin.com").OrderBy(x => x.UserName).ToListAsync();
+            ViewBag.username = new SelectList(u, "Username", "Username");
+            return View();
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> ResetUserPassword(string username, string newPassword)
+        {
+            var user = await UserManager.FindByNameAsync(username);
+
+            // await  _userManager.AddPasswordAsync(userId, newPassword);
+            var removePassword = UserManager.RemovePassword(user.Id);
+            if (removePassword.Succeeded)
+            {
+                //Removed Password Success
+                var AddPassword = UserManager.AddPassword(user.Id, newPassword);
+                if (AddPassword.Succeeded)
+                {
+                    //var userm = _userManager.Users.FirstOrDefault(x => x.Id == userId);
+                    TempData["password"] = "Password Resset Successful.";
+                    return RedirectToAction("ResetUserPassword");
+                }
+            }
+            var u = await UserManager.Users.Where(x => x.UserName != "super@admin.com").OrderBy(x => x.UserName).ToListAsync();
+            ViewBag.username = new SelectList(u, "Username", "Username");
+            TempData["passworderror"] = "Unable To Reset Password.";
+            return RedirectToAction("ResetUserPassword");
         }
 
         //
