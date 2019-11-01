@@ -164,6 +164,8 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\Accountant\AccountantAreaRegistration.cs" />
+    <Compile Include="Areas\Accountant\Controllers\InvoiceLinesController.cs" />
+    <Compile Include="Areas\Accountant\Controllers\InvoicesController.cs" />
     <Compile Include="Areas\Accountant\Controllers\UserManagerController.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\BloodBanksController.cs" />
@@ -276,6 +278,26 @@
     <Compile Include="Migrations\201910151724523_medupdate.cs" />
     <Compile Include="Migrations\201910151724523_medupdate.Designer.cs">
       <DependentUpon>201910151724523_medupdate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201910312046545_invoices.cs" />
+    <Compile Include="Migrations\201910312046545_invoices.Designer.cs">
+      <DependentUpon>201910312046545_invoices.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201910312052439_invoicessupdate.cs" />
+    <Compile Include="Migrations\201910312052439_invoicessupdate.Designer.cs">
+      <DependentUpon>201910312052439_invoicessupdate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201910312141553_invoiceitemupdate.cs" />
+    <Compile Include="Migrations\201910312141553_invoiceitemupdate.Designer.cs">
+      <DependentUpon>201910312141553_invoiceitemupdate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201910312144537_invupdate.cs" />
+    <Compile Include="Migrations\201910312144537_invupdate.Designer.cs">
+      <DependentUpon>201910312144537_invupdate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201910312208204_taxupdate.cs" />
+    <Compile Include="Migrations\201910312208204_taxupdate.Designer.cs">
+      <DependentUpon>201910312208204_taxupdate.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -623,6 +645,17 @@
     <Content Include="Areas\Doctors\Views\DashBoard\Report.cshtml" />
     <Content Include="Areas\Pharmacists\Views\DashBoard\Index.cshtml" />
     <Content Include="Areas\Laboratorist\Views\DashBoard\Index.cshtml" />
+    <Content Include="Areas\Accountant\Views\Invoices\Create.cshtml" />
+    <Content Include="Areas\Accountant\Views\Invoices\Delete.cshtml" />
+    <Content Include="Areas\Accountant\Views\Invoices\Details.cshtml" />
+    <Content Include="Areas\Accountant\Views\Invoices\Edit.cshtml" />
+    <Content Include="Areas\Accountant\Views\Invoices\Index.cshtml" />
+    <Content Include="Areas\Accountant\Views\InvoiceLines\Create.cshtml" />
+    <Content Include="Areas\Accountant\Views\InvoiceLines\Delete.cshtml" />
+    <Content Include="Areas\Accountant\Views\InvoiceLines\Details.cshtml" />
+    <Content Include="Areas\Accountant\Views\InvoiceLines\Edit.cshtml" />
+    <Content Include="Areas\Accountant\Views\InvoiceLines\Index.cshtml" />
+    <Content Include="Areas\Accountant\Views\Invoices\PrintInvoice.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -671,6 +704,7 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\_LoginLayout.cshtml" />
     <Content Include="Views\Account\ResetUserPassword.cshtml" />
+    <Content Include="Views\Shared\_PrintLayout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -743,6 +777,21 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201910151724523_medupdate.resx">
       <DependentUpon>201910151724523_medupdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910312046545_invoices.resx">
+      <DependentUpon>201910312046545_invoices.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910312052439_invoicessupdate.resx">
+      <DependentUpon>201910312052439_invoicessupdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910312141553_invoiceitemupdate.resx">
+      <DependentUpon>201910312141553_invoiceitemupdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910312144537_invupdate.resx">
+      <DependentUpon>201910312144537_invupdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910312208204_taxupdate.resx">
+      <DependentUpon>201910312208204_taxupdate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

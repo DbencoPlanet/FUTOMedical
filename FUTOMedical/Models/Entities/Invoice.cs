@@ -10,12 +10,12 @@ namespace FUTOMedical.Models.Entities
     {
         public Invoice()
         {
-            var set = new Setting();
-            var setname = set.Initial.FirstOrDefault();
+            //var set = new Setting();
+            //var setname = set.Initial.FirstOrDefault();
 
             this.InvoiceNumber = DateTime.UtcNow.Date.Year.ToString() +
                 DateTime.UtcNow.Date.Month.ToString() +
-                DateTime.UtcNow.Date.Day.ToString() + Guid.NewGuid().ToString().Substring(0, 4).ToUpper() + setname;
+                DateTime.UtcNow.Date.Day.ToString() + Guid.NewGuid().ToString().Substring(0, 4).ToUpper() +"INV";
             this.StartDate = DateTime.UtcNow;
             this.EndDate = DateTime.UtcNow.Date.AddMonths(1);
             this.Vat = 0;
@@ -23,6 +23,7 @@ namespace FUTOMedical.Models.Entities
             this.Paid = 0;
             this.Due = 0;
             this.Total = 0;
+            this.GrandTotal = 0;
         }
 
         public int Id { get; set; }
@@ -32,29 +33,29 @@ namespace FUTOMedical.Models.Entities
         public int? PatientId { get; set; }
         public Patient Patient { get; set; }
 
-        public DateTime StartDate { get; set; }
+        public DateTime? StartDate { get; set; }
 
-        public DateTime EndDate { get; set; }
+        public DateTime? EndDate { get; set; }
 
         public List<InvoiceLine> InvoiceLine { get; set; } = new List<InvoiceLine>();
 
         [Display(Name = "Vat")]
-        public decimal Vat { get; set; }
+        public decimal? Vat { get; set; }
 
         [Display(Name = "Discount")]
-        public decimal Discount { get; set; }
+        public decimal? Discount { get; set; }
 
         [Display(Name = "Paid")]
-        public decimal Paid { get; set; }
+        public decimal? Paid { get; set; }
 
         [Display(Name = "Due")]
-        public decimal Due { get; set; }
+        public decimal? Due { get; set; }
 
         [Display(Name = "Total")]
-        public decimal Total { get; set; }
+        public decimal? Total { get; set; }
 
         [Display(Name = "Grand Total")]
-        public decimal GrandTotal { get; set; }
+        public decimal? GrandTotal { get; set; }
 
     }
 

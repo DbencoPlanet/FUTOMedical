@@ -13,6 +13,10 @@ namespace FUTOMedical.Models.Entities
             this.Quantity = 0;
             this.Price = 0;
             this.SubTotal = 0;
+            this.Amount = 0;
+            this.Vat = 0;
+            this.VatRate = 0;
+            this.Discount = 0;
 
         }
 
@@ -22,17 +26,31 @@ namespace FUTOMedical.Models.Entities
         public int? InvoiceId { get; set; }
         public Invoice Invoice { get; set; }
 
+        public string Name { get; set; }
+
+        [Display(Name = "Vat")]
+        public decimal? Vat { get; set; }
+
+        [Display(Name = "Vat Rate")]
+        public float? VatRate { get; set; }
+
         [Display(Name = "Description")]
         public string Description { get; set; }
 
         [Display(Name = "Quantity")]
-        public int Quantity { get; set; }
+        public int? Quantity { get; set; }
 
         [Display(Name = "Price")]
-        public decimal Price { get; set; }
+        public decimal? Price { get; set; }
+
+        [Display(Name = "Discount")]
+        public decimal? Discount { get; set; }
+
+        [Display(Name = "Amount")]
+        public decimal? Amount { get; set; }
 
         [Display(Name = "Sub Total")]
-        public decimal SubTotal { get; set; }
+        public decimal? SubTotal { get; set; }
 
       
     }

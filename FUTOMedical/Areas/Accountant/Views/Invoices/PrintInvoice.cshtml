@@ -1,0 +1,187 @@
+﻿@model FUTOMedical.Models.Entities.Invoice
+@{
+    Layout = "~/Views/Shared/_PrintLayout.cshtml";
+}
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <!-- Main content -->
+                    <section class="invoice">
+                        <!-- title row -->
+                        <div class="panel-heading">
+                            <h1>
+                                INVOICE
+                                <small>@Model.InvoiceNumber-@ViewBag.setting.Initial</small>
+                            </h1>
+
+                        </div>
+                        <!-- info row -->
+                        <div class="row">
+                            <div class="col-xs-12 table-responsive">
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>  Bill To</th>
+                                            <th> From</th>
+                                            <th>Invoice Info</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                       
+                                            <tr>
+                                                <td>
+                                                    <address>
+                                                        <strong>@Model.Patient.Fullname</strong><br>
+                                                        @Model.Patient.Fullname<br>
+                                                        @Model.Patient.Address<br>
+                                                        @Model.Patient.EmailAddress<br>
+                                                        Phone:@Model.Patient.PhoneNo
+                                                    </address>
+                                                </td>
+                                                <td>
+                                                    <address>
+                                                        <strong>@ViewBag.setting.ApplicationTitle </strong><br>
+                                                        @ViewBag.setting.ApplicationTitle<br>
+                                                        @ViewBag.setting.PhoneNo<br>
+                                                        @ViewBag.setting.EmailAddress<br>
+
+                                                    </address>
+                                                </td>
+                                                <td>
+                                                    <b>Invoice Number:</b> @Model.InvoiceNumber-@ViewBag.setting.Initial<br>
+                                                    <b>Invoice Date:</b> @Model.StartDate.ToString()<br>
+                                                    <b>Invoice Due:</b> @Model.EndDate.ToString()<br>
+                                                </td>
+                                            </tr>
+                                     
+
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- /.col -->
+                        </div>
+
+                        @*<div class="row invoice-info">
+                            <div class="col-lg-12">
+                                <div class="col-sm-4 ">
+                                    Bill To
+                                    <address>
+                                        <strong>@Model.Patient.Fullname</strong><br>
+                                        @Model.Patient.Fullname<br>
+                                        @Model.Patient.Address<br>
+                                        @Model.Patient.EmailAddress<br>
+                                        Phone:@Model.Patient.PhoneNo
+                                    </address>
+                                </div>
+                                <!-- /.col -->
+                                <div class="col-sm-4">
+                                    From
+                                    <address>
+                                        <strong>@ViewBag.setting.ApplicationTitle </strong><br>
+                                        @ViewBag.setting.ApplicationTitle<br>
+                                        @ViewBag.setting.PhoneNo<br>
+                                        @ViewBag.setting.EmailAddress<br>
+
+                                    </address>
+                                </div>
+                                <!-- /.col -->
+                                <div class="col-sm-4">
+                                    <b>Invoice Number:</b> @Model.InvoiceNumber<br>
+                                    <b>Invoice Date:</b> @Model.StartDate<br>
+                                    <b>Invoice Due:</b> @Model.EndDate<br>
+
+                                </div>
+                                <!-- /.col -->
+                            </div>
+                        </div>*@
+                        <br />
+                        <!-- /.row -->
+                        <!-- Table row -->
+                        <div class="row">
+                            <div class="col-xs-12 table-responsive">
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>Qty</th>
+                                            <th>Product</th>
+                                            <th>Price</th>
+                                            <th>Subtotal</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in Model.InvoiceLine)
+                                        {
+                                            <tr>
+                                                <td>@item.Quantity</td>
+                                                <td>@item.Name</td>
+                                                <td>@item.Price</td>
+                                                <td>@ViewBag.setting.Currency @item.SubTotal.ToString()</td>
+                                            </tr>
+                                        }
+
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- /.col -->
+                        </div>
+                        <!-- /.row -->
+                        <div class="row">
+                            <!-- accepted payments column -->
+                            <!-- /.col -->
+                            <div class="col-xs-6">
+                                <p class="lead">Amount Details</p>
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <tr>
+                                            <th style="width:50%">Due:</th>
+                                            <td>@ViewBag.setting.Currency @Model.Due.ToString()</td>
+                                        </tr>
+                                        <tr>
+                                            <th style="width:50%">Subtotal:</th>
+                                            <td>@ViewBag.setting.Currency @Model.Total.ToString()</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Discount</th>
+                                            <td>@ViewBag.setting.Currency @Model.Discount.ToString()</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Tax</th>
+                                            <td>@ViewBag.setting.Currency @Model.Vat.ToString()</td>
+                                        </tr>
+                                        @*<tr>
+                                            <th>Paid</th>
+                                            <td>@ViewBag.setting.Currency @Model.Paid.ToString()</td>
+                                        </tr>*@
+                                        <tr>
+                                            <th>Total:</th>
+                                            <td>@ViewBag.setting.Currency @Model.GrandTotal.ToString()</td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                            <!-- /.col -->
+                        </div>
+                        <!-- /.row -->
+                    </section>
+                    <!-- /.content -->
+                </div>
+            </div>
+        </div>
+        </div>
+        <!-- ./wrapper -->
+        <div class="row">
+            <div class="col-xs-12 text-center">
+                <button onclick="myFunction()" style="text-align:center;" class="btn btn-primary"><i class="fa fa-print"></i>Print Invoice</button>
+            </div>
+        </div>
+        <script type="text/javascript">
+
+
+            function myFunction() {
+                window.print();
+            }
+
+
+        </script>

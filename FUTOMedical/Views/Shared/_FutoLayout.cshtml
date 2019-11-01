@@ -55,160 +55,163 @@
     <div id="wrapper">
         <!-- navbar top -->
         <nav class="navbar navbar-default navbar-fixed-top" role="navigation" id="navbar">
-            <!-- navbar-header -->
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
+            <div class="no-print">
+                <!-- navbar-header -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
 
-                <a class="navbar-brand" href="#">
-                    @if (!string.IsNullOrEmpty(img))
-                    {
-                        <img src="@Url.Content(img)" alt="logo">
-                    }
-                    else
-                    {
-                       <p>@init</p>
-                    }
+                    <a class="navbar-brand" href="#">
+                        @if (!string.IsNullOrEmpty(img))
+                        {
+                            <img src="@Url.Content(img)" alt="logo">
+                        }
+                        else
+                        {
+                            <p>@init</p>
+                        }
 
-                </a>
-            </div>
-            <!-- end navbar-header -->
-            <!-- navbar-top-links -->
+                    </a>
+                </div>
+                <!-- end navbar-header -->
+                <!-- navbar-top-links -->
 
-            @if (User.IsInRole("Admin") || User.IsInRole("SuperAdmin"))
-            {
-                @Html.Partial("/Areas/Admin/Views/PartialView/AdminProfileLayout.cshtml")
-            }
+                @if (User.IsInRole("Admin") || User.IsInRole("SuperAdmin"))
+                {
+                    @Html.Partial("/Areas/Admin/Views/PartialView/AdminProfileLayout.cshtml")
+                }
 
-            else if (User.IsInRole("Doctor"))
-            {
-                @Html.Partial("/Areas/Admin/Views/PartialView/DoctorProfileLayout.cshtml")
-            }
+                else if (User.IsInRole("Doctor"))
+                {
+                    @Html.Partial("/Areas/Admin/Views/PartialView/DoctorProfileLayout.cshtml")
+                }
 
-            else if (User.IsInRole("Nurse"))
-            {
-                @Html.Partial("/Areas/Admin/Views/PartialView/NurseProfileLayout.cshtml")
-            }
+                else if (User.IsInRole("Nurse"))
+                {
+                    @Html.Partial("/Areas/Admin/Views/PartialView/NurseProfileLayout.cshtml")
+                }
 
-            else if (User.IsInRole("Pharmacist"))
-            {
-                @Html.Partial("/Areas/Admin/Views/PartialView/PharmacistProfileLayout.cshtml")
-            }
+                else if (User.IsInRole("Pharmacist"))
+                {
+                    @Html.Partial("/Areas/Admin/Views/PartialView/PharmacistProfileLayout.cshtml")
+                }
 
-            else if (User.IsInRole("Patient"))
-            {
-                @Html.Partial("/Areas/Admin/Views/PartialView/PatientProfileLayout.cshtml")
-            }
+                else if (User.IsInRole("Patient"))
+                {
+                    @Html.Partial("/Areas/Admin/Views/PartialView/PatientProfileLayout.cshtml")
+                }
 
-            else if (User.IsInRole("Accountant"))
-            {
-                @Html.Partial("/Areas/Admin/Views/PartialView/AccountantProfileLayout.cshtml")
-            }
+                else if (User.IsInRole("Accountant"))
+                {
+                    @Html.Partial("/Areas/Admin/Views/PartialView/AccountantProfileLayout.cshtml")
+                }
 
-            else if (User.IsInRole("Laboratorist"))
-            {
-                @Html.Partial("/Areas/Admin/Views/PartialView/LaboratoristProfileLayout.cshtml")
-            }
+                else if (User.IsInRole("Laboratorist"))
+                {
+                    @Html.Partial("/Areas/Admin/Views/PartialView/LaboratoristProfileLayout.cshtml")
+                }
 
-            else
-            {
+                else
+                {
 
-            }
+                }
 
-            <!-- end navbar-top-links -->
-
+                <!-- end navbar-top-links -->
+                </div>
         </nav>
         <!-- end navbar top -->
         <!-- navbar side -->
         <nav class="navbar-default navbar-static-side" role="navigation">
-            <!-- sidebar-collapse -->
-            <div class="sidebar-collapse">
-                <!-- side-menu -->
-                <ul class="nav" id="side-menu">
+            <div class="no-print">
+                <!-- sidebar-collapse -->
+                <div class="sidebar-collapse">
+                    <!-- side-menu -->
+                    <ul class="nav" id="side-menu">
 
-                    <li>
-                        <!-- user image section-->
+                        <li>
+                            <!-- user image section-->
+                            @if (User.IsInRole("Admin") || User.IsInRole("SuperAdmin"))
+                            {
+                                @Html.Partial("/Areas/Admin/Views/PartialView/AdminProfileInfo.cshtml")
+                            }
+                            else if (User.IsInRole("Doctor"))
+                            {
+                                @Html.Partial("/Areas/Admin/Views/PartialView/DoctorProfileInfo.cshtml")
+                            }
+                            else if (User.IsInRole("Nurse"))
+                            {
+                                @Html.Partial("/Areas/Admin/Views/PartialView/NurseProfileInfo.cshtml")
+                            }
+                            else if (User.IsInRole("Pharmacist"))
+                            {
+                                @Html.Partial("/Areas/Admin/Views/PartialView/PharmacistProfileInfo.cshtml")
+                            }
+                            else if (User.IsInRole("Patient"))
+                            {
+                                @Html.Partial("/Areas/Admin/Views/PartialView/PatientProfileInfo.cshtml")
+                            }
+                            else if (User.IsInRole("Accountant"))
+                            {
+                                @Html.Partial("/Areas/Admin/Views/PartialView/AccountantProfileInfo.cshtml")
+                            }
+                            else if (User.IsInRole("Laboratorist"))
+                            {
+                                @Html.Partial("/Areas/Admin/Views/PartialView/LaboratoristProfileInfo.cshtml")
+                            }
+                            else
+                            {
+
+                            }
+
+                            <!--end user image section-->
+                        </li>
+
+
                         @if (User.IsInRole("Admin") || User.IsInRole("SuperAdmin"))
                         {
-                            @Html.Partial("/Areas/Admin/Views/PartialView/AdminProfileInfo.cshtml")
+
+                            @Html.Partial("~/Areas/Admin/Views/Shared/_AdminMenu.cshtml")
                         }
                         else if (User.IsInRole("Doctor"))
                         {
-                            @Html.Partial("/Areas/Admin/Views/PartialView/DoctorProfileInfo.cshtml")
+                            @Html.Partial("~/Areas/Admin/Views/Shared/_DoctorMenu.cshtml")
                         }
                         else if (User.IsInRole("Nurse"))
                         {
-                            @Html.Partial("/Areas/Admin/Views/PartialView/NurseProfileInfo.cshtml")
+                            @Html.Partial("~/Areas/Admin/Views/Shared/_NurseMenu.cshtml")
                         }
-                        else if (User.IsInRole("Pharmacist"))
-                        {
-                            @Html.Partial("/Areas/Admin/Views/PartialView/PharmacistProfileInfo.cshtml")
-                        }
+
                         else if (User.IsInRole("Patient"))
                         {
-                            @Html.Partial("/Areas/Admin/Views/PartialView/PatientProfileInfo.cshtml")
+                            @Html.Partial("~/Areas/Admin/Views/Shared/_PatientMenu.cshtml")
                         }
                         else if (User.IsInRole("Accountant"))
                         {
-                            @Html.Partial("/Areas/Admin/Views/PartialView/AccountantProfileInfo.cshtml")
+                            @Html.Partial("~/Areas/Admin/Views/Shared/_AccountantMenu.cshtml")
                         }
                         else if (User.IsInRole("Laboratorist"))
                         {
-                            @Html.Partial("/Areas/Admin/Views/PartialView/LaboratoristProfileInfo.cshtml")
+                            @Html.Partial("~/Areas/Admin/Views/Shared/_LaboratoristMenu.cshtml")
+                        }
+                        else if (User.IsInRole("Pharmacist"))
+                        {
+                            @Html.Partial("~/Areas/Admin/Views/Shared/_PharmacistMenu.cshtml")
                         }
                         else
                         {
 
                         }
 
-                        <!--end user image section-->
-                    </li>
 
-
-                    @if (User.IsInRole("Admin") || User.IsInRole("SuperAdmin"))
-                    {
-
-                        @Html.Partial("~/Areas/Admin/Views/Shared/_AdminMenu.cshtml")
-                    }
-                    else if (User.IsInRole("Doctor"))
-                    {
-                        @Html.Partial("~/Areas/Admin/Views/Shared/_DoctorMenu.cshtml")
-                    }
-                    else if (User.IsInRole("Nurse"))
-                    {
-                        @Html.Partial("~/Areas/Admin/Views/Shared/_NurseMenu.cshtml")
-                    }
-
-                    else if (User.IsInRole("Patient"))
-                    {
-                        @Html.Partial("~/Areas/Admin/Views/Shared/_PatientMenu.cshtml")
-                    }
-                    else if (User.IsInRole("Accountant"))
-                    {
-                        @Html.Partial("~/Areas/Admin/Views/Shared/_AccountantMenu.cshtml")
-                    }
-                    else if (User.IsInRole("Laboratorist"))
-                    {
-                        @Html.Partial("~/Areas/Admin/Views/Shared/_LaboratoristMenu.cshtml")
-                    }
-                    else if (User.IsInRole("Pharmacist"))
-                    {
-                        @Html.Partial("~/Areas/Admin/Views/Shared/_PharmacistMenu.cshtml")
-                    }
-                    else
-                    {
-
-                    }
-
-
-                </ul>
-                <!-- end side-menu -->
-            </div>
-            <!-- end sidebar-collapse -->
+                    </ul>
+                    <!-- end side-menu -->
+                </div>
+                <!-- end sidebar-collapse -->
+                </div>
         </nav>
         <!-- end navbar side -->
         <!--  page-wrapper -->

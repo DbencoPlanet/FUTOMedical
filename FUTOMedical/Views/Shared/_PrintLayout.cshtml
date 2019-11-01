@@ -1,0 +1,106 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invoice</title>
+    @Scripts.Render("~/bundles/modernizr")
+    <!-- Core CSS - Include with every page -->
+    <link href="~/Content/FUTOMedical/assets/plugins/bootstrap/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/FUTOMedical/assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
+    <link href="~/Content/FUTOMedical/assets/plugins/pace/pace-theme-big-counter.css" rel="stylesheet" />
+    <link href="~/Content/FUTOMedical/assets/css/style.css" rel="stylesheet" />
+    <link href="~/Content/FUTOMedical/assets/css/main-style.css" rel="stylesheet" />
+    <!-- Page-Level CSS -->
+    @*<link href="~/Content/FUTOMedical/assets/plugins/morris/morris-0.4.3.min.css" rel="stylesheet" />*@
+
+    <style>
+        #navbar {
+            background-color: #3c763d;
+        }
+
+        .user-section {
+            margin-top: 20px;
+            font-size: 22px;
+            background-color: #3c763d;
+        }
+    </style>
+
+    @RenderSection("Style", required: false)
+</head>
+<body>
+ 
+    <!--  wrapper -->
+   
+        <!--  page-wrapper -->
+        <div id="page-wrapper">
+
+
+            @RenderBody()
+
+
+        </div>
+      
+        <!-- end page-wrapper -->
+        <!-- end wrapper -->
+        <!-- Core Scripts - Include with every page -->
+        <script src="~/Content/FUTOMedical/assets/plugins/jquery-1.10.2.js"></script>
+        <script src="~/Content/FUTOMedical/assets/plugins/bootstrap/bootstrap.min.js"></script>
+        <script src="~/Content/FUTOMedical/assets/plugins/metisMenu/jquery.metisMenu.js"></script>
+        <script src="~/Content/FUTOMedical/assets/plugins/pace/pace.js"></script>
+        <script src="~/Content/FUTOMedical/assets/scripts/siminta.js"></script>
+        @RenderSection("Scripts", required: false)
+
+        <script src="~/Content/tinymce/tinymce.min.js"></script>
+        <script>
+            //tinymce.init({
+            //    selector: '#mytextarea'
+            //});
+
+
+            tinymce.init({
+                selector: 'textarea',
+                height: 400,
+                theme: 'modern',
+                plugins: [
+                    'advlist autolink lists link image charmap print preview hr anchor pagebreak',
+                    'searchreplace wordcount visualblocks visualchars code fullscreen',
+                    'insertdatetime media nonbreaking save table contextmenu directionality',
+                    'emoticons template paste textcolor colorpicker textpattern imagetools codesample'
+                ],
+                toolbar1: 'insertfile undo redo | styleselect | bold italic underline | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
+                toolbar2: 'print preview media | forecolor backcolor emoticons | codesample',
+                image_advtab: true,
+                templates: [
+                    { title: 'Test template 1', content: 'Test 1' },
+                    { title: 'Test template 2', content: 'Test 2' }
+                ],
+                content_css: [
+                    'css?family=Lato:300,300i,400,400i',
+                    'css/codepen.min.css'
+                ]
+            });
+        </script>
+
+        @RenderSection("Scripts2", required: false)
+        <!-- Page-Level Plugin Scripts-->
+        <script src="~/Content/FUTOMedical/assets/plugins/morris/raphael-2.1.0.min.js"></script>
+        <script src="~/Content/FUTOMedical/assets/plugins/morris/morris.js"></script>
+        <script src="~/Content/FUTOMedical/assets/scripts/dashboard-demo.js"></script>
+
+        <script type="text/javascript">
+
+
+            function myFunction() {
+                window.print();
+            }
+
+
+        </script>
+
+
+
+</body>
+
+</html>
