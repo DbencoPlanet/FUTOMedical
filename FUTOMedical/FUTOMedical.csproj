@@ -164,6 +164,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\Accountant\AccountantAreaRegistration.cs" />
+    <Compile Include="Areas\Accountant\Controllers\DashBoardController.cs" />
     <Compile Include="Areas\Accountant\Controllers\InvoiceLinesController.cs" />
     <Compile Include="Areas\Accountant\Controllers\InvoicesController.cs" />
     <Compile Include="Areas\Accountant\Controllers\UserManagerController.cs" />
@@ -578,7 +579,7 @@
     <Content Include="Areas\Pharmacists\Views\UserManager\MyProfile.cshtml" />
     <Content Include="Areas\Doctors\Views\UserManager\MyProfile.cshtml" />
     <Content Include="Areas\Patients\Views\UserManager\MyProfile.cshtml" />
-    <Content Include="Areas\Admin\Views\PartialView\AccountantProfileInfo .cshtml" />
+    <Content Include="Areas\Admin\Views\PartialView\AccountantProfileInfo.cshtml" />
     <Content Include="Areas\Admin\Views\PartialView\AccountantProfileLayout.cshtml" />
     <Content Include="Areas\Admin\Views\PartialView\LaboratoristProfileInfo.cshtml" />
     <Content Include="Areas\Admin\Views\PartialView\LaboratoristProfileLayout.cshtml" />
@@ -656,6 +657,9 @@
     <Content Include="Areas\Accountant\Views\InvoiceLines\Edit.cshtml" />
     <Content Include="Areas\Accountant\Views\InvoiceLines\Index.cshtml" />
     <Content Include="Areas\Accountant\Views\Invoices\PrintInvoice.cshtml" />
+    <Content Include="Areas\Accountant\Views\DashBoard\Index.cshtml" />
+    <Content Include="Areas\Accountant\Views\DashBoard\PatientInvoice.cshtml" />
+    <Content Include="Areas\Accountant\Views\DashBoard\Patients.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
