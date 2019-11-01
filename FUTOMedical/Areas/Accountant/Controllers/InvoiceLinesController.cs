@@ -56,12 +56,19 @@ namespace FUTOMedical.Areas.Accountant.Controllers
             if (ModelState.IsValid)
             {
                 invoiceLine.InvoiceId = id;
+                db.InvoiceLines.Add(invoiceLine);
+                await db.SaveChangesAsync();
+
+                //InvoiceLine invo = await db.InvoiceLines.Include(x => x.Invoice).FirstOrDefaultAsync(x => x.InvoiceId == id);
+
+
                 invoiceLine.Amount = (decimal)invoiceLine.Quantity * invoiceLine.Price;
                 invoiceLine.Vat = (decimal)(invoiceLine.VatRate / 100.0) * invoiceLine.Amount;
                 invoiceLine.SubTotal = invoiceLine.Amount + invoiceLine.Vat - invoiceLine.Discount;
+                db.Entry(invoiceLine).State = EntityState.Modified;
+                await db.SaveChangesAsync();
 
-
-                Invoice inv = await db.Invoices.Include(x => x.InvoiceLine).SingleOrDefaultAsync(x => x.Id == id);
+                Invoice inv = await db.Invoices.Include(x => x.InvoiceLine).FirstOrDefaultAsync(x => x.Id == id);
                 inv.Vat = inv.InvoiceLine.Sum(x => x.Vat);
                 inv.Total = inv.InvoiceLine.Sum(x => x.Amount);
                 inv.Due = inv.Total;
@@ -70,8 +77,7 @@ namespace FUTOMedical.Areas.Accountant.Controllers
                 db.Entry(inv).State = EntityState.Modified;
                 await db.SaveChangesAsync();
 
-                db.InvoiceLines.Add(invoiceLine);
-                await db.SaveChangesAsync();
+              
                 return RedirectToAction("Details", "Invoices", new { id = invoiceLine.InvoiceId});
             }
 
