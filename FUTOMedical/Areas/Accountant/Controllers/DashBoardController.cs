@@ -28,6 +28,14 @@ namespace FUTOMedical.Areas.Accountant.Controllers
             return View(await invoices.ToListAsync());
         }
 
+
+        // GET: Accountant/Invoices
+        public async Task<ActionResult> PatientPayment(int? id)
+        {
+            var payment = db.Payments.Include(i => i.Patient).Include(x => x.Invoice).OrderByDescending(x => x.PaymentDate).Where(x => x.PatientId == id);
+            return View(await payment.ToListAsync());
+        }
+
         public async Task<ActionResult> Patients()
         {
             var pat = db.Patients.Include(i => i.User).OrderBy(x => x.Surname);

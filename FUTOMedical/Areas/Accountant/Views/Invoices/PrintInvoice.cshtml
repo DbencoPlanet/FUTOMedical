@@ -14,7 +14,7 @@
                         <div class="panel-heading">
                             <h1>
                                 INVOICE
-                                <small>@Model.InvoiceNumber-@ViewBag.setting.Initial</small>
+                                <small>@Model.InvoiceNumber</small>
                             </h1>
 
                         </div>
@@ -51,9 +51,9 @@
                                                     </address>
                                                 </td>
                                                 <td>
-                                                    <b>Invoice Number:</b> @Model.InvoiceNumber-@ViewBag.setting.Initial<br>
-                                                    <b>Invoice Date:</b> @Model.StartDate.ToString()<br>
-                                                    <b>Invoice Due:</b> @Model.EndDate.ToString()<br>
+                                                    <b>Invoice Number:</b> @Model.InvoiceNumber<br>
+                                                    <b>Invoice Date:</b> @Model.StartDate.ToString("dd-MMM-yyyy hh:mm:tt" )<br>
+                                                    <b>Invoice Due:</b> @Model.EndDate.ToString("dd-MMM-yyyy hh:mm:tt" )<br>
                                                 </td>
                                             </tr>
                                      
@@ -122,7 +122,7 @@
                                             <td>@item.VatRate</td>
                                             <td>@item.Discount</td>
                                             <td>@item.Price</td>
-                                            <td>@ViewBag.setting.Currency @item.SubTotal.ToString()</td>
+                                            <td>@ViewBag.setting.Currency@item.SubTotal.ToString()</td>
                                         </tr>
                                         }
 
@@ -141,27 +141,23 @@
                                     <table class="table">
                                         <tr>
                                             <th style="width:50%">Due:</th>
-                                            <td>@ViewBag.setting.Currency @Model.Due.ToString()</td>
+                                            <td>@ViewBag.setting.Currency@Model.Due.ToString()</td>
                                         </tr>
                                         <tr>
                                             <th style="width:50%">Subtotal:</th>
-                                            <td>@ViewBag.setting.Currency @Model.Total.ToString()</td>
+                                            <td>@ViewBag.setting.Currency@Model.Total.ToString()</td>
                                         </tr>
                                         <tr>
                                             <th>Discount</th>
-                                            <td>@ViewBag.setting.Currency @Model.Discount.ToString()</td>
+                                            <td>@ViewBag.setting.Currency@Model.Discount.ToString()</td>
                                         </tr>
                                         <tr>
                                             <th>Tax</th>
-                                            <td>@ViewBag.setting.Currency @Model.Vat.ToString()</td>
+                                            <td>@ViewBag.setting.Currency@Model.Vat.ToString()</td>
                                         </tr>
-                                        @*<tr>
-                                            <th>Paid</th>
-                                            <td>@ViewBag.setting.Currency @Model.Paid.ToString()</td>
-                                        </tr>*@
                                         <tr>
                                             <th>Total:</th>
-                                            <td>@ViewBag.setting.Currency @Model.GrandTotal.ToString()</td>
+                                            <td>@ViewBag.setting.Currency@Model.GrandTotal.ToString()</td>
                                         </tr>
                                     </table>
                                 </div>

@@ -167,6 +167,7 @@
     <Compile Include="Areas\Accountant\Controllers\DashBoardController.cs" />
     <Compile Include="Areas\Accountant\Controllers\InvoiceLinesController.cs" />
     <Compile Include="Areas\Accountant\Controllers\InvoicesController.cs" />
+    <Compile Include="Areas\Accountant\Controllers\PaymentsController.cs" />
     <Compile Include="Areas\Accountant\Controllers\UserManagerController.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\BloodBanksController.cs" />
@@ -300,6 +301,22 @@
     <Compile Include="Migrations\201910312208204_taxupdate.Designer.cs">
       <DependentUpon>201910312208204_taxupdate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201911020923474_payment.cs" />
+    <Compile Include="Migrations\201911020923474_payment.Designer.cs">
+      <DependentUpon>201911020923474_payment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201911020925536_paymentupdate.cs" />
+    <Compile Include="Migrations\201911020925536_paymentupdate.Designer.cs">
+      <DependentUpon>201911020925536_paymentupdate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201911021101043_invoivvvceupdate.cs" />
+    <Compile Include="Migrations\201911021101043_invoivvvceupdate.Designer.cs">
+      <DependentUpon>201911021101043_invoivvvceupdate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201911021113270_payupdate.cs" />
+    <Compile Include="Migrations\201911021113270_payupdate.Designer.cs">
+      <DependentUpon>201911021113270_payupdate.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Dtos\DoctorDto.cs" />
@@ -325,6 +342,7 @@
     <Compile Include="Models\Entities\Patient.cs" />
     <Compile Include="Models\Entities\Accountants.cs" />
     <Compile Include="Models\Entities\Laboratorists.cs" />
+    <Compile Include="Models\Entities\Payment.cs" />
     <Compile Include="Models\Entities\Pharmacist.cs" />
     <Compile Include="Models\Entities\Report.cs" />
     <Compile Include="Models\Entities\Section.cs" />
@@ -660,6 +678,12 @@
     <Content Include="Areas\Accountant\Views\DashBoard\Index.cshtml" />
     <Content Include="Areas\Accountant\Views\DashBoard\PatientInvoice.cshtml" />
     <Content Include="Areas\Accountant\Views\DashBoard\Patients.cshtml" />
+    <Content Include="Areas\Accountant\Views\Payments\Create.cshtml" />
+    <Content Include="Areas\Accountant\Views\Payments\Delete.cshtml" />
+    <Content Include="Areas\Accountant\Views\Payments\Details.cshtml" />
+    <Content Include="Areas\Accountant\Views\Payments\Edit.cshtml" />
+    <Content Include="Areas\Accountant\Views\Payments\Index.cshtml" />
+    <Content Include="Areas\Accountant\Views\DashBoard\PatientPayment.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -796,6 +820,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201910312208204_taxupdate.resx">
       <DependentUpon>201910312208204_taxupdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201911020923474_payment.resx">
+      <DependentUpon>201911020923474_payment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201911020925536_paymentupdate.resx">
+      <DependentUpon>201911020925536_paymentupdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201911021101043_invoivvvceupdate.resx">
+      <DependentUpon>201911021101043_invoivvvceupdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201911021113270_payupdate.resx">
+      <DependentUpon>201911021113270_payupdate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

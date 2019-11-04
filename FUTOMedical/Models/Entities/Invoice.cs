@@ -8,19 +8,21 @@ namespace FUTOMedical.Models.Entities
 {
     public class Invoice
     {
+        private ApplicationDbContext db = new ApplicationDbContext();
+
         public Invoice()
         {
-            //var set = new Setting();
-            //var setname = set.Initial.FirstOrDefault();
+
+            var set = db.Settings.FirstOrDefault();
+            var setname = set.Initial;
 
             this.InvoiceNumber = DateTime.UtcNow.Date.Year.ToString() +
                 DateTime.UtcNow.Date.Month.ToString() +
-                DateTime.UtcNow.Date.Day.ToString() + Guid.NewGuid().ToString().Substring(0, 4).ToUpper() +"INV";
+                DateTime.UtcNow.Date.Day.ToString() + Guid.NewGuid().ToString().Substring(0, 4).ToUpper() +"INV"+"-"+setname;
             this.StartDate = DateTime.UtcNow;
             this.EndDate = DateTime.UtcNow.Date.AddMonths(1);
             this.Vat = 0;
             this.Discount = 0;
-            this.Paid = 0;
             this.Due = 0;
             this.Total = 0;
             this.GrandTotal = 0;
@@ -30,12 +32,14 @@ namespace FUTOMedical.Models.Entities
 
         public string InvoiceNumber { get; set; }
 
+        [Display(Name = "Patient Name")]
         public int? PatientId { get; set; }
         public Patient Patient { get; set; }
 
-        public DateTime? StartDate { get; set; }
 
-        public DateTime? EndDate { get; set; }
+        public DateTime StartDate { get; set; }
+
+        public DateTime EndDate { get; set; }
 
         public List<InvoiceLine> InvoiceLine { get; set; } = new List<InvoiceLine>();
 
@@ -45,8 +49,8 @@ namespace FUTOMedical.Models.Entities
         [Display(Name = "Discount")]
         public decimal? Discount { get; set; }
 
-        [Display(Name = "Paid")]
-        public decimal? Paid { get; set; }
+        [Display(Name = "Payment Status")]
+        public PaymentStatus Status { get; set; }
 
         [Display(Name = "Due")]
         public decimal? Due { get; set; }

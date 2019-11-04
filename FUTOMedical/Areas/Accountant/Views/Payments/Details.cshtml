@@ -1,0 +1,66 @@
+﻿@model FUTOMedical.Models.Entities.Payment
+@using FUTOMedical.Helpers
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_FutoLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header titlehms"><i class="fa fa-info-circle"></i>Info<i class="fa fa-info-circle"></i></h1>
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+<div class="panel panel-info">
+    <div class="panel-heading">
+        <i class="fa fa-info-circle fa-fw"></i>Payment Information
+    </div>
+    <!-- /.panel-heading -->
+    <div class="col-lg-2"></div>
+    <div class="row">
+
+        <div class="col-lg-8">
+            <div class="panel-body">
+
+
+
+                <div class="form-group ">
+                    <label>Patient Name:</label>
+                    <span> @Html.DisplayFor(model => model.Patient.Fullname)</span>
+
+                </div>
+                <div class="form-group ">
+                    <label>Invoice Number:</label>
+                    <span>@Html.DisplayFor(model => model.Invoice.InvoiceNumber)</span>
+
+                </div>
+
+                <div class="form-group ">
+                    <label>Amount:</label>
+                    <span>@ViewBag.set.Currency@Html.DisplayFor(model => model.Invoice.GrandTotal)</span>
+
+                </div>
+
+                <div class="form-group ">
+                    <label>Payment Date:</label>
+                    @if (Model.PaymentDate != null)
+                    {
+                        <span>@Model.PaymentDate.ToString("dd-MMM-yyyy hh:mm:tt")</span>
+                    }
+                    else
+                    {
+
+                    }
+
+
+                </div>
+
+            </div>
+        </div>
+        <div class="col-lg-2"></div>
+
+
+    </div>
+</div>
+
+

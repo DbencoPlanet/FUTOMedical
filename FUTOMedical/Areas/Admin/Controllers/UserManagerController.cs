@@ -290,25 +290,44 @@ namespace FUTOMedical.Areas.Admin.Controllers
 
 
 
+                // //Create User to roles
                 var role = new IdentityRole("SuperAdmin");
                 var role1 = new IdentityRole("Doctor");
                 var role2 = new IdentityRole("Admin");
                 var role3 = new IdentityRole("Patient");
                 var role4 = new IdentityRole("Pharmacist");
+                var role5 = new IdentityRole("Accountant");
+                var role6 = new IdentityRole("Laboratorist");
+              
 
                 await RoleManager.CreateAsync(role);
                 await RoleManager.CreateAsync(role1);
                 await RoleManager.CreateAsync(role2);
                 await RoleManager.CreateAsync(role3);
                 await RoleManager.CreateAsync(role4);
+                await RoleManager.CreateAsync(role5);
+                await RoleManager.CreateAsync(role6);
 
-
-
-
-
-
-
+                //Add User to SuperAdmin role
                 await UserManager.AddToRoleAsync(user.Id, "SuperAdmin");
+
+                //Add User to Admin role
+                await UserManager.AddToRoleAsync(user.Id, "Admin");
+
+                //Add User to Patient role
+                await UserManager.AddToRoleAsync(user.Id, "Patient");
+                //Add User to Doctor role
+                await UserManager.AddToRoleAsync(user.Id, "Doctor");
+
+                //Add User to Pharmacist role
+                await UserManager.AddToRoleAsync(user.Id, "Pharmacist");
+
+                //Add User to Laboratorist role
+                await UserManager.AddToRoleAsync(user.Id, "Laboratorist");
+
+                //Add User to Accountant role
+                await UserManager.AddToRoleAsync(user.Id, "Accountant");
+
 
                 await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
 

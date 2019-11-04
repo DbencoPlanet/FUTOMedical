@@ -26,6 +26,19 @@ namespace FUTOMedical.Models.Entities
     }
 
 
+    public enum PaymentStatus
+    {
+
+        [Description("Paid")]
+        [Display(Name = "Paid")]
+        Paid = 1,
+        [Description("UnPaid")]
+        [Display(Name = "UnPaid")]
+        UnPaid = 2
+
+
+    }
+
     public enum BloodStatus
     {
 
