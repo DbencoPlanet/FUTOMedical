@@ -19,7 +19,7 @@ namespace FUTOMedical.Areas.Accountant.Controllers
         // GET: Accountant/Invoices
         public async Task<ActionResult> Index()
         {
-            var invoices = db.Invoices.Include(i => i.Patient).Include(x=>x.InvoiceLine);
+            var invoices = db.Invoices.Include(i => i.Patient).Include(x=>x.InvoiceLine).OrderByDescending(x=>x.StartDate);
             return View(await invoices.ToListAsync());
         }
 

@@ -3,6 +3,7 @@
     Layout = "~/Views/Shared/_PrintLayout.cshtml";
 }
 
+    
     <div class="row">
         <div class="col-lg-12">
             <div class="panel panel-default">
@@ -104,8 +105,10 @@
                                 <table class="table table-striped">
                                     <thead>
                                         <tr>
-                                            <th>Qty</th>
                                             <th>Product</th>
+                                            <th>Qty</th>
+                                            <th>Vat Rate</th>
+                                            <th>Discount</th>
                                             <th>Price</th>
                                             <th>Subtotal</th>
                                         </tr>
@@ -113,12 +116,14 @@
                                     <tbody>
                                         @foreach (var item in Model.InvoiceLine)
                                         {
-                                            <tr>
-                                                <td>@item.Quantity</td>
-                                                <td>@item.Name</td>
-                                                <td>@item.Price</td>
-                                                <td>@ViewBag.setting.Currency @item.SubTotal.ToString()</td>
-                                            </tr>
+                                        <tr>
+                                            <td>@item.Name</td>
+                                            <td>@item.Quantity</td>
+                                            <td>@item.VatRate</td>
+                                            <td>@item.Discount</td>
+                                            <td>@item.Price</td>
+                                            <td>@ViewBag.setting.Currency @item.SubTotal.ToString()</td>
+                                        </tr>
                                         }
 
                                     </tbody>
@@ -131,7 +136,7 @@
                             <!-- accepted payments column -->
                             <!-- /.col -->
                             <div class="col-xs-6">
-                                <p class="lead">Amount Details</p>
+                                <p class="lead">Payment Details</p>
                                 <div class="table-responsive">
                                     <table class="table">
                                         <tr>
