@@ -28,7 +28,7 @@
 
                     <div class="btn-group pull-right">
 
-                        <a class="btn btn-success" href="@Url.Action("Create", "Invoices", null)"> <i class='fa fa-plus fa-fw'></i> Add Invoice</a>
+                        <a class="btn btn-primary" href="@Url.Action("Create", "Invoices", null)"> <i class='fa fa-plus fa-fw'></i> Add Invoice</a>
                     </div>
 
                 </div>
@@ -57,6 +57,10 @@
                                 </th>
 
                                 <th>
+                                   Status
+                                </th>
+
+                                <th>
                                     Action
                                 </th>
 
@@ -69,44 +73,48 @@
 
                             @foreach (var item in Model)
                             {
-                                <tr>
-                                    <td>
-                                        @{ sno++; }
-                                        @sno
-                                    </td>
+                            <tr>
+                                <td>
+                                    @{ sno++; }
+                                    @sno
+                                </td>
 
-                                    <th>
-                                        @Html.DisplayFor(modelItem => item.Patient.Fullname)
-                                    </th>
-                                    <th>
-                                        @Html.DisplayFor(modelItem => item.InvoiceNumber)
-                                    </th>
-                                    <td>
-                                        @Html.Raw(item.StartDate)
-                                    </td>
+                                <th>
+                                    @Html.DisplayFor(modelItem => item.Patient.Fullname)
+                                </th>
+                                <th>
+                                    @Html.DisplayFor(modelItem => item.InvoiceNumber)
+                                </th>
+                                <td>
+                                    @Html.Raw(item.StartDate.ToString("dd-MMM-yyyy hh:mm:tt" ))
+                                </td>
 
-                                    <td>
-                                        @Html.Raw(item.EndDate)
-                                    </td>
+                                <td>
+                                    @Html.Raw(item.EndDate.ToString("dd-MMM-yyyy hh:mm:tt" ))
+                                </td>
 
-
-                                    <td>
-                                        <div class="btn-group">
-                                            @if (User.IsInRole("Admin") || User.IsInRole("Doctor") || User.IsInRole("Accountant"))
-                                            {
-
-                                                <a class="btn btn-warning" href="@Url.Action("Edit", "Invoices", new { id = item.Id, area = "Accountant" })"> <i class='fa fa-edit fa-fw'></i>Edit</a>
-
-                                                <a class="btn btn-success" href="@Url.Action("Details", "Invoices", new { id = item.Id, area = "Accountant"  })"> <i class='fa fa-eye fa-fw'></i>Details</a>
-                                                <a class="btn btn-danger" href="@Url.Action("Delete", "Invoices", new { id = item.Id, area = "Accountant"  })"> <i class='fa fa-minus-circle fa-fw'></i>Delete</a>
+                                <td>
+                                    @Html.Raw(item.Status)
+                                </td>
 
 
-                                            }
+                                <td>
+                                    <div class="btn-group">
+                                        @if (User.IsInRole("Admin") || User.IsInRole("Doctor") || User.IsInRole("Accountant"))
+                                        {
 
-                                        </div>
-                                    </td>
+                                            @*<a class="btn btn-warning" href="@Url.Action("Edit", "Invoices", new { id = item.Id, area = "Accountant" })"> <i class='fa fa-edit fa-fw'></i>Edit</a>*@
 
-                                </tr>
+                                            <a class="btn btn-success" href="@Url.Action("Details", "Invoices", new { id = item.Id, area = "Accountant"  })"> <i class='fa fa-eye fa-fw'></i>Details</a>
+                                            @*<a class="btn btn-danger" href="@Url.Action("Delete", "Invoices", new { id = item.Id, area = "Accountant"  })"> <i class='fa fa-minus-circle fa-fw'></i>Delete</a>*@
+
+
+                                        }
+
+                                    </div>
+                                </td>
+
+                            </tr>
                             }
                         </tbody>
                     </table>

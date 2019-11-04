@@ -57,6 +57,7 @@ namespace FUTOMedical.Models
         public DbSet<Medicine> Medicines { get; set; }
         public DbSet<MedicineCategory> MedicineCategories { get; set; }
         public DbSet<GReport> GReports { get; set; }
+        public DbSet<Payment> Payments { get; set; }
 
         public static ApplicationDbContext Create()
         {

@@ -72,6 +72,7 @@ namespace FUTOMedical.Areas.Accountant.Controllers
         {
             if (ModelState.IsValid)
             {
+                invoice.Status = PaymentStatus.UnPaid;
                 db.Invoices.Add(invoice);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
