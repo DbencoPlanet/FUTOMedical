@@ -384,6 +384,36 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\FrontEnd\css\bootstrap.css" />
+    <Content Include="Content\FrontEnd\css\style.css" />
+    <Content Include="Content\FrontEnd\images\contact-icons.png" />
+    <Content Include="Content\FrontEnd\images\down-arrow.png" />
+    <Content Include="Content\FrontEnd\images\down-arrowb.png" />
+    <Content Include="Content\FrontEnd\images\f-social-icons.png" />
+    <Content Include="Content\FrontEnd\images\img1.jpg" />
+    <Content Include="Content\FrontEnd\images\img2.jpg" />
+    <Content Include="Content\FrontEnd\images\img3.jpg" />
+    <Content Include="Content\FrontEnd\images\logo.png" />
+    <Content Include="Content\FrontEnd\images\menu-icon.png" />
+    <Content Include="Content\FrontEnd\images\service-bg.png" />
+    <Content Include="Content\FrontEnd\images\services-icons.png" />
+    <Content Include="Content\FrontEnd\images\slide1.jpg" />
+    <Content Include="Content\FrontEnd\images\slider-arrows.png" />
+    <Content Include="Content\FrontEnd\images\t1.jpg" />
+    <Content Include="Content\FrontEnd\images\t2.jpg" />
+    <Content Include="Content\FrontEnd\images\t3.jpg" />
+    <Content Include="Content\FrontEnd\images\t4.jpg" />
+    <Content Include="Content\FrontEnd\images\t5.jpg" />
+    <Content Include="Content\FrontEnd\images\to-top1.png" />
+    <Content Include="Content\FrontEnd\images\top-arrow.png" />
+    <Content Include="Content\FrontEnd\images\top-arrowb.png" />
+    <Content Include="Content\FrontEnd\images\top-grid-icons1.png" />
+    <Content Include="Content\FrontEnd\images\top-grid-info-bg-b.png" />
+    <Content Include="Content\FrontEnd\images\top-grid-info-bg-bl.png" />
+    <Content Include="Content\FrontEnd\js\easing.js" />
+    <Content Include="Content\FrontEnd\js\jquery.min.js" />
+    <Content Include="Content\FrontEnd\js\move-top.js" />
+    <Content Include="Content\FrontEnd\js\responsiveslides.min.js" />
     <Content Include="Content\FUTOMedical\assets\css\main-style.css" />
     <Content Include="Content\FUTOMedical\assets\css\style.css" />
     <Content Include="Content\FUTOMedical\assets\font-awesome\css\font-awesome.css" />
@@ -733,6 +763,7 @@
     <Content Include="Views\Shared\_LoginLayout.cshtml" />
     <Content Include="Views\Account\ResetUserPassword.cshtml" />
     <Content Include="Views\Shared\_PrintLayout.cshtml" />
+    <Content Include="Views\Shared\_FrontEnd.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
